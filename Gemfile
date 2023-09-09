@@ -6,5 +6,5 @@ eval_gemfile "./Gemfile.lesli"
 
 
 gem "lesli", path: "engines/Lesli"
-gem "lesli_bell", path: "engines/LesliBell"
-gem "lesli_babel", path: "engines/LesliBabel"
+#gem "lesli_bell", path: "engines/LesliBell"
+#gem "lesli_babel", path: "engines/LesliBabel"
