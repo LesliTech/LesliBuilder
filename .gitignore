@@ -45,3 +45,6 @@
 !/config/credentials/test-ga.yml.enc
 
 .DS_store
+.ruby-version
+Gemfile.lock
+db/schema.rb
