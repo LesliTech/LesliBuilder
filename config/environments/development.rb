@@ -79,4 +79,8 @@ Rails.application.configure do
     # if this is not false Rails will fingerprint the assets by default and precompile is needed
     config.assets.digest = false
 
+    config.action_mailer.default_url_options = { 
+        host: "http://localhost:3000/"
+    }
+
 end
