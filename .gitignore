@@ -39,6 +39,9 @@
 /config/credentials/*
 !/config/credentials/.gitkeep
 
+/config/locales/*
+/coverage
+
 
 # credentials for github actions
 !/config/credentials/test-ga.key
