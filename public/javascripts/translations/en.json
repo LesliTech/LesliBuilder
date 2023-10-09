@@ -1,0 +1,16 @@
+{
+  "en": {
+    "lesli_admin": {
+      "users": {
+        "title_users": ":lesli_admin.users.title_users:"
+      }
+    }
+  },
+  "es": {
+    "lesli_admin": {
+      "users": {
+        "title_users": "User"
+      }
+    }
+  }
+}
