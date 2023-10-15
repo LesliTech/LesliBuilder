@@ -1,11 +1,4 @@
 PATH
-  remote: engines/LesliAdmin
-  specs:
-    lesli_admin (0.2.0)
-      lesli (>= 5)
-      rails (>= 7.0.6)
-
-PATH
   remote: engines/Lesli
   specs:
     lesli (5.0.1)
@@ -325,7 +318,6 @@ DEPENDENCIES
   importmap-rails
   jquery-rails
   lesli!
-  lesli_admin!
   letter_opener (= 1.8.1)
   pg (~> 1.1)
   puma (~> 5.0)
