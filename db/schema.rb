@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_07_030328) do
+ActiveRecord::Schema[7.0].define(version: 10005210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,103 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030328) do
     t.index ["user_id"], name: "index_lesli_accounts_on_user_id"
   end
 
-  create_table "lesli_audit_accounts", force: :cascade do |t|
-    t.integer "status"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.index ["account_id"], name: "index_lesli_audit_accounts_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_audit_accounts_on_deleted_at"
-  end
-
-  create_table "lesli_audit_dashboard_components", force: :cascade do |t|
-    t.string "name"
-    t.string "component_id"
-    t.integer "layout"
-    t.integer "index"
-    t.json "query_configuration"
-    t.json "custom_configuration"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
-    t.index ["dashboard_id"], name: "lesli_audit_dashboard_components_dashboards"
-  end
-
-  create_table "lesli_audit_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
-    t.boolean "main"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
-    t.index ["account_id"], name: "index_lesli_audit_dashboards_on_account_id"
-    t.index ["user_id"], name: "index_lesli_audit_dashboards_on_user_id"
-  end
-
-  create_table "lesli_babel_buckets", force: :cascade do |t|
-    t.string "code"
-    t.string "reference_module"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "module_id"
-    t.index ["module_id"], name: "index_lesli_babel_buckets_on_module_id"
-  end
-
-  create_table "lesli_babel_modules", force: :cascade do |t|
-    t.string "code"
-    t.string "platform"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "lesli_babel_strings", force: :cascade do |t|
-    t.string "label"
-    t.string "es"
-    t.string "en"
-    t.string "de"
-    t.string "fr"
-    t.string "nl"
-    t.string "pl"
-    t.string "pt"
-    t.string "it"
-    t.string "tr"
-    t.string "ro"
-    t.string "bg"
-    t.string "uk"
-    t.string "sr"
-    t.string "hr"
-    t.integer "status"
-    t.string "context"
-    t.datetime "last_update_es", precision: nil
-    t.datetime "last_update_en", precision: nil
-    t.datetime "last_update_de", precision: nil
-    t.datetime "last_update_fr", precision: nil
-    t.datetime "last_update_nl", precision: nil
-    t.datetime "last_update_pl", precision: nil
-    t.datetime "last_update_pt", precision: nil
-    t.datetime "last_update_it", precision: nil
-    t.datetime "last_update_tr", precision: nil
-    t.datetime "last_update_ro", precision: nil
-    t.datetime "last_update_bg", precision: nil
-    t.datetime "last_update_uk", precision: nil
-    t.datetime "last_update_sr", precision: nil
-    t.datetime "last_update_hr", precision: nil
-    t.datetime "last_update_status", precision: nil
-    t.datetime "last_update_context", precision: nil
-    t.string "reference_bucket"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "bucket_id"
-    t.index ["bucket_id"], name: "index_lesli_babel_strings_on_bucket_id"
-  end
-
   create_table "lesli_descriptor_activities", force: :cascade do |t|
     t.string "description"
     t.string "field_name"
@@ -208,55 +111,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030328) do
     t.bigint "account_id"
     t.index ["account_id"], name: "index_lesli_descriptors_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_descriptors_on_deleted_at"
-  end
-
-  create_table "lesli_driver_accounts", force: :cascade do |t|
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.index ["account_id"], name: "index_lesli_driver_accounts_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_driver_accounts_on_deleted_at"
-  end
-
-  create_table "lesli_driver_calendars", force: :cascade do |t|
-    t.string "name"
-    t.string "color", default: "0d52bf"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "account_id"
-    t.index ["account_id"], name: "index_lesli_driver_calendars_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_driver_calendars_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_driver_calendars_on_user_id"
-  end
-
-  create_table "lesli_driver_dashboards", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "lesli_driver_events", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.date "date"
-    t.time "start"
-    t.time "end"
-    t.string "url"
-    t.string "location"
-    t.string "status"
-    t.boolean "public"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "calendar_id"
-    t.bigint "user_id"
-    t.index ["account_id"], name: "index_lesli_driver_events_on_account_id"
-    t.index ["calendar_id"], name: "index_lesli_driver_events_on_calendar_id"
-    t.index ["deleted_at"], name: "index_lesli_driver_events_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_driver_events_on_user_id"
   end
 
   create_table "lesli_roles", force: :cascade do |t|
@@ -419,22 +273,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_030328) do
   add_foreign_key "lesli_account_logs", "lesli_accounts"
   add_foreign_key "lesli_account_requests", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_accounts", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_audit_accounts", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_audit_dashboard_components", "lesli_audit_dashboards", column: "dashboard_id"
-  add_foreign_key "lesli_audit_dashboards", "lesli_audit_accounts", column: "account_id"
-  add_foreign_key "lesli_audit_dashboards", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_babel_buckets", "lesli_babel_modules", column: "module_id"
-  add_foreign_key "lesli_babel_strings", "lesli_babel_buckets", column: "bucket_id"
   add_foreign_key "lesli_descriptor_activities", "lesli_descriptors", column: "descriptor_id"
   add_foreign_key "lesli_descriptor_privileges", "lesli_descriptors", column: "descriptor_id"
   add_foreign_key "lesli_descriptor_privileges", "lesli_system_controller_actions", column: "action_id"
   add_foreign_key "lesli_descriptors", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_driver_accounts", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_driver_calendars", "lesli_driver_accounts", column: "account_id"
-  add_foreign_key "lesli_driver_calendars", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_driver_events", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_driver_events", "lesli_driver_calendars", column: "calendar_id"
-  add_foreign_key "lesli_driver_events", "lesli_users", column: "user_id"
   add_foreign_key "lesli_roles", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_system_controller_actions", "lesli_system_controllers", column: "system_controller_id"
   add_foreign_key "lesli_user_agents", "lesli_users", column: "user_id"
