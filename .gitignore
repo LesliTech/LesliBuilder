@@ -30,24 +30,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Installed engines
-/engines*
-/engines/*
-!/engines/.keep
 
-# Ignore credentials and keys.
-/config/credentials/*
-!/config/credentials/.gitkeep
-
-/config/locales/*
-/coverage
-
-
-# credentials for github actions
-!/config/credentials/test-ga.key
-!/config/credentials/test-ga.yml.enc
-
-.DS_store
-.ruby-version
-Gemfile.lock
-db/schema.rb
+engines*
+coverage

@@ -1,37 +1,24 @@
-# Lesli
-# For more information read the license file including with this software.
 
-common: &common
-    pool: 30
-    host: 127.0.0.1
-    adapter: postgresql
-    encoding: unicode
-    reconnect: false
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
 
 development:
-    <<: *common
-    database: <%= Rails.application.credentials.dig(:db, :database) %>
-    username: <%= Rails.application.credentials.dig(:db, :username) %>
-    password: <%= Rails.application.credentials.dig(:db, :password) %>
-    port: <%= Rails.application.credentials.dig(:db, :port) || 5432 %>
+  <<: *default
+  database: "lesli-development"
+  username: "ldonis"
+  password: ""
 
 test:
-    <<: *common
-    database: <%= Rails.application.credentials.dig(:db, :database) %>
-    username: <%= Rails.application.credentials.dig(:db, :username) %>
-    password: <%= Rails.application.credentials.dig(:db, :password) %>
-    port: <%= Rails.application.credentials.dig(:db, :port) || 5432 %>
+  <<: *default
+  database: "lesli-test"
+  username: "ldonis"
+  password: ""
 
 production:
-    <<: *common
-    port: <%= Rails.application.credentials.dig(:db, :port) %>
-    host: <%= Rails.application.credentials.dig(:db, :host) %>
-    database: <%= Rails.application.credentials.dig(:db, :database) %>
-    username: <%= Rails.application.credentials.dig(:db, :username) %>
-    password: <%= Rails.application.credentials.dig(:db, :password) %>
-
-production_dev:
-    <<: *common
-    database: <%= Rails.application.credentials.dig(:db, :database) %>
-    username: <%= Rails.application.credentials.dig(:db, :username) %>
-    password: <%= Rails.application.credentials.dig(:db, :password) %>
+  <<: *default
+  database: LesliBuilder_production
+  username: LesliBuilder
+  password: <%= ENV["LESLIBUILDER_DATABASE_PASSWORD"] %>

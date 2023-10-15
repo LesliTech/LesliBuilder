@@ -1,5 +1,6 @@
+
 Rails.application.routes.draw do
-    mount Lesli::Engine => "/"
+    mount Lesli::Engine => "/lesli"
     mount LesliDriver::Engine => "/driver" if defined?(LesliDriver)
     mount LesliAdmin::Engine => "/admin" if defined?(LesliAdmin)
     mount LesliAudit::Engine => "/audit" if defined?(LesliAudit)

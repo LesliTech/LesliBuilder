@@ -68,19 +68,3 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end
-
-
-# Override configuration for environment
-# every rails upgrade needs to add different configuration, so we should only override the specific config
-# instead of changing the original object due on the next release rails is going to reset to default values
-Rails.application.configure do
-
-    # Force to not use digest, 
-    # if this is not false Rails will fingerprint the assets by default and precompile is needed
-    config.assets.digest = false
-
-    config.action_mailer.default_url_options = { 
-        host: "http://localhost:3000/"
-    }
-
-end
