@@ -31,7 +31,7 @@ Building a better future, one line of code at a time.
 =end
 
 #LESLI_ENGINES = ["Lesli", "LesliAdmin", "LesliBabel", "LesliAudit", "LesliBell", "LesliDriver"]
-LESLI_ENGINES = ["Lesli", "LesliAdmin"]
+LESLI_ENGINES = ["Lesli"]
 
 LESLI_ENGINES.each do |engine_name|
     engine_code = engine_name.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
