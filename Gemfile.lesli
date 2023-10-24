@@ -30,7 +30,7 @@ Building a better future, one line of code at a time.
 // · 
 =end
 
-#LESLI_ENGINES = ["Lesli", "LesliAdmin", "LesliBabel", "LesliAudit", "LesliBell", "LesliDriver"]
+#LESLI_ENGINES = ["Lesli", "LesliAdmin", "LesliBabel", "LesliAudit", "LesliDriver", "LesliBell"]
 LESLI_ENGINES = ["Lesli"]
 
 LESLI_ENGINES.each do |engine_name|
