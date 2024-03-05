@@ -33,4 +33,6 @@
 
 engines*
 coverage
+.DS_Store
 .Gemfile.lock
+/config/credentials/*

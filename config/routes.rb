@@ -1,10 +1,16 @@
 
 Rails.application.routes.draw do
-  mount Lesli::Engine => "/lesli"
+  resource :welcome
+  root to: "welcomes#show"
+
+  mount Lesli::Engine => "/lesli" if defined?(Lesli)
   mount LesliDriver::Engine => "/driver" if defined?(LesliDriver)
+  mount LesliLetter::Engine => "/letter" if defined?(LesliLetter)
   mount LesliAdmin::Engine => "/admin" if defined?(LesliAdmin)
   mount LesliAudit::Engine => "/audit" if defined?(LesliAudit)
-  mount LesliVault::Engine => "/vault" if defined?(LesliVault)
+  mount LesliGuard::Engine => "/guard" if defined?(LesliGuard)
   mount LesliBabel::Engine => "/babel" if defined?(LesliBabel)
   mount LesliBell::Engine => "/bell" if defined?(LesliBell)
+  mount LesliSupport::Engine => "/support" if defined?(LesliSupport)
+  mount LesliDashboard::Engine => "/dashboard" if defined?(LesliDashboard)
 end

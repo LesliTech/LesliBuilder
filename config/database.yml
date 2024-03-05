@@ -9,18 +9,18 @@ default: &default
 
 development:
   <<: *default
-  database: "lesli-development"
-  username: "ldonis"
-  password: ""
+  database: <%= Rails.application.credentials.dig(:db, :database) %>
+  username: <%= Rails.application.credentials.dig(:db, :username) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
 
 test:
   <<: *default
-  database: "lesli-test"
-  username: "lesli-test"
-  password: "lesli-test"
+  database: <%= Rails.application.credentials.dig(:db, :database) %>
+  username: <%= Rails.application.credentials.dig(:db, :username) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
 
 production:
   <<: *default
-  database: LesliBuilder_production
-  username: LesliBuilder
-  password: <%= ENV["LESLIBUILDER_DATABASE_PASSWORD"] %>
+  database: <%= Rails.application.credentials.dig(:db, :database) %>
+  username: <%= Rails.application.credentials.dig(:db, :username) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
