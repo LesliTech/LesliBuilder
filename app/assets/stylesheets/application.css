@@ -24,8 +24,7 @@ html, body, * {
 }
 
 .page-welcome svg {
-    width: 100%;
-    max-width: 320px;
+    width: 320px;
     background-color: white;
 }
 
@@ -84,4 +83,19 @@ html, body, * {
 
 .buttons a.start {
     background: #444444;
+}
+
+@media only screen and (max-width: 600px) { 
+    .page-welcome svg {
+        width: 250px;
+    }
+
+    .page-welcome h1 {
+        padding: 0 1rem;
+        font-size: 2.7rem;
+    }
+
+    .buttons a {
+        padding: 14px 20px;
+    }
 }
