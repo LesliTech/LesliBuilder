@@ -14,9 +14,16 @@
         Getting started
       </a>
     </div>
-    <a href="/login">
-      Login
-    </a>
+    <% if user_signed_in? %>
+      <a href="/dashboard">
+        Dashboard
+      </a>
+    <% end %>
+    <% if !user_signed_in? %>
+      <a href="/login">
+        Login
+      </a>
+    <% end %>
 </section>
 
 <% if Rails.env.production? %>
