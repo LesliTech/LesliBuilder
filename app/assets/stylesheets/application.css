@@ -21,6 +21,7 @@ html, body, * {
     background-image:  
         radial-gradient(#0d52bf 2px, transparent 2px), 
         radial-gradient(#0d52bf 2px, #ffffff 2px);
+        animation: rotateBackground 12s linear infinite;
 }
 
 .page-welcome svg {
@@ -97,5 +98,11 @@ html, body, * {
 
     .buttons a {
         padding: 14px 20px;
+    }
+}
+
+@keyframes rotateBackground {
+    to {
+        background-position: 115px 115px, 170px 170px;
     }
 }
