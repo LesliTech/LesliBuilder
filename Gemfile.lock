@@ -35,7 +35,7 @@ PATH
 PATH
   remote: engines/LesliDashboard
   specs:
-    lesli_dashboard (0.2.0)
+    lesli_dashboard (0.3.0)
       lesli (~> 5)
       rails (~> 7.0.6)
 
