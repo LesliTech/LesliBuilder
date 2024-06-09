@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 901120110) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "lesli_account_activities", force: :cascade do |t|
     t.string "description"
     t.string "field_name"
@@ -23,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_account_activities_on_account_id"
   end
 
@@ -50,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_account_details_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_account_details_on_deleted_at"
   end
@@ -63,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.json "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "lesli_account_id"
+    t.integer "lesli_account_id"
     t.index ["lesli_account_id"], name: "index_lesli_account_logs_on_lesli_account_id"
   end
 
@@ -72,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "value"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_account_settings_on_account_id"
   end
 
@@ -83,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_accounts_on_deleted_at"
     t.index ["email"], name: "index_lesli_accounts_on_email", unique: true
     t.index ["user_id"], name: "index_lesli_accounts_on_user_id"
@@ -94,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_admin_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_admin_accounts_on_deleted_at"
   end
@@ -109,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "lesli_admin_dashboard_components_dashboards"
   end
 
@@ -120,8 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_admin_dashboards_on_account_id"
     t.index ["user_id"], name: "index_lesli_admin_dashboards_on_user_id"
   end
@@ -131,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "request_action"
     t.integer "request_count"
     t.date "created_at"
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_audit_account_requests_on_account_id"
     t.index ["request_controller", "request_action", "created_at", "account_id"], name: "lesli_audit_account_requests_index", unique: true
   end
@@ -141,7 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_audit_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_audit_accounts_on_deleted_at"
   end
@@ -156,7 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "lesli_audit_dashboard_components_dashboards"
   end
 
@@ -167,8 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_audit_dashboards_on_account_id"
     t.index ["user_id"], name: "index_lesli_audit_dashboards_on_user_id"
   end
@@ -178,9 +175,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "request_action"
     t.integer "request_count"
     t.date "created_at"
-    t.bigint "user_id"
-    t.bigint "session_id"
-    t.bigint "account_id"
+    t.integer "user_id"
+    t.integer "session_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_audit_user_requests_on_account_id"
     t.index ["request_controller", "request_action", "created_at", "user_id", "session_id"], name: "lesli_audit_user_requests_index", unique: true
     t.index ["session_id"], name: "index_lesli_audit_user_requests_on_session_id"
@@ -193,7 +190,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "module_id"
+    t.integer "module_id"
     t.index ["module_id"], name: "index_lesli_babel_buckets_on_module_id"
   end
 
@@ -243,7 +240,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "bucket_id"
+    t.integer "bucket_id"
     t.index ["bucket_id"], name: "index_lesli_babel_strings_on_bucket_id"
   end
 
@@ -252,7 +249,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_bell_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_accounts_on_deleted_at"
   end
@@ -270,9 +267,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.bigint "account_id"
+    t.integer "user_id"
+    t.integer "role_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_bell_announcements_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_announcements_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_bell_announcements_on_role_id"
@@ -293,8 +290,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "account_id"
+    t.integer "user_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_bell_notifications_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_notifications_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_bell_notifications_on_user_id"
@@ -304,7 +301,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_calendar_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_calendar_accounts_on_deleted_at"
   end
@@ -315,8 +312,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "account_id"
+    t.integer "user_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_calendar_calendars_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_calendar_calendars_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_calendar_calendars_on_user_id"
@@ -335,9 +332,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "calendar_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "calendar_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_calendar_events_on_account_id"
     t.index ["calendar_id"], name: "index_lesli_calendar_events_on_calendar_id"
     t.index ["deleted_at"], name: "index_lesli_calendar_events_on_deleted_at"
@@ -349,7 +346,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_dashboard_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_dashboard_accounts_on_deleted_at"
   end
@@ -364,7 +361,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "lesli_dashboard_dashboard_components_dashboards"
   end
 
@@ -375,8 +372,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_dashboard_dashboards_on_account_id"
     t.index ["user_id"], name: "index_lesli_dashboard_dashboards_on_user_id"
   end
@@ -390,7 +387,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "descriptor_id"
+    t.integer "descriptor_id"
     t.index ["descriptor_id"], name: "index_lesli_descriptor_activities_on_descriptor_id"
   end
 
@@ -398,8 +395,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "descriptor_id"
-    t.bigint "action_id"
+    t.integer "descriptor_id"
+    t.integer "action_id"
     t.index ["action_id"], name: "descriptor_privileges_controller_actions"
     t.index ["deleted_at"], name: "index_lesli_descriptor_privileges_on_deleted_at"
     t.index ["descriptor_id"], name: "index_lesli_descriptor_privileges_on_descriptor_id"
@@ -411,7 +408,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_descriptors_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_descriptors_on_deleted_at"
   end
@@ -426,9 +423,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.bigint "descriptor_id"
+    t.integer "user_id"
+    t.integer "role_id"
+    t.integer "descriptor_id"
     t.index ["deleted_at"], name: "index_lesli_role_powers_on_deleted_at"
     t.index ["descriptor_id"], name: "index_lesli_role_powers_on_descriptor_id"
     t.index ["role_id"], name: "index_lesli_role_powers_on_role_id"
@@ -442,7 +439,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "role_id"
+    t.integer "role_id"
     t.index ["controller", "action", "role_id"], name: "role_privileges_index", unique: true
     t.index ["deleted_at"], name: "index_lesli_role_privileges_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_role_privileges_on_role_id"
@@ -460,7 +457,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_roles_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_roles_on_deleted_at"
   end
@@ -470,7 +467,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_security_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_security_accounts_on_deleted_at"
   end
@@ -485,7 +482,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "lesli_security_dashboard_components_index"
   end
 
@@ -496,8 +493,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_security_dashboards_on_account_id"
     t.index ["user_id"], name: "index_lesli_security_dashboards_on_user_id"
   end
@@ -507,7 +504,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_shield_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_shield_accounts_on_deleted_at"
   end
@@ -522,7 +519,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "lesli_shield_dashboard_components_index"
   end
 
@@ -533,8 +530,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_shield_dashboards_on_account_id"
     t.index ["user_id"], name: "index_lesli_shield_dashboards_on_user_id"
   end
@@ -545,8 +542,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
+    t.integer "account_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_support_account_settings_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_account_settings_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_support_account_settings_on_user_id"
@@ -557,7 +554,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_accounts_on_deleted_at"
   end
@@ -568,7 +565,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_catalog_categories_on_account_id"
     t.index ["ancestry"], name: "index_lesli_support_catalog_categories_on_ancestry"
     t.index ["deleted_at"], name: "index_lesli_support_catalog_categories_on_deleted_at"
@@ -580,7 +577,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_catalog_priorities_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_catalog_priorities_on_deleted_at"
   end
@@ -590,7 +587,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_catalog_types_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_catalog_types_on_deleted_at"
   end
@@ -601,7 +598,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_catalog_workspaces_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_catalog_workspaces_on_deleted_at"
   end
@@ -616,7 +613,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dashboard_id"
+    t.integer "dashboard_id"
     t.index ["dashboard_id"], name: "help_dashboard_components_dashboards"
   end
 
@@ -627,9 +624,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.bigint "user_id"
-    t.bigint "role_id"
+    t.integer "account_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.index ["account_id"], name: "index_lesli_support_dashboards_on_account_id"
     t.index ["role_id"], name: "index_lesli_support_dashboards_on_role_id"
     t.index ["user_id"], name: "index_lesli_support_dashboards_on_user_id"
@@ -645,12 +642,12 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.text "client_repercussions"
     t.text "exceptions"
     t.boolean "default", default: false
-    t.bigint "user_main_id"
+    t.integer "user_main_id"
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "accounts_id"
-    t.bigint "users_id"
+    t.integer "accounts_id"
+    t.integer "users_id"
     t.index ["accounts_id"], name: "index_lesli_support_slas_on_accounts_id"
     t.index ["deleted_at"], name: "index_lesli_support_slas_on_deleted_at"
     t.index ["users_id"], name: "index_lesli_support_slas_on_users_id"
@@ -661,9 +658,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "discussion_id"
-    t.bigint "ticket_id"
-    t.bigint "user_id"
+    t.integer "discussion_id"
+    t.integer "ticket_id"
+    t.integer "user_id"
     t.index ["discussion_id"], name: "index_lesli_support_ticket_discussions_on_discussion_id"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_discussions_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_discussions_on_user_id"
@@ -681,14 +678,14 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "catalog_workspace_id"
-    t.bigint "catalog_type_id"
-    t.bigint "catalog_category_id"
-    t.bigint "catalog_priority_id"
-    t.bigint "slas_id"
-    t.bigint "user_id"
-    t.bigint "creator_id"
-    t.bigint "account_id"
+    t.integer "catalog_workspace_id"
+    t.integer "catalog_type_id"
+    t.integer "catalog_category_id"
+    t.integer "catalog_priority_id"
+    t.integer "slas_id"
+    t.integer "user_id"
+    t.integer "creator_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_support_tickets_on_account_id"
     t.index ["catalog_category_id"], name: "support_tickets_catalog_categories"
     t.index ["catalog_priority_id"], name: "support_tickets_catalog_priorities"
@@ -705,7 +702,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "system_controller_id"
+    t.integer "system_controller_id"
     t.index ["deleted_at"], name: "index_lesli_system_controller_actions_on_deleted_at"
     t.index ["system_controller_id"], name: "index_lesli_system_controller_actions_on_system_controller_id"
   end
@@ -724,13 +721,13 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
   create_table "lesli_user_details", force: :cascade do |t|
     t.string "title"
     t.string "address"
-    t.bigint "work_city"
-    t.bigint "work_region"
-    t.bigint "work_address"
+    t.integer "work_city"
+    t.integer "work_region"
+    t.integer "work_address"
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_user_details_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_user_details_on_user_id"
   end
@@ -740,8 +737,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "session_id"
+    t.integer "user_id"
+    t.integer "session_id"
     t.index ["session_id"], name: "index_lesli_user_logs_on_session_id"
     t.index ["user_id"], name: "index_lesli_user_logs_on_user_id"
   end
@@ -750,15 +747,15 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "role_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.index ["deleted_at"], name: "index_lesli_user_powers_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_user_powers_on_role_id"
     t.index ["user_id"], name: "index_lesli_user_powers_on_user_id"
   end
 
   create_table "lesli_user_sessions", force: :cascade do |t|
-    t.inet "remote"
+    t.string "remote"
     t.string "agent_platform"
     t.string "agent_os"
     t.string "agent_browser"
@@ -771,7 +768,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_user_sessions_on_deleted_at"
     t.index ["expiration_at"], name: "index_lesli_user_sessions_on_expiration_at"
     t.index ["user_id"], name: "index_lesli_user_sessions_on_user_id"
@@ -782,7 +779,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id", "name"], name: "index_lesli_user_settings_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_lesli_user_settings_on_user_id"
   end
@@ -803,8 +800,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at", precision: nil
     t.datetime "last_sign_in_at", precision: nil
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "unconfirmed_email"
     t.string "confirmation_token"
     t.datetime "confirmation_sent_at", precision: nil
@@ -819,7 +816,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.bigint "account_id"
+    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_users_on_account_id"
     t.index ["confirmation_token"], name: "index_lesli_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_lesli_users_on_deleted_at"

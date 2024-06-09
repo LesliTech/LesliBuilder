@@ -32,9 +32,10 @@
 
 
 engines*
+enginesdev/
 coverage
 .DS_Store
 .Gemfile.lock
 /config/credentials/*
-
 /config/credentials/production.key
+/db/*.sqlite3
