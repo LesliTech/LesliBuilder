@@ -323,8 +323,8 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.string "title"
     t.string "description"
     t.date "date"
-    t.time "start"
-    t.time "end"
+    t.datetime "start", precision: nil
+    t.datetime "end", precision: nil
     t.string "url"
     t.string "location"
     t.string "status"
