@@ -42,7 +42,7 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-# gem "pg", "~> 1.1"
+gem "pg", "~> 1.1"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -101,6 +101,10 @@ group :development, :test do
   gem 'simplecov-cobertura'
 
   gem 'codecov'
+
+  # FactoryBot
+  # https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
+  gem "factory_bot_rails"
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
