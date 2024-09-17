@@ -1,2 +1,2 @@
 --format documentation 
---pattern engines/Lesli/spec/**/**/*_spec.rb
+--pattern engines/LesliAdmin/spec/**/**/*_spec.rb

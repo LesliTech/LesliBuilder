@@ -1,4 +1,7 @@
 
+# Mount login at root
+LesliShield::Routing.mount_login
+
 Rails.application.routes.draw do
   resource :welcome, only: [:show]
   root to: "welcomes#show"
