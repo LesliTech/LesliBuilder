@@ -42,7 +42,7 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+#gem "pg", "~> 1.1"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -51,7 +51,7 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "5.6.7"
 
 #
-gem "puma-daemon", require: false
+#gem "puma-daemon", require: false
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 #gem "importmap-rails"
