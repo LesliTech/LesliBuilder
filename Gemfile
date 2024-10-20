@@ -33,10 +33,10 @@ Building a better future, one line of code at a time.
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.2.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8", ">= 7.0.8.1"
+gem "rails", "~> 8.0.0.rc1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -45,10 +45,11 @@ gem "sprockets-rails"
 #gem "pg", "~> 1.1"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 2.1.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "5.6.7"
+#gem "puma", "5.6.7"
+gem "puma", "6.4.3"
 
 #
 #gem "puma-daemon", require: false
@@ -83,24 +84,24 @@ group :development, :test do
 
   # Preview email in the default browser instead of sending it
   # https://github.com/ryanb/letter_opener
-  gem "letter_opener", "1.8.1"
+  gem "letter_opener", "1.10.0"
 
   # rspec-rails is a testing framework for Rails 5+.
   # https://github.com/rspec/rspec-rails
   # Using beta version of rspect-rails due: https://github.com/rails/rails/issues/35417
-  gem "rspec-rails", "6.0.2"
+  gem "rspec-rails", "7.0.1"
 
   # Code coverage
   # https://github.com/simplecov-ruby/simplecov
-  gem "simplecov", "0.22.0", require: false
+  gem "simplecov", "0.21.2", require: false
 
   # Code coverage stats in the console
   # https://github.com/chetan/simplecov-console
-  gem "simplecov-console", "0.9.1", require: false
+  gem "simplecov-console", "0.9.2", require: false
 
   gem 'simplecov-cobertura'
 
-  gem 'codecov'
+  gem 'codecov', "0.6.0"
 
   # FactoryBot
   # https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
@@ -149,6 +150,6 @@ LESLI_ENGINES.each do |engine_name|
     else
 
         # install engine from rubygems
-        gem "#{engine_code}"
+        #gem "#{engine_code}"
     end
 end

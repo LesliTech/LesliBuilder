@@ -39,3 +39,4 @@ coverage
 /config/credentials/*
 /config/credentials/production.key
 /db/*.sqlite3
+/db/*.sqlite3*

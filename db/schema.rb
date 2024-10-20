@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 901120110) do
+ActiveRecord::Schema[8.0].define(version: 901120110) do
   create_table "lesli_account_activities", force: :cascade do |t|
     t.string "description"
     t.string "field_name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
 
   create_table "lesli_accounts", force: :cascade do |t|
     t.integer "status", default: 1, null: false
+    t.string "region", default: "latin_america"
     t.string "email"
     t.string "name"
     t.datetime "deleted_at", precision: nil
@@ -642,7 +643,7 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
     t.text "client_repercussions"
     t.text "exceptions"
     t.boolean "default", default: false
-    t.integer "user_main_id"
+    t.bigint "user_main_id"
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -721,9 +722,9 @@ ActiveRecord::Schema[7.0].define(version: 901120110) do
   create_table "lesli_user_details", force: :cascade do |t|
     t.string "title"
     t.string "address"
-    t.integer "work_city"
-    t.integer "work_region"
-    t.integer "work_address"
+    t.bigint "work_city"
+    t.bigint "work_region"
+    t.bigint "work_address"
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
