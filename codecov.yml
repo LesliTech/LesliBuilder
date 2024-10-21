@@ -1,0 +1,9 @@
+ignore:
+  - "spec"
+  - "engines/Lesli/app/lib"
+  - "engines/Lesli/app/models"
+  - "engines/Lesli/app/helpers"
+  - "engines/Lesli/app/mailers"
+  - "engines/Lesli/app/services"
+  - "engines/Lesli/app/operators"
+  - "engines/Lesli/app/validators"
