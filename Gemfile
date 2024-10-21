@@ -123,15 +123,15 @@ end
 # List of Lesli engines to be installed
 LESLI_ENGINES = [
     "Lesli", 
-    "LesliBell", 
-    "LesliAdmin", 
-    "LesliBabel", 
-    "LesliAudit", 
+    # "LesliBell", 
+    # "LesliAdmin", 
+    # "LesliBabel", 
+    # "LesliAudit", 
     "LesliShield",
-    "LesliSupport", 
-    "LesliSecurity",
-    "LesliCalendar", 
-    "LesliDashboard"
+    # "LesliSupport", 
+    # "LesliSecurity",
+    # "LesliCalendar", 
+    # "LesliDashboard"
 ]
 
 LESLI_ENGINES.each do |engine_name|

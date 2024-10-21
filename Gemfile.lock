@@ -1,55 +1,9 @@
 PATH
-  remote: engines/LesliAdmin
-  specs:
-    lesli_admin (0.6.1)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliAudit
-  specs:
-    lesli_audit (0.6.0)
-
-PATH
-  remote: engines/LesliBabel
-  specs:
-    lesli_babel (0.7.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliBell
-  specs:
-    lesli_bell (0.2.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliCalendar
-  specs:
-    lesli_calendar (0.2.2)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliDashboard
-  specs:
-    lesli_dashboard (0.3.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliSecurity
-  specs:
-    lesli_security (0.5.0)
-      lesli (~> 5)
-
-PATH
   remote: engines/LesliShield
   specs:
     lesli_shield (0.1.0)
       devise (~> 4.9)
       lesli (~> 5)
-
-PATH
-  remote: engines/LesliSupport
-  specs:
-    lesli_support (0.1.0)
 
 PATH
   remote: engines/Lesli
@@ -237,6 +191,7 @@ GEM
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.5.8)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -361,16 +316,9 @@ DEPENDENCIES
   faker
   honeybadger
   lesli!
-  lesli_admin!
-  lesli_audit!
-  lesli_babel!
-  lesli_bell!
-  lesli_calendar!
-  lesli_dashboard!
-  lesli_security!
   lesli_shield!
-  lesli_support!
   letter_opener (= 1.10.0)
+  pg (~> 1.5)
   puma (= 6.4.3)
   rails (~> 7.2)
   rspec-rails (= 7.0.1)
