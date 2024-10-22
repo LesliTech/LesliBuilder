@@ -123,15 +123,15 @@ end
 # List of Lesli engines to be installed
 LESLI_ENGINES = [
     "Lesli", 
-    # "LesliBell", 
+    "LesliBell", 
     "LesliAdmin", 
-    # "LesliBabel", 
-    # "LesliAudit", 
+    "LesliBabel", 
+    "LesliAudit", 
     "LesliShield",
-    # "LesliSupport", 
-    # "LesliSecurity",
-    # "LesliCalendar", 
-    # "LesliDashboard"
+    "LesliSupport", 
+    "LesliSecurity",
+    "LesliCalendar", 
+    "LesliDashboard"
 ]
 
 LESLI_ENGINES.each do |engine_name|
@@ -147,6 +147,6 @@ LESLI_ENGINES.each do |engine_name|
     else
 
         # install engine from rubygems
-        # gem "#{engine_code}"
+        gem "#{engine_code}"
     end
 end
