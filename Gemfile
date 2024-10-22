@@ -147,6 +147,6 @@ LESLI_ENGINES.each do |engine_name|
     else
 
         # install engine from rubygems
-        gem "#{engine_code}"
+        # gem "#{engine_code}"
     end
 end
