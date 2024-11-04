@@ -121,32 +121,4 @@ end
 
 
 # List of Lesli engines to be installed
-LESLI_ENGINES = [
-    "Lesli", 
-    "LesliBell", 
-    "LesliAdmin", 
-    "LesliBabel", 
-    "LesliAudit", 
-    "LesliShield",
-    "LesliSupport", 
-    "LesliSecurity",
-    "LesliCalendar", 
-    "LesliDashboard"
-]
-
-LESLI_ENGINES.each do |engine_name|
-
-    # get the engine folder name (development only)
-    engine_code = engine_name.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
-
-    # if the engine is installed locally 
-    if Dir.exist?("#{File.dirname(__FILE__)}/engines/#{engine_name}")
-
-        # load engine from source code
-        gem "#{engine_code}", path: "engines/#{engine_name}"
-    else
-
-        # install engine from rubygems
-        gem "#{engine_code}"
-    end
-end
+eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
