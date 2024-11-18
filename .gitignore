@@ -12,35 +12,24 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
-# Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
-
-# Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
-/tmp/storage/*
-!/tmp/storage/
 !/tmp/storage/.keep
+!/tmp/pids/.keep
 
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
+/config/credentials/*
+/config/credentials/test.key
+/config/credentials/production.key
+/config/credentials/development.key
 
 engines*
 enginesdev/
 coverage
 .DS_Store
 .Gemfile.lock
-/config/credentials/*
-/config/credentials/production.key
+brakeman*
+
 /db/*.sqlite3
 /db/*.sqlite3*
-
-/config/credentials/development.key
-
-/config/credentials/test.key
