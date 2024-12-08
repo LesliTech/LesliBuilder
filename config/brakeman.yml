@@ -1,12 +1,3 @@
-:skip_files:
-  - 'vendor/**/*'
-  - 'node_modules/**/*'
-  - 'engines/Lesli/node_modules'
-:ignore_model_output: false
-:exit_on_warn: false
-:output_files:
-  - 'tmp/brakeman.html'
-  - 'tmp/brakeman.json'
 
 # Brakeman Configuration File
 # Documentation: https://brakemanscanner.org/docs/options/
@@ -16,7 +7,8 @@ skip_files:
   - "tmp/**/*"          # Skip temporary files
   - "vendor/**/*"       # Skip vendor folder
   - "node_modules/**/*" # Skip global node_modules
-  - "engines/Lesli/node_modules"
+  - "engines/Lesli/node_modules/"
+  - "enginesdev/"
 
 # Warnings to Ignore (List Warning Codes)
 ignore_warnings:
