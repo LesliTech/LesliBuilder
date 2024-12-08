@@ -27,9 +27,9 @@
 engines*
 enginesdev/
 coverage
+brakeman
 .DS_Store
 .Gemfile.lock
-brakeman_report*
 
 /db/*.sqlite3
 /db/*.sqlite3*

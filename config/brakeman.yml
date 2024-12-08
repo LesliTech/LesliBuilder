@@ -8,6 +8,8 @@ skip_files:
   - "vendor/**/*"       # Skip vendor folder
   - "node_modules/**/*" # Skip global node_modules
   - "engines/Lesli/node_modules/"
+  - "engines/Lesli/app/controllers/lesli/interfaces/controllers/"
+  - "engines/Lesli/app/models/lesli/cloud_object/"
   - "enginesdev/"
 
 # Warnings to Ignore (List Warning Codes)
@@ -39,8 +41,8 @@ output_formats:
 
 # Output Files
 output_files:
-  - "brakeman_report.html"
-  - "brakeman_report.json"
+  - "brakeman/brakeman_report.html"
+  - "brakeman/brakeman_report.json"
 
 # Optional Settings
 run_all_checks: true    # Run all checks even if specific ones are set
