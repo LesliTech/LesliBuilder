@@ -100,6 +100,8 @@ group :development, :test do
 
   gem 'codecov', "0.6.0"
 
+  gem 'rspec_junit_formatter', require: false
+
   # FactoryBot
   # https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
   gem "factory_bot_rails"
