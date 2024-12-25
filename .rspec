@@ -1,2 +1,2 @@
 --format documentation 
---pattern ./engines/LesliCalendar/spec/**/**/*_spec.rb
+--pattern ./engines/**/spec/**/**/*_spec.rb
