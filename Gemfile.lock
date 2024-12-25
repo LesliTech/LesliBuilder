@@ -1,4 +1,11 @@
 PATH
+  remote: engines/LesliShield
+  specs:
+    lesli_shield (0.1.1)
+      devise (~> 4.9)
+      lesli (~> 5.0)
+
+PATH
   remote: engines/Lesli
   specs:
     lesli (5.0.13)
@@ -316,6 +323,7 @@ DEPENDENCIES
   faker
   honeybadger
   lesli!
+  lesli_shield!
   letter_opener (= 1.10.0)
   pg (~> 1.5)
   puma (= 6.4.3)

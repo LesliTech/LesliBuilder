@@ -28,6 +28,7 @@ engines*
 enginesdev/
 coverage
 brakeman
+junit.xml
 .DS_Store
 .Gemfile.lock
 
