@@ -52,7 +52,13 @@ gem "sqlite3", "~> 2.1.0"
 gem "puma", "6.4.3"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-#gem "importmap-rails"
+gem "importmap-rails"
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

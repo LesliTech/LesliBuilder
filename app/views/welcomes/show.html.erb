@@ -25,6 +25,11 @@
                 Login
             </a>
         <% end %>
+        <% if user_signed_in? %>
+            <a href="/logout">
+                Logout
+            </a>
+        <% end %>
     <% end %>
 </section>
 
