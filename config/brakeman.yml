@@ -8,7 +8,7 @@ skip_files:
   - "vendor/**/*"       # Skip vendor folder
   - "node_modules/**/*" # Skip global node_modules
   - "engines/Lesli/node_modules/"
-  - "engines/Lesli/app/items/"
+  - "engines/Lesli/app/items/*"
   - "engines/Lesli/app/models/lesli/cloud_object/"
   - "enginesdev/"
 

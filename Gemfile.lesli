@@ -38,11 +38,11 @@ LESLI_ENGINES = [
     #"LesliBabel", 
     #"LesliAudit", 
     #"LesliPapers",
-    #"LesliShield",
+    "LesliShield",
     #"LesliSupport", 
     #"LesliSecurity",
     #"LesliCalendar", 
-    #"LesliDashboard",
+    "LesliDashboard",
     "LesliView"
 ]
 

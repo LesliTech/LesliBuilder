@@ -1,4 +1,16 @@
 PATH
+  remote: engines/LesliDashboard
+  specs:
+    lesli_dashboard (0.3.0)
+      lesli (~> 5)
+
+PATH
+  remote: engines/LesliShield
+  specs:
+    lesli_shield (0.1.1)
+      devise (~> 4.9)
+
+PATH
   remote: engines/LesliView
   specs:
     lesli_view (0.1.0)
@@ -353,6 +365,8 @@ DEPENDENCIES
   faker
   honeybadger
   lesli!
+  lesli_dashboard!
+  lesli_shield!
   lesli_view!
   letter_opener (= 1.10.0)
   pg (~> 1.5)
