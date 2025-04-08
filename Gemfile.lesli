@@ -33,14 +33,13 @@ Building a better future, one line of code at a time.
 # List of Lesli engines to be installed
 LESLI_ENGINES = [
     "Lesli", 
-    #"LesliBell", 
-    #"LesliAdmin", 
-    #"LesliBabel", 
-    #"LesliAudit", 
+    "LesliBell", 
+    "LesliAdmin", 
+    "LesliBabel", 
+    "LesliAudit", 
     #"LesliPapers",
     "LesliShield",
-    #"LesliSupport", 
-    #"LesliSecurity",
+    "LesliSupport", 
     #"LesliCalendar", 
     "LesliDashboard",
     "LesliView"
