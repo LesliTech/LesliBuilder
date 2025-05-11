@@ -15,21 +15,9 @@
         </a>
     </div>
     <% if defined?(LesliShield) %>
-        <% if user_signed_in? %>
-            <a href="/dashboard">
-                Dashboard
-            </a>
-        <% end %>
-        <% if !user_signed_in? %>
-            <a href="/login">
-                Login
-            </a>
-        <% end %>
-        <% if user_signed_in? %>
-            <a href="/logout">
-                Logout
-            </a>
-        <% end %>
+        <%= link_to("Dashboard", "/dashboard") if user_signed_in? && defined?(LesliDashboard) %>
+        <%= link_to("Logout", "/logout") if user_signed_in? %>
+        <%= link_to("Login", "/login") unless user_signed_in? %>
     <% end %>
 </section>
 

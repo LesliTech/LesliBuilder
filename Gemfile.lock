@@ -57,7 +57,6 @@ PATH
       importmap-rails
       kaminari (~> 1.2.2)
       lesli_view
-      rails (~> 7.2)
       stimulus-rails
       turbo-rails
 
