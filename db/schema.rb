@@ -310,6 +310,66 @@ ActiveRecord::Schema[7.2].define(version: 901120111) do
     t.index ["user_id"], name: "index_lesli_bell_notifications_on_user_id"
   end
 
+  create_table "lesli_calendar_accounts", force: :cascade do |t|
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_calendar_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_calendar_calendars", force: :cascade do |t|
+    t.string "name"
+    t.string "color", default: "0d52bf"
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_calendar_calendars_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_calendars_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_calendar_calendars_on_user_id"
+  end
+
+  create_table "lesli_calendar_event_guests", force: :cascade do |t|
+    t.datetime "confirmed_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["confirmed_at"], name: "index_lesli_calendar_event_guests_on_confirmed_at"
+    t.index ["deleted_at"], name: "index_lesli_calendar_event_guests_on_deleted_at"
+    t.index ["event_id"], name: "index_lesli_calendar_event_guests_on_event_id"
+    t.index ["user_id"], name: "index_lesli_calendar_event_guests_on_user_id"
+  end
+
+  create_table "lesli_calendar_events", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "start_at", precision: nil
+    t.datetime "end_at", precision: nil
+    t.string "url"
+    t.string "location"
+    t.string "status"
+    t.boolean "public"
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.integer "calendar_id"
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_calendar_events_on_account_id"
+    t.index ["calendar_id"], name: "index_lesli_calendar_events_on_calendar_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_events_on_deleted_at"
+    t.index ["end_at"], name: "index_lesli_calendar_events_on_end_at"
+    t.index ["public"], name: "index_lesli_calendar_events_on_public"
+    t.index ["start_at"], name: "index_lesli_calendar_events_on_start_at"
+    t.index ["status"], name: "index_lesli_calendar_events_on_status"
+    t.index ["user_id"], name: "index_lesli_calendar_events_on_user_id"
+  end
+
   create_table "lesli_dashboard_accounts", force: :cascade do |t|
     t.string "name"
     t.integer "status", default: 0, null: false
@@ -336,6 +396,78 @@ ActiveRecord::Schema[7.2].define(version: 901120111) do
     t.index ["deleted_at"], name: "index_lesli_dashboard_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_dashboard_dashboards_on_role_id"
     t.index ["user_id"], name: "index_lesli_dashboard_dashboards_on_user_id"
+  end
+
+  create_table "lesli_mailer_accounts", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "enabled_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_lesli_mailer_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_mailer_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_mailer_dashboards", force: :cascade do |t|
+    t.string "name"
+    t.boolean "default"
+    t.json "components"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "role_id"
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_lesli_mailer_dashboards_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_mailer_dashboards_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_mailer_dashboards_on_role_id"
+    t.index ["user_id"], name: "index_lesli_mailer_dashboards_on_user_id"
+  end
+
+  create_table "lesli_papers_accounts", force: :cascade do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_papers_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_papers_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_papers_document_movements", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.text "comments"
+    t.datetime "approved_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_papers_document_movements_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_papers_document_movements_on_deleted_at"
+  end
+
+  create_table "lesli_papers_document_signatures", force: :cascade do |t|
+    t.string "signature_hash"
+    t.datetime "signed_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_papers_document_signatures_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_papers_document_signatures_on_deleted_at"
+  end
+
+  create_table "lesli_papers_documents", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "status", default: "created"
+    t.text "description"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_lesli_papers_documents_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_papers_documents_on_deleted_at"
   end
 
   create_table "lesli_role_actions", force: :cascade do |t|
@@ -739,10 +871,26 @@ ActiveRecord::Schema[7.2].define(version: 901120111) do
   add_foreign_key "lesli_bell_announcements", "lesli_users", column: "user_id"
   add_foreign_key "lesli_bell_notifications", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_bell_notifications", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_calendars", "lesli_calendar_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_calendars", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_event_guests", "lesli_calendar_events", column: "event_id"
+  add_foreign_key "lesli_calendar_event_guests", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_events", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_events", "lesli_calendar_calendars", column: "calendar_id"
+  add_foreign_key "lesli_calendar_events", "lesli_users", column: "user_id"
   add_foreign_key "lesli_dashboard_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_dashboard_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_mailer_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_mailer_accounts", column: "account_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_papers_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_papers_document_movements", "lesli_papers_documents", column: "account_id"
+  add_foreign_key "lesli_papers_document_signatures", "lesli_papers_documents", column: "account_id"
+  add_foreign_key "lesli_papers_documents", "lesli_papers_accounts", column: "account_id"
   add_foreign_key "lesli_role_actions", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_role_actions", "lesli_system_controller_actions", column: "action_id"
   add_foreign_key "lesli_role_privileges", "lesli_roles", column: "role_id"

@@ -37,12 +37,16 @@ LESLI_ENGINES = [
     "LesliAdmin", 
     "LesliBabel", 
     "LesliAudit", 
-    #"LesliPapers",
+    "LesliPapers",
     "LesliShield",
-    "LesliSupport", 
-    #"LesliCalendar", 
+    #"LesliSupport", 
+    "LesliCalendar", 
     "LesliDashboard",
-    "LesliView"
+    "LesliMailer",
+    "LesliView",
+    "LesliDate",
+    "LesliSystem",
+    "LesliAssets"
 ]
 
 LESLI_ENGINES.each do |engine_name|
@@ -50,14 +54,24 @@ LESLI_ENGINES.each do |engine_name|
     # get the engine folder name (development only)
     engine_code = engine_name.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
 
+    # if the gem is installed locally 
+    if Dir.exist?("#{File.dirname(__FILE__)}/gems/#{engine_name}")
+
+        # load engine from source code
+        gem "#{engine_code}", path: "gems/#{engine_name}"
+
+        next;
+    end
+
     # if the engine is installed locally 
     if Dir.exist?("#{File.dirname(__FILE__)}/engines/#{engine_name}")
 
         # load engine from source code
         gem "#{engine_code}", path: "engines/#{engine_name}"
-    else
 
-        # install engine from rubygems
-        gem "#{engine_code}"
+        next;
     end
+
+    # install engine from rubygems
+    gem "#{engine_code}"
 end

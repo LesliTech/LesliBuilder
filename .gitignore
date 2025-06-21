@@ -10,10 +10,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-!/log/.keep
-!/tmp/.keep
-!/tmp/storage/.keep
-!/tmp/pids/.keep
 
 /public/assets
 
@@ -24,7 +20,8 @@
 /config/credentials/production.key
 /config/credentials/development.key
 
-engines*
+gems/*
+engines/*
 enginesdev/
 coverage
 brakeman
@@ -34,3 +31,10 @@ junit.xml
 
 /db/*.sqlite3
 /db/*.sqlite3*
+
+!/log/.keep
+!/tmp/.keep
+!/tmp/storage/.keep
+!/tmp/pids/.keep
+!/engines/.gitkeep
+!/gems/.gitkeep
