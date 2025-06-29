@@ -65,7 +65,7 @@ LESLI_ENGINES.each do |engine_name|
     end
 
     # if the engine is installed locally 
-    if !Dir.exist?("#{File.dirname(__FILE__)}/engines/#{engine_name}")
+    if Dir.exist?("#{File.dirname(__FILE__)}/engines/#{engine_name}")
 
         # load engine from source code
         gem "#{engine_code}", path: "engines/#{engine_name}"
