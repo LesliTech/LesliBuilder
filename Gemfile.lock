@@ -1,24 +1,3 @@
-PATH
-  remote: gems/LesliAssets
-  specs:
-    lesli_assets (1.0.0)
-
-PATH
-  remote: gems/LesliDate
-  specs:
-    lesli_date (0.1.0)
-
-PATH
-  remote: gems/LesliSystem
-  specs:
-    lesli_system (0.1.0)
-
-PATH
-  remote: gems/LesliView
-  specs:
-    lesli_view (1.0.0)
-      view_component
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -102,25 +81,25 @@ GEM
     ancestry (4.3.3)
       activerecord (>= 5.2.6)
     ansi (1.5.0)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.2)
     bindex (0.8.1)
-    bootsnap (1.18.4)
+    bootsnap (1.18.6)
       msgpack (~> 1.2)
-    brakeman (7.0.0)
+    brakeman (7.0.2)
       racc
     builder (3.3.0)
     childprocess (5.1.0)
       logger (~> 1.5)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
-    concurrent-ruby (1.3.4)
-    connection_pool (2.5.0)
+    concurrent-ruby (1.3.5)
+    connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
-    debug (1.10.0)
+    debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     devise (4.9.4)
@@ -129,24 +108,25 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.5.1)
+    diff-lcs (1.6.2)
     docile (1.4.1)
-    drb (2.2.1)
+    drb (2.2.3)
+    erb (5.0.1)
     erubi (1.13.1)
-    factory_bot (6.5.0)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.4.4)
+    factory_bot (6.5.4)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.0)
       factory_bot (~> 6.5)
-      railties (>= 5.0.0)
+      railties (>= 6.1.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     glob (0.4.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.26.2)
+    honeybadger (5.28.0)
       logger
       ostruct
-    i18n (1.14.6)
+    i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     i18n-js (4.2.3)
       glob (>= 0.4.0)
@@ -156,7 +136,8 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.0)
-    irb (1.14.3)
+    irb (1.15.2)
+      pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     kaminari (1.2.2)
@@ -171,24 +152,32 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    launchy (3.0.1)
+    launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
-    lesli (5.0.13)
+      logger (~> 1.6)
+    lesli (5.0.14)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.10.2)
       ancestry (~> 4.3.3)
       i18n-js (~> 4.2.3)
       importmap-rails
       kaminari (~> 1.2.2)
+      lesli_assets (~> 1.0)
+      lesli_date (~> 0.1)
+      lesli_view (~> 1.0)
       turbo-rails
+    lesli_assets (1.0.0)
+    lesli_date (0.1.0)
     lesli_shield (0.1.1)
       devise (~> 4.9)
-      lesli (~> 5.0)
+      lesli (~> 5)
+    lesli_view (1.0.0)
+      view_component
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
-    logger (1.6.5)
-    loofah (2.24.0)
+    logger (1.7.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -199,32 +188,35 @@ GEM
     marcel (1.0.4)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.25.4)
-    msgpack (1.7.5)
-    net-imap (0.5.5)
+    minitest (5.25.5)
+    msgpack (1.8.0)
+    net-imap (0.5.9)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
+    net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.1-x86_64-darwin)
+    nokogiri (1.18.8-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    ostruct (0.6.1)
+    ostruct (0.6.2)
     pg (1.5.9)
-    psych (5.2.2)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
+    psych (5.2.6)
       date
       stringio
-    public_suffix (6.0.1)
+    public_suffix (6.0.2)
     puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.8)
-    rack-session (2.1.0)
+    rack (3.1.16)
+    rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -245,7 +237,7 @@ GEM
       activesupport (= 7.2.2.1)
       bundler (>= 1.15.0)
       railties (= 7.2.2.1)
-    rails-dom-testing (2.2.0)
+    rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
@@ -260,21 +252,22 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
-    rake (13.2.1)
-    rdoc (6.10.0)
+    rake (13.3.0)
+    rdoc (6.14.1)
+      erb
       psych (>= 4.0.0)
-    reline (0.6.0)
+    reline (0.6.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.4.0)
-    rspec-core (3.13.2)
+    rexml (3.4.1)
+    rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.3)
+    rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.2)
+    rspec-mocks (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-rails (7.0.1)
@@ -285,7 +278,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.2)
+    rspec-support (3.13.4)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     securerandom (0.4.1)
@@ -302,29 +295,32 @@ GEM
       terminal-table
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    sprockets (4.2.1)
+    sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
+      logger
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.5.2)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     sqlite3 (2.1.1-x86_64-darwin)
-    stringio (3.1.2)
-    terminal-table (3.0.2)
-      unicode-display_width (>= 1.1.1, < 3)
+    stringio (3.1.7)
+    terminal-table (4.0.0)
+      unicode-display_width (>= 1.1.1, < 4)
     thor (1.3.2)
     timeout (0.4.3)
-    turbo-rails (2.0.11)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.16)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (2.6.0)
+    unicode-display_width (3.1.4)
+      unicode-emoji (~> 4.0, >= 4.0.4)
+    unicode-emoji (4.0.4)
     useragent (0.16.11)
-    view_component (3.21.0)
+    view_component (3.23.2)
       activesupport (>= 5.2.0, < 8.1)
-      concurrent-ruby (~> 1.0)
+      concurrent-ruby (~> 1)
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -333,11 +329,11 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    websocket-driver (0.7.7)
+    websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.7.1)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   x86_64-darwin-24
@@ -351,11 +347,7 @@ DEPENDENCIES
   faker
   honeybadger
   lesli
-  lesli_assets!
-  lesli_date!
   lesli_shield
-  lesli_system!
-  lesli_view!
   letter_opener (= 1.10.0)
   pg (~> 1.5)
   puma (= 6.4.3)
