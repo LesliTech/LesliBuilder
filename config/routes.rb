@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resource :welcome, only: [:show]
 
     # mount lesli platform
-    Lesli::Routing.mount
+    Lesli::Routing.mount if defined?(Lesli)
 end
