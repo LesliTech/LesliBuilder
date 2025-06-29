@@ -1,75 +1,7 @@
 PATH
-  remote: engines/LesliAdmin
-  specs:
-    lesli_admin (0.6.1)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliAudit
-  specs:
-    lesli_audit (0.6.0)
-      lesli (~> 5)
-      useragent (~> 0.16.10)
-
-PATH
-  remote: engines/LesliBabel
-  specs:
-    lesli_babel (0.7.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliBell
-  specs:
-    lesli_bell (0.2.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliCalendar
-  specs:
-    lesli_calendar (0.2.2)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliDashboard
-  specs:
-    lesli_dashboard (0.3.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliMailer
-  specs:
-    lesli_mailer (0.1.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliPapers
-  specs:
-    lesli_papers (0.1.0)
-      lesli (~> 5)
-
-PATH
-  remote: engines/LesliShield
-  specs:
-    lesli_shield (0.1.1)
-      devise (~> 4.9)
-      lesli (~> 5.0)
-
-PATH
-  remote: engines/Lesli
-  specs:
-    lesli (5.0.13)
-      L2 (~> 0.6)
-      acts_as_paranoid (~> 0.10.2)
-      ancestry (~> 4.3.3)
-      i18n-js (~> 4.2.3)
-      importmap-rails
-      kaminari (~> 1.2.2)
-      turbo-rails
-
-PATH
   remote: gems/LesliAssets
   specs:
-    lesli_assets (0.1.0)
+    lesli_assets (1.0.0)
 
 PATH
   remote: gems/LesliDate
@@ -84,7 +16,7 @@ PATH
 PATH
   remote: gems/LesliView
   specs:
-    lesli_view (0.1.0)
+    lesli_view (1.0.0)
       view_component
 
 GEM
@@ -242,6 +174,17 @@ GEM
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
+    lesli (5.0.13)
+      L2 (~> 0.6)
+      acts_as_paranoid (~> 0.10.2)
+      ancestry (~> 4.3.3)
+      i18n-js (~> 4.2.3)
+      importmap-rails
+      kaminari (~> 1.2.2)
+      turbo-rails
+    lesli_shield (0.1.1)
+      devise (~> 4.9)
+      lesli (~> 5.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     logger (1.6.5)
@@ -407,18 +350,10 @@ DEPENDENCIES
   factory_bot_rails
   faker
   honeybadger
-  lesli!
-  lesli_admin!
+  lesli
   lesli_assets!
-  lesli_audit!
-  lesli_babel!
-  lesli_bell!
-  lesli_calendar!
-  lesli_dashboard!
   lesli_date!
-  lesli_mailer!
-  lesli_papers!
-  lesli_shield!
+  lesli_shield
   lesli_system!
   lesli_view!
   letter_opener (= 1.10.0)
