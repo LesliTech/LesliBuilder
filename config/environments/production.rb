@@ -88,6 +88,12 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.hosts += ["demo.lesli.dev"]
-end
 
+
+    # Allow dynamic hosts from ENV
+    if ENV["RAILS_ALLOWED_HOSTS"]
+        ENV["RAILS_ALLOWED_HOSTS"].split(",").each do |host|
+            config.hosts << host.strip
+        end
+    end
+end
