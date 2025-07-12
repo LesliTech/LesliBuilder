@@ -49,10 +49,9 @@ PATH
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.0.16)
+    lesli (5.0.18)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.10.2)
-      ancestry (~> 4.3.3)
       i18n-js (~> 4.2.3)
       importmap-rails
       kaminari (~> 1.2.2)
@@ -142,8 +141,6 @@ GEM
       activesupport (>= 6.1, < 8.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    ancestry (4.3.3)
-      activerecord (>= 5.2.6)
     ansi (1.5.0)
     base64 (0.3.0)
     bcrypt (3.1.20)
@@ -182,12 +179,12 @@ GEM
     factory_bot_rails (6.5.0)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faker (3.5.1)
+    faker (3.5.2)
       i18n (>= 1.8.11, < 2)
     glob (0.4.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.29.0)
+    honeybadger (5.29.1)
       logger
       ostruct
     i18n (1.14.7)
@@ -220,10 +217,10 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lesli_assets (1.0.0)
+    lesli_assets (1.0.1)
     lesli_date (0.1.0)
-    lesli_system (1.0.0)
-    lesli_view (1.0.0)
+    lesli_system (1.0.1)
+    lesli_view (1.0.1)
       view_component
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
@@ -304,7 +301,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.3.0)
-    rdoc (6.14.1)
+    rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
     reline (0.6.1)

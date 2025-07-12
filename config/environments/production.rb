@@ -89,11 +89,8 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-    # temporary :D
-    config.assume_ssl = false
-    config.force_ssl = false
-
     # Allow dynamic hosts from ENV
+    # should I move this to Lesli gem? :thinking:
     if ENV["RAILS_ALLOWED_HOSTS"]
         ENV["RAILS_ALLOWED_HOSTS"].split(",").each do |host|
             config.hosts << host.strip
