@@ -89,6 +89,9 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
+    # temporary :D
+    config.assume_ssl = false
+    config.force_ssl = false
 
     # Allow dynamic hosts from ENV
     if ENV["RAILS_ALLOWED_HOSTS"]
