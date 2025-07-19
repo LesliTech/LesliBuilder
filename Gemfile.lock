@@ -1,7 +1,7 @@
 PATH
   remote: engines/LesliAdmin
   specs:
-    lesli_admin (1.0.0)
+    lesli_admin (1.0.1)
       lesli (>= 5.0)
 
 PATH
@@ -19,7 +19,7 @@ PATH
 PATH
   remote: engines/LesliBell
   specs:
-    lesli_bell (0.2.0)
+    lesli_bell (1.0.0)
       lesli (~> 5)
 
 PATH
@@ -37,8 +37,8 @@ PATH
 PATH
   remote: engines/LesliShield
   specs:
-    lesli_shield (1.0.0)
-      devise (~> 4.9)
+    lesli_shield (1.0.1)
+      devise
       lesli (>= 5.0)
 
 PATH
@@ -49,9 +49,10 @@ PATH
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.0.18)
+    lesli (5.0.19)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.10.2)
+      devise (~> 4.9)
       i18n-js (~> 4.2.3)
       importmap-rails
       kaminari (~> 1.2.2)
@@ -60,6 +61,12 @@ PATH
       lesli_system (~> 1.0)
       lesli_view (~> 1.0)
       turbo-rails
+
+PATH
+  remote: gems/LesliView
+  specs:
+    lesli_view (1.0.3)
+      view_component
 
 GEM
   remote: https://rubygems.org/
@@ -172,7 +179,7 @@ GEM
     diff-lcs (1.6.2)
     docile (1.4.1)
     drb (2.2.3)
-    erb (5.0.1)
+    erb (5.0.2)
     erubi (1.13.1)
     factory_bot (6.5.4)
       activesupport (>= 6.1.0)
@@ -196,7 +203,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -217,11 +224,9 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lesli_assets (1.0.1)
+    lesli_assets (1.0.3)
     lesli_date (0.1.0)
-    lesli_system (1.0.1)
-    lesli_view (1.0.1)
-      view_component
+    lesli_system (1.0.2)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     logger (1.7.0)
@@ -334,7 +339,7 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
-    simplecov-cobertura (2.1.0)
+    simplecov-cobertura (3.0.0)
       rexml
       simplecov (~> 0.19)
     simplecov-console (0.9.2)
@@ -406,6 +411,7 @@ DEPENDENCIES
   lesli_dashboard!
   lesli_shield!
   lesli_support!
+  lesli_view!
   letter_opener (= 1.10.0)
   pg (~> 1.5)
   puma (= 6.4.3)
