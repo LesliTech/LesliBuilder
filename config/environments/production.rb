@@ -91,9 +91,15 @@ Rails.application.configure do
 
     # Allow dynamic hosts from ENV
     # should I move this to Lesli gem? :thinking:
-    if ENV["RAILS_ALLOWED_HOSTS"]
-        ENV["RAILS_ALLOWED_HOSTS"].split(",").each do |host|
+    if ENV["RAILS_CONFIG_HOSTS"]
+        ENV["RAILS_CONFIG_HOSTS"].split(",").each do |host|
             config.hosts << host.strip
         end
+    end
+
+    # Allow dynamic hosts from ENV
+    # should I move this to Lesli gem? :thinking:
+    if ENV["RAILS_CONFIG_FORCE_SSL"]
+        config.force_ssl = ENV["RAILS_CONFIG_FORCE_SSL"]
     end
 end
