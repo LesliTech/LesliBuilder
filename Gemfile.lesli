@@ -45,8 +45,8 @@ LESLI_ENGINES = [
     #"LesliMailer",
 
     "LesliView",
-    #"LesliDate",
-    #"LesliSystem",
+    "LesliDate",
+    "LesliSystem",
     "LesliAssets"
 ]
 
