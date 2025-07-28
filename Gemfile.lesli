@@ -39,7 +39,7 @@ LESLI_ENGINES = [
     "LesliAudit", 
     #"LesliPapers",
     "LesliShield",
-    #"LesliSupport", 
+    "LesliSupport", 
     "LesliCalendar", 
     "LesliDashboard",
     #"LesliMailer",

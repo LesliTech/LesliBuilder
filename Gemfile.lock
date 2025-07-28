@@ -42,6 +42,11 @@ PATH
       lesli (>= 5.0)
 
 PATH
+  remote: engines/LesliSupport
+  specs:
+    lesli_support (0.1.0)
+
+PATH
   remote: engines/Lesli
   specs:
     lesli (5.0.19)
@@ -421,6 +426,7 @@ DEPENDENCIES
   lesli_dashboard!
   lesli_date!
   lesli_shield!
+  lesli_support!
   lesli_system!
   lesli_view!
   letter_opener (= 1.10.0)
