@@ -39,8 +39,8 @@ LESLI_ENGINES = [
     "LesliAudit", 
     #"LesliPapers",
     "LesliShield",
-    "LesliSupport", 
-    #"LesliCalendar", 
+    #"LesliSupport", 
+    "LesliCalendar", 
     "LesliDashboard",
     #"LesliMailer",
 
