@@ -1,6 +1,5 @@
 <p align="center">
-    <img width="200" alt="Lesli logo" src="./app/assets/images/lesli-logo.svg" />
-    <h1 align="center">Lesli Development.</h1>
+    <img width="200" alt="Lesli logo" src="https://cdn.lesli.tech/lesli/brand/app-logo.svg" />
 </p>
 
 <br />
@@ -10,14 +9,6 @@
 * [online demo: https://demo.lesli.dev](https://demo.lesli.dev)
 * [docker demo: https://github.com/LesliTech/lesli-docker-demo](https://github.com/LesliTech/lesli-docker-demo)
 
-<br />
-
-### Documentation
-* [Website](https://www.lesli.dev/)
-* [Database](./docs/database.md)
-* [Documentation](https://www.lesli.dev/docs.html)
-
-<br />
 
 ### Quick start
 
@@ -27,20 +18,13 @@ git clone git@github.com:LesliTech/LesliBuilder.git
 ```
 
 ```shell
-# Setup database for development
-rake lesli:db:dev
-
-# or
-
 # Hard reset Database for development:
 rake lesli:db:reset 
 ```
 
-```ruby
+```shell
 # Load Lesli
-Rails.application.routes.draw do
-    mount Lesli::Engine => "/lesli"
-end
+rails generate lesli:install
 ```
 
 ```shell
@@ -54,18 +38,21 @@ RAILS_SERVE_STATIC_FILES=true rails s --environment=production
 
 <br />
 
+### Lesli Documentation
+* [website](https://www.lesli.dev/)
+* [documentation](https://www.lesli.dev/lesli/)
+
+
 ### Get in touch with Lesli
 
-* [Website: https://www.lesli.tech](https://www.lesli.tech)
+* [X: @LesliTech](https://x.com/LesliTech)
 * [Email: hello@lesli.tech](hello@lesli.tech)
-* [Twitter: @LesliTech](https://twitter.com/LesliTech)
+* [Website: https://www.lesli.tech](https://www.lesli.tech)
 
-
-<br />
 
 ### License
 -------
-Copyright (c) 2023, Lesli Technologies, S. A.
+Copyright (c) 2025, Lesli Technologies, S. A.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -81,3 +68,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see http://www.gnu.org/licenses/.
 
 <hr />
+<br />
+<br />
+
+<div align="center" class="has-text-centered">
+    <img width="200" alt="Lesli logo" src="https://cdn.lesli.tech/lesli/brand/app-logo.svg" />
+    <h4 align="center" class="mt-0">Ruby on Rails SaaS Development Framework.</h4>
+</div>
+
+<br />
+<br />
