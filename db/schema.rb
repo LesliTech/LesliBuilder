@@ -375,6 +375,34 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
     t.index ["user_id"], name: "index_lesli_dashboard_dashboards_on_user_id"
   end
 
+  create_table "lesli_mailer_accounts", force: :cascade do |t|
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "enabled_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_lesli_mailer_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_mailer_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_mailer_dashboards", force: :cascade do |t|
+    t.string "name"
+    t.boolean "default"
+    t.json "components"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "role_id"
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_lesli_mailer_dashboards_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_mailer_dashboards_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_mailer_dashboards_on_role_id"
+    t.index ["user_id"], name: "index_lesli_mailer_dashboards_on_user_id"
+  end
+
   create_table "lesli_role_actions", force: :cascade do |t|
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
@@ -824,6 +852,10 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   add_foreign_key "lesli_dashboard_dashboards", "lesli_dashboard_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_mailer_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_mailer_accounts", column: "account_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_mailer_dashboards", "lesli_users", column: "user_id"
   add_foreign_key "lesli_role_actions", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_role_actions", "lesli_system_controller_actions", column: "action_id"
   add_foreign_key "lesli_role_privileges", "lesli_roles", column: "role_id"

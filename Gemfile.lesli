@@ -42,11 +42,11 @@ LESLI_ENGINES = [
     "LesliSupport", 
     "LesliCalendar", 
     "LesliDashboard",
-    # #"LesliMailer",
+    "LesliMailer",
 
-    # "LesliView",
+    "LesliView",
     # "LesliDate",
-    # "LesliSystem",
+    "LesliSystem",
     "LesliAssets"
 ]
 

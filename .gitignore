@@ -34,9 +34,9 @@
 /config/master.key
 
 # Lesli specifics
-gems/*
-engines/*
-enginesdev/
+gems
+engines
+enginesdev
 coverage
 brakeman
 junit.xml

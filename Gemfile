@@ -59,7 +59,7 @@ group :development, :test do
 
   # Preview email in the default browser instead of sending it
   # https://github.com/ryanb/letter_opener
-  gem "letter_opener", "1.10.0"
+  gem "letter_opener"
 
   # rspec-rails is a testing framework for Rails 5+.
   # https://github.com/rspec/rspec-rails

@@ -35,6 +35,12 @@ PATH
       lesli (~> 5)
 
 PATH
+  remote: engines/LesliMailer
+  specs:
+    lesli_mailer (0.1.0)
+      lesli (~> 5)
+
+PATH
   remote: engines/LesliShield
   specs:
     lesli_shield (1.0.1)
@@ -67,6 +73,17 @@ PATH
   remote: gems/LesliAssets
   specs:
     lesli_assets (1.0.4)
+
+PATH
+  remote: gems/LesliSystem
+  specs:
+    lesli_system (1.0.3)
+
+PATH
+  remote: gems/LesliView
+  specs:
+    lesli_view (1.0.4)
+      view_component (~> 4.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -261,9 +278,6 @@ GEM
       childprocess (~> 5.0)
       logger (~> 1.6)
     lesli_date (0.1.0)
-    lesli_system (1.0.3)
-    lesli_view (1.0.4)
-      view_component (~> 4.0.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     lint_roller (1.1.0)
@@ -556,9 +570,12 @@ DEPENDENCIES
   lesli_bell!
   lesli_calendar!
   lesli_dashboard!
+  lesli_mailer!
   lesli_shield!
   lesli_support!
-  letter_opener (= 1.10.0)
+  lesli_system!
+  lesli_view!
+  letter_opener
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
