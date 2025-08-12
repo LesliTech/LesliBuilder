@@ -43,9 +43,9 @@ PATH
 PATH
   remote: engines/LesliShield
   specs:
-    lesli_shield (1.0.1)
+    lesli_shield (1.0.2)
       devise
-      lesli (>= 5.0)
+      lesli (~> 5.0)
 
 PATH
   remote: engines/LesliSupport
@@ -55,7 +55,7 @@ PATH
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.0.20)
+    lesli (5.0.21)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.10.2)
       devise (~> 4.9)
@@ -72,17 +72,17 @@ PATH
 PATH
   remote: gems/LesliAssets
   specs:
-    lesli_assets (1.0.4)
+    lesli_assets (1.0.5)
 
 PATH
   remote: gems/LesliSystem
   specs:
-    lesli_system (1.0.3)
+    lesli_system (1.0.4)
 
 PATH
   remote: gems/LesliView
   specs:
-    lesli_view (1.0.4)
+    lesli_view (1.0.5)
       view_component (~> 4.0.0)
 
 GEM
@@ -332,6 +332,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -519,7 +520,7 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
-    view_component (4.0.0)
+    view_component (4.0.1)
       activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
     warden (1.2.9)
@@ -576,6 +577,7 @@ DEPENDENCIES
   lesli_system!
   lesli_view!
   letter_opener
+  pg
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
@@ -597,4 +599,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   2.6.9
+   2.7.1
