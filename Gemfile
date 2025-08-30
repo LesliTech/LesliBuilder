@@ -99,3 +99,8 @@ end
 
 # List of Lesli engines to be installed
 eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
+
+
+gem "minitest-reporters"
+gem "color_pound_spec_reporter"
+

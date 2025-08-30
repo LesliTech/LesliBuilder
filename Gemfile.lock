@@ -14,6 +14,7 @@ PATH
   remote: engines/LesliBabel
   specs:
     lesli_babel (0.7.0)
+      i18n-js (~> 4.2)
       lesli (~> 5)
 
 PATH
@@ -43,41 +44,31 @@ PATH
 PATH
   remote: engines/LesliShield
   specs:
-    lesli_shield (1.0.2)
-      devise
+    lesli_shield (1.0.3)
+      devise (~> 4.9)
       lesli (~> 5.0)
 
 PATH
   remote: engines/LesliSupport
   specs:
     lesli_support (0.1.0)
+      lesli (~> 5.0)
 
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.0.21)
+    lesli (5.0.22)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.10.2)
       devise (~> 4.9)
-      i18n-js (~> 4.2.3)
-      importmap-rails (~> 2.2.0)
+      importmap-rails (~> 2.2)
       kaminari (~> 1.2.2)
       lesli_assets (~> 1.0)
       lesli_date (~> 0.1)
       lesli_system (~> 1.0)
       lesli_view (~> 1.0)
       rails (~> 8.0)
-      turbo-rails
-
-PATH
-  remote: gems/LesliAssets
-  specs:
-    lesli_assets (1.0.5)
-
-PATH
-  remote: gems/LesliSystem
-  specs:
-    lesli_system (1.0.4)
+      turbo-rails (~> 2.0)
 
 PATH
   remote: gems/LesliView
@@ -193,6 +184,11 @@ GEM
       logger (~> 1.5)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
+    color_pound_spec_reporter (0.0.9)
+      bundler
+      minitest
+      minitest-reporters (>= 0.14.24)
+      rake
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -277,7 +273,9 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
+    lesli_assets (1.0.6)
     lesli_date (0.1.0)
+    lesli_system (1.0.4)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     lint_roller (1.1.0)
@@ -294,6 +292,11 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
+    minitest-reporters (1.7.1)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     msgpack (1.8.0)
     net-imap (0.5.9)
       date
@@ -520,7 +523,7 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
-    view_component (4.0.1)
+    view_component (4.0.2)
       activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
     warden (1.2.9)
@@ -556,6 +559,7 @@ DEPENDENCIES
   brakeman
   capybara
   codecov (= 0.6.0)
+  color_pound_spec_reporter
   debug
   factory_bot_rails
   faker
@@ -565,7 +569,6 @@ DEPENDENCIES
   kamal
   lesli!
   lesli_admin!
-  lesli_assets!
   lesli_audit!
   lesli_babel!
   lesli_bell!
@@ -574,9 +577,9 @@ DEPENDENCIES
   lesli_mailer!
   lesli_shield!
   lesli_support!
-  lesli_system!
   lesli_view!
   letter_opener
+  minitest-reporters
   pg
   propshaft
   puma (>= 5.0)
