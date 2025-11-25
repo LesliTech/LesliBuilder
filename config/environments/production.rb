@@ -99,6 +99,6 @@ Rails.application.configure do
     end
 
     if ENV["RAILS_CONFIG_FORCE_SSL"]
-        config.force_ssl = ENV["RAILS_CONFIG_FORCE_SSL"]
+        config.force_ssl = ENV["RAILS_CONFIG_FORCE_SSL"] == "true"
     end
 end
