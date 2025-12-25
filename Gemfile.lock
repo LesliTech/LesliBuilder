@@ -66,7 +66,7 @@ PATH
       lesli_assets (~> 1.0)
       lesli_date (~> 0.1)
       lesli_system (~> 1.0)
-      lesli_view (~> 1.0)
+      lesli_view (~> 1.0.0)
       rails (~> 8.1)
       turbo-rails (~> 2.0)
 
@@ -209,7 +209,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.6.2)
     docile (1.4.1)
     dotenv (3.2.0)
     drb (2.2.3)
@@ -298,8 +297,7 @@ GEM
     marcel (1.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    minitest (6.0.0)
-      prism (~> 1.5)
+    minitest (5.27.0)
     minitest-reporters (1.7.1)
       ansi
       builder
@@ -417,25 +415,6 @@ GEM
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
-    rspec-core (3.13.6)
-      rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.5)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.7)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-rails (7.0.1)
-      actionpack (>= 7.0)
-      activesupport (>= 7.0)
-      railties (>= 7.0)
-      rspec-core (~> 3.13)
-      rspec-expectations (~> 3.13)
-      rspec-mocks (~> 3.13)
-      rspec-support (~> 3.13)
-    rspec-support (3.13.6)
-    rspec_junit_formatter (0.6.0)
-      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.82.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -598,13 +577,12 @@ DEPENDENCIES
   lesli_support!
   lesli_view!
   letter_opener
+  minitest (~> 5.0)
   minitest-reporters
   pg
   propshaft
   puma (>= 5.0)
   rails (~> 8.1)
-  rspec-rails (= 7.0.1)
-  rspec_junit_formatter
   rubocop-rails-omakase
   selenium-webdriver
   simplecov (= 0.21.2)

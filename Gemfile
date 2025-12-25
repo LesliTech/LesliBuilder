@@ -58,32 +58,11 @@ group :development, :test do
   # https://github.com/faker-ruby/faker
   gem "faker"
 
+
   # Preview email in the default browser instead of sending it
   # https://github.com/ryanb/letter_opener
   gem "letter_opener"
 
-  # rspec-rails is a testing framework for Rails 5+.
-  # https://github.com/rspec/rspec-rails
-  # Using beta version of rspect-rails due: https://github.com/rails/rails/issues/35417
-  gem "rspec-rails", "7.0.1"
-
-  # Code coverage
-  # https://github.com/simplecov-ruby/simplecov
-  gem "simplecov", "0.21.2", require: false
-
-  # Code coverage stats in the console
-  # https://github.com/chetan/simplecov-console
-  gem "simplecov-console", "0.9.2", require: false
-
-  gem 'simplecov-cobertura'
-
-  gem 'codecov', "0.6.0"
-
-  gem 'rspec_junit_formatter', require: false
-
-  # FactoryBot
-  # https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
-  gem "factory_bot_rails"
 end
 
 group :development do
@@ -100,7 +79,29 @@ end
 # List of Lesli engines to be installed
 eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
 
+# Until a patch for Rails 8.1.2 (or higher) is released specifically addressing the Minitest 6 boot sequence, the most stable way to run your tests is:
+# Keep Minitest at ~> 5.0 in your Gemfile.
+# Use the standard command: bin/rails test.
+gem "minitest", "~> 5.0"
+
+
+
+
+# Code coverage
+# https://github.com/simplecov-ruby/simplecov
+gem "simplecov", "0.21.2", require: false
+
+# Code coverage stats in the console
+# https://github.com/chetan/simplecov-console
+gem "simplecov-console", "0.9.2", require: false
+
+gem 'simplecov-cobertura'
+
+gem 'codecov', "0.6.0"
+
+# FactoryBot
+# https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
+gem "factory_bot_rails"
 
 gem "minitest-reporters"
 gem "color_pound_spec_reporter"
-
