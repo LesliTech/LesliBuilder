@@ -25,10 +25,10 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  #config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  #config.force_ssl = true
+  config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -87,17 +87,24 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-end
 
-Rails.application.configure do 
-    # Allow dynamic hosts from ENV
+  
+
+
+
+    #     #     #     #     #     #     #     #     #     #     #     #     #
+    # Specif override configuration for production 
     # should I move this to Lesli gem? :thinking:
+    #     #     #     #     #     #     #     #     #     #     #     #     #
+
+    # Allow dynamic hosts from ENV
     if ENV["RAILS_CONFIG_HOSTS"]
         ENV["RAILS_CONFIG_HOSTS"].split(",").each do |host|
             config.hosts << host.strip
         end
     end
 
+    # Allow definition of SSL use (so I can test locally)
     if ENV["RAILS_CONFIG_FORCE_SSL"]
         config.force_ssl = ENV["RAILS_CONFIG_FORCE_SSL"] == "true"
         config.assume_ssl = ENV["RAILS_CONFIG_FORCE_SSL"] == "true"

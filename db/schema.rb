@@ -689,10 +689,10 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sla_id"
-    t.integer "workspace_id"
     t.integer "type_id"
     t.integer "category_id"
     t.integer "priority_id"
+    t.integer "workspace_id"
     t.integer "user_id"
     t.integer "agent_id"
     t.integer "account_id"
@@ -897,7 +897,7 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "category_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "priority_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "type_id"
-  add_foreign_key "lesli_support_tickets", "lesli_support_catalogs", column: "workspace_id"
+  add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "workspace_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_slas", column: "sla_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "agent_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "user_id"

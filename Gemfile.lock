@@ -71,6 +71,11 @@ PATH
       turbo-rails (~> 2.0)
 
 PATH
+  remote: gems/LesliAssets
+  specs:
+    lesli_assets (1.0.6)
+
+PATH
   remote: gems/LesliView
   specs:
     lesli_view (1.0.5)
@@ -273,7 +278,6 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lesli_assets (1.0.6)
     lesli_date (0.1.0)
     lesli_system (1.0.4)
     letter_opener (1.10.0)
@@ -569,6 +573,7 @@ DEPENDENCIES
   kamal
   lesli!
   lesli_admin!
+  lesli_assets!
   lesli_audit!
   lesli_babel!
   lesli_bell!
