@@ -10,54 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 901120110) do
-  create_table "lesli_account_activities", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "session_id"
+ActiveRecord::Schema[8.1].define(version: 901120110) do
+  create_table "lesli_account_currencies", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "country_alpha_3"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.string "symbol"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "account_id"
-    t.index ["account_id"], name: "index_lesli_account_activities_on_account_id"
-    t.index ["user_id"], name: "index_lesli_account_activities_on_user_id"
+    t.index ["account_id"], name: "index_lesli_account_currencies_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_account_currencies_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_account_currencies_on_user_id"
   end
 
   create_table "lesli_account_details", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "address"
+    t.string "city"
     t.string "company_name"
     t.string "company_name_legal"
     t.string "company_tagline"
     t.integer "country"
-    t.string "address"
-    t.string "region"
-    t.string "city"
-    t.string "postal_code"
-    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "facebook"
+    t.string "github"
+    t.string "linkedin"
     t.string "phone_number_1"
     t.string "phone_number_2"
     t.string "phone_number_3"
     t.string "phone_number_4"
+    t.string "postal_code"
     t.string "public_email"
-    t.string "github"
+    t.string "region"
     t.string "twitter"
-    t.string "youtube"
-    t.string "linkedin"
-    t.string "facebook"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id"
+    t.string "website"
+    t.string "youtube"
     t.index ["account_id"], name: "index_lesli_account_details_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_account_details_on_deleted_at"
   end
 
-  create_table "lesli_accounts", force: :cascade do |t|
-    t.string "status", null: false
-    t.string "name"
-    t.string "email", null: false
-    t.string "region", default: "america"
-    t.datetime "deleted_at"
+  create_table "lesli_account_locations", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "calling_code"
+    t.string "code"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "latitude"
+    t.string "level"
+    t.string "longitude"
+    t.string "name"
+    t.string "native_level"
+    t.integer "parent_id"
+    t.string "postal_code"
+    t.string "short_name"
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "name", "level", "parent_id"], name: "location_uniqueness_index", unique: true
+    t.index ["account_id"], name: "index_lesli_account_locations_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_account_locations_on_deleted_at"
+    t.index ["parent_id"], name: "index_lesli_account_locations_on_parent_id"
+  end
+
+  create_table "lesli_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "email", null: false
+    t.string "name"
+    t.string "region", default: "america"
+    t.string "status", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_accounts_on_deleted_at"
@@ -66,184 +89,229 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_admin_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_admin_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_admin_accounts_on_deleted_at"
   end
 
   create_table "lesli_admin_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_admin_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_admin_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_admin_dashboards_on_role_id"
     t.index ["user_id"], name: "index_lesli_admin_dashboards_on_user_id"
   end
 
-  create_table "lesli_audit_account_requests", force: :cascade do |t|
-    t.string "request_controller"
-    t.string "request_action"
-    t.integer "request_count"
-    t.date "created_at"
+  create_table "lesli_audit_account_devices", force: :cascade do |t|
     t.integer "account_id"
+    t.string "agent_browser"
+    t.integer "agent_count"
+    t.string "agent_platform"
+    t.date "created_at"
+    t.index ["account_id"], name: "index_lesli_audit_account_devices_on_account_id"
+    t.index ["agent_platform", "agent_browser", "created_at", "account_id"], name: "lesli_audit_devices_index", unique: true
+  end
+
+  create_table "lesli_audit_account_logs", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.string "engine"
+    t.string "operation"
+    t.string "session_id"
+    t.bigint "subject_id"
+    t.string "subject_type"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_account_logs_on_account_id"
+    t.index ["user_id"], name: "index_lesli_audit_account_logs_on_user_id"
+  end
+
+  create_table "lesli_audit_account_requests", force: :cascade do |t|
+    t.integer "account_id"
+    t.date "created_at"
+    t.string "request_action"
+    t.string "request_controller"
+    t.integer "request_count"
     t.index ["account_id"], name: "index_lesli_audit_account_requests_on_account_id"
     t.index ["request_controller", "request_action", "created_at", "account_id"], name: "lesli_audit_account_requests_index", unique: true
   end
 
   create_table "lesli_audit_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_audit_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_audit_accounts_on_deleted_at"
   end
 
   create_table "lesli_audit_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_audit_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_audit_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_audit_dashboards_on_role_id"
     t.index ["user_id"], name: "index_lesli_audit_dashboards_on_user_id"
   end
 
-  create_table "lesli_audit_user_requests", force: :cascade do |t|
-    t.string "request_controller"
-    t.string "request_action"
-    t.integer "request_count"
-    t.date "created_at"
-    t.integer "user_id"
-    t.integer "session_id"
+  create_table "lesli_audit_user_logs", force: :cascade do |t|
     t.integer "account_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.string "engine"
+    t.string "operation"
+    t.string "session_id"
+    t.bigint "subject_id"
+    t.string "subject_type"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_user_logs_on_account_id"
+    t.index ["user_id"], name: "index_lesli_audit_user_logs_on_user_id"
+  end
+
+  create_table "lesli_audit_user_requests", force: :cascade do |t|
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "request_action"
+    t.string "request_controller"
+    t.integer "request_count"
+    t.integer "session_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_audit_user_requests_on_account_id"
-    t.index ["request_controller", "request_action", "created_at", "user_id", "session_id"], name: "lesli_audit_user_requests_index", unique: true
+    t.index ["date"], name: "index_lesli_audit_user_requests_on_date"
+    t.index ["request_controller", "request_action", "date", "user_id", "session_id"], name: "lesli_audit_user_requests_index", unique: true
     t.index ["session_id"], name: "index_lesli_audit_user_requests_on_session_id"
     t.index ["user_id"], name: "index_lesli_audit_user_requests_on_user_id"
   end
 
   create_table "lesli_babel_buckets", force: :cascade do |t|
     t.string "code"
-    t.string "reference_module"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.integer "module_id"
+    t.string "reference_module"
+    t.datetime "updated_at", null: false
     t.index ["module_id"], name: "index_lesli_babel_buckets_on_module_id"
   end
 
   create_table "lesli_babel_labels", force: :cascade do |t|
-    t.string "text"
-    t.string "status"
-    t.string "context"
-    t.string "es"
-    t.string "en"
-    t.string "de"
-    t.string "fr"
-    t.string "nl"
-    t.string "pl"
-    t.string "pt"
-    t.string "it"
-    t.string "tr"
-    t.string "ro"
     t.string "bg"
-    t.string "uk"
-    t.string "sr"
+    t.integer "bucket_id"
+    t.string "context"
+    t.datetime "created_at", null: false
+    t.string "de"
+    t.datetime "deleted_at"
+    t.string "en"
+    t.string "es"
+    t.string "fr"
     t.string "hr"
-    t.datetime "last_update_es"
-    t.datetime "last_update_en"
+    t.string "it"
+    t.datetime "last_update_bg"
+    t.datetime "last_update_context"
     t.datetime "last_update_de"
+    t.datetime "last_update_en"
+    t.datetime "last_update_es"
     t.datetime "last_update_fr"
+    t.datetime "last_update_hr"
+    t.datetime "last_update_it"
     t.datetime "last_update_nl"
     t.datetime "last_update_pl"
     t.datetime "last_update_pt"
-    t.datetime "last_update_it"
-    t.datetime "last_update_tr"
     t.datetime "last_update_ro"
-    t.datetime "last_update_bg"
-    t.datetime "last_update_uk"
     t.datetime "last_update_sr"
-    t.datetime "last_update_hr"
     t.datetime "last_update_status"
-    t.datetime "last_update_context"
+    t.datetime "last_update_tr"
+    t.datetime "last_update_uk"
+    t.string "nl"
+    t.string "pl"
+    t.string "pt"
     t.string "reference_bucket"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
+    t.string "ro"
+    t.string "sr"
+    t.string "status"
+    t.string "text"
+    t.string "tr"
+    t.string "uk"
     t.datetime "updated_at", null: false
-    t.integer "bucket_id"
     t.index ["bucket_id"], name: "index_lesli_babel_labels_on_bucket_id"
   end
 
   create_table "lesli_babel_modules", force: :cascade do |t|
     t.string "code"
-    t.string "platform"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "platform"
     t.datetime "updated_at", null: false
   end
 
   create_table "lesli_bell_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "enabled_at"
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_bell_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_accounts_on_deleted_at"
   end
 
   create_table "lesli_bell_announcement_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.integer "user_id"
     t.integer "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["announcement_id"], name: "lesli_bell_announcements_users"
     t.index ["deleted_at"], name: "index_lesli_bell_announcement_users_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_bell_announcement_users_on_user_id"
   end
 
   create_table "lesli_bell_announcements", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
-    t.string "path"
-    t.string "category"
-    t.text "message"
-    t.boolean "status"
-    t.datetime "start_at", precision: nil
-    t.datetime "end_at", precision: nil
-    t.boolean "can_be_closed", default: true
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "role_id"
     t.integer "account_id"
+    t.boolean "can_be_closed", default: true
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "end_at", precision: nil
+    t.text "message"
+    t.string "name"
+    t.string "path"
+    t.integer "role_id"
+    t.datetime "start_at", precision: nil
+    t.boolean "status"
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_bell_announcements_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_announcements_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_bell_announcements_on_role_id"
@@ -251,15 +319,15 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_bell_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_bell_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_bell_dashboards_on_role_id"
@@ -267,43 +335,43 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_bell_notifications", force: :cascade do |t|
-    t.string "subject"
+    t.integer "account_id"
     t.text "body"
-    t.string "url"
-    t.string "status"
     t.string "category"
     t.string "channel"
-    t.json "payload"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.json "payload"
+    t.string "status"
+    t.string "subject"
     t.datetime "updated_at", null: false
+    t.string "url"
     t.integer "user_id"
-    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_bell_notifications_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_bell_notifications_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_bell_notifications_on_user_id"
   end
 
   create_table "lesli_calendar_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_calendar_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_calendar_accounts_on_deleted_at"
   end
 
   create_table "lesli_calendar_calendars", force: :cascade do |t|
-    t.string "name"
+    t.integer "account_id"
     t.string "color", default: "0d52bf"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_calendar_calendars_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_calendar_calendars_on_deleted_at"
     t.index ["user_id"], name: "index_lesli_calendar_calendars_on_user_id"
@@ -311,11 +379,11 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
 
   create_table "lesli_calendar_event_attendants", force: :cascade do |t|
     t.datetime "confirmed_at"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.integer "event_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "event_id"
     t.index ["confirmed_at"], name: "index_lesli_calendar_event_attendants_on_confirmed_at"
     t.index ["deleted_at"], name: "index_lesli_calendar_event_attendants_on_deleted_at"
     t.index ["event_id"], name: "index_lesli_calendar_event_attendants_on_event_id"
@@ -323,19 +391,19 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_calendar_events", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "start_at", precision: nil
-    t.datetime "end_at", precision: nil
-    t.string "url"
-    t.string "location"
-    t.string "status"
-    t.boolean "public"
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "account_id"
     t.integer "calendar_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "description"
+    t.datetime "end_at", precision: nil
+    t.string "location"
+    t.boolean "public"
+    t.datetime "start_at", precision: nil
+    t.string "status"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.string "url"
     t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_calendar_events_on_account_id"
     t.index ["calendar_id"], name: "index_lesli_calendar_events_on_calendar_id"
@@ -348,27 +416,27 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_dashboard_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_dashboard_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_dashboard_accounts_on_deleted_at"
   end
 
   create_table "lesli_dashboard_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_dashboard_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_dashboard_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_dashboard_dashboards_on_role_id"
@@ -376,27 +444,27 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_mailer_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "enabled_at"
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_mailer_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_mailer_accounts_on_deleted_at"
   end
 
   create_table "lesli_mailer_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at"
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_mailer_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_mailer_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_mailer_dashboards_on_role_id"
@@ -404,113 +472,134 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_role_actions", force: :cascade do |t|
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "role_id"
     t.integer "action_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.integer "role_id"
+    t.datetime "updated_at", null: false
     t.index ["action_id"], name: "descriptor_privileges_system_controller_actions"
     t.index ["deleted_at"], name: "index_lesli_role_actions_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_role_actions_on_role_id"
   end
 
   create_table "lesli_role_privileges", force: :cascade do |t|
-    t.string "controller"
     t.string "action"
     t.boolean "active"
-    t.datetime "deleted_at"
+    t.string "controller"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.integer "role_id"
+    t.datetime "updated_at", null: false
     t.index ["controller", "action", "role_id"], name: "role_privileges_index", unique: true
     t.index ["deleted_at"], name: "index_lesli_role_privileges_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_role_privileges_on_role_id"
   end
 
   create_table "lesli_roles", force: :cascade do |t|
-    t.string "name"
-    t.string "code"
-    t.string "description"
+    t.integer "account_id"
     t.boolean "active"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "description"
+    t.boolean "isolated", default: false
+    t.string "name"
     t.string "path_default"
     t.boolean "path_limited"
-    t.boolean "isolated", default: false
     t.integer "permission_level", default: 10
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_roles_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_roles_on_deleted_at"
   end
 
   create_table "lesli_settings", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
+    t.integer "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
+    t.string "name"
     t.datetime "updated_at", precision: nil, null: false
     t.integer "user_id"
-    t.integer "account_id", null: false
+    t.string "value"
     t.index ["account_id"], name: "index_lesli_settings_on_account_id"
     t.index ["user_id"], name: "index_lesli_settings_on_user_id"
   end
 
   create_table "lesli_shield_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_shield_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_shield_accounts_on_deleted_at"
   end
 
   create_table "lesli_shield_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_shield_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_shield_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_shield_dashboards_on_role_id"
     t.index ["user_id"], name: "index_lesli_shield_dashboards_on_user_id"
   end
 
-  create_table "lesli_shield_settings", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
+  create_table "lesli_shield_invites", force: :cascade do |t|
+    t.integer "account_id"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "email", null: false
+    t.datetime "expired_at"
+    t.string "full_name"
+    t.text "notes"
+    t.datetime "sent_at"
+    t.integer "status"
+    t.string "telephone"
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_shield_invites_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_shield_invites_on_deleted_at"
+    t.index ["expired_at"], name: "index_lesli_shield_invites_on_expired_at"
+    t.index ["sent_at"], name: "index_lesli_shield_invites_on_sent_at"
+    t.index ["status"], name: "index_lesli_shield_invites_on_status"
+    t.index ["user_id"], name: "index_lesli_shield_invites_on_user_id"
+  end
+
+  create_table "lesli_shield_settings", force: :cascade do |t|
     t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "value"
     t.index ["account_id"], name: "index_lesli_shield_settings_on_account_id"
     t.index ["user_id"], name: "index_lesli_shield_settings_on_user_id"
   end
 
   create_table "lesli_shield_user_shortcuts", force: :cascade do |t|
-    t.string "name"
-    t.string "icon"
-    t.string "url"
     t.datetime "created_at", null: false
+    t.string "icon"
+    t.string "name"
     t.datetime "updated_at", null: false
+    t.string "url"
     t.integer "user_id"
     t.index ["user_id"], name: "index_lesli_shield_user_shortcuts_on_user_id"
   end
 
   create_table "lesli_shield_user_tokens", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "token", null: false
-    t.string "source", null: false
-    t.datetime "expiration_at"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "expiration_at"
+    t.string "name", null: false
+    t.string "source", null: false
+    t.string "token", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_shield_user_tokens_on_deleted_at"
@@ -520,49 +609,49 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_support_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "enabled_at"
     t.string "name"
     t.integer "status", default: 0, null: false
-    t.datetime "enabled_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_support_accounts_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_accounts_on_deleted_at"
   end
 
   create_table "lesli_support_catalog_items", force: :cascade do |t|
+    t.integer "catalog_id", null: false
+    t.datetime "created_at", null: false
+    t.boolean "default", default: false
     t.string "name"
     t.integer "order"
-    t.boolean "default", default: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "catalog_id", null: false
     t.index ["catalog_id"], name: "index_lesli_support_catalog_items_on_catalog_id"
   end
 
   create_table "lesli_support_catalogs", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
     t.string "key"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "parent_id"
-    t.integer "account_id", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_lesli_support_catalogs_on_account_id"
     t.index ["key"], name: "index_lesli_support_catalogs_on_key"
     t.index ["parent_id"], name: "index_lesli_support_catalogs_on_parent_id"
   end
 
   create_table "lesli_support_dashboards", force: :cascade do |t|
-    t.string "name"
-    t.boolean "default"
+    t.integer "account_id", null: false
     t.json "components"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.boolean "default"
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
-    t.integer "account_id", null: false
     t.index ["account_id"], name: "index_lesli_support_dashboards_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_support_dashboards_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_support_dashboards_on_role_id"
@@ -570,30 +659,30 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_support_settings", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "account_id", null: false
+    t.string "value"
     t.index ["account_id"], name: "index_lesli_support_settings_on_account_id"
     t.index ["user_id"], name: "index_lesli_support_settings_on_user_id"
   end
 
   create_table "lesli_support_slas", force: :cascade do |t|
-    t.string "name"
-    t.integer "expected_response_time"
-    t.integer "expected_resolution_time"
-    t.float "price_per_hour"
+    t.integer "accounts_id"
     t.text "body"
-    t.text "provider_repercussions"
     t.text "client_repercussions"
-    t.text "exceptions"
+    t.datetime "created_at", null: false
     t.boolean "default", default: false
     t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
+    t.text "exceptions"
+    t.integer "expected_resolution_time"
+    t.integer "expected_response_time"
+    t.string "name"
+    t.float "price_per_hour"
+    t.text "provider_repercussions"
     t.datetime "updated_at", null: false
-    t.integer "accounts_id"
     t.integer "users_id"
     t.index ["accounts_id"], name: "index_lesli_support_slas_on_accounts_id"
     t.index ["deleted_at"], name: "index_lesli_support_slas_on_deleted_at"
@@ -601,101 +690,101 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_support_ticket_actions", force: :cascade do |t|
-    t.string "title"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.integer "ticket_id"
+    t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
     t.index ["deleted_at"], name: "index_lesli_support_ticket_actions_on_deleted_at"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_actions_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_actions_on_user_id"
   end
 
   create_table "lesli_support_ticket_activities", force: :cascade do |t|
-    t.string "title"
+    t.datetime "created_at", null: false
     t.string "description"
     t.string "session_id"
-    t.datetime "created_at", null: false
+    t.integer "ticket_id"
+    t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_activities_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_activities_on_user_id"
   end
 
   create_table "lesli_support_ticket_attachments", force: :cascade do |t|
-    t.string "name"
-    t.string "category"
-    t.decimal "size_mb"
     t.string "attachment"
-    t.string "attachment_remote"
     t.string "attachment_public"
+    t.string "attachment_remote"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
     t.boolean "public"
     t.string "public_url"
     t.datetime "public_url_expiration_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
+    t.decimal "size_mb"
+    t.integer "ticket_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
     t.index ["deleted_at"], name: "index_lesli_support_ticket_attachments_on_deleted_at"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_attachments_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_attachments_on_user_id"
   end
 
   create_table "lesli_support_ticket_discussions", force: :cascade do |t|
-    t.string "message"
     t.datetime "created_at", null: false
+    t.string "message"
+    t.integer "ticket_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_discussions_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_discussions_on_user_id"
   end
 
   create_table "lesli_support_ticket_subscribers", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "ticket_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_subscribers_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_subscribers_on_user_id"
   end
 
   create_table "lesli_support_ticket_versions", force: :cascade do |t|
-    t.string "column_name"
-    t.string "value_from"
-    t.string "value_to"
     t.string "action"
+    t.string "column_name"
     t.datetime "created_at", null: false
+    t.integer "ticket_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "ticket_id"
+    t.string "value_from"
+    t.string "value_to"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_versions_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_versions_on_user_id"
   end
 
   create_table "lesli_support_tickets", force: :cascade do |t|
-    t.string "subject"
-    t.text "description"
-    t.string "tags"
-    t.decimal "hours_worked"
-    t.string "reference_url"
-    t.datetime "deadline", precision: nil
-    t.datetime "started_at", precision: nil
-    t.datetime "completed_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "sla_id"
-    t.integer "type_id"
-    t.integer "category_id"
-    t.integer "priority_id"
-    t.integer "workspace_id"
-    t.integer "user_id"
-    t.integer "agent_id"
     t.integer "account_id"
+    t.integer "agent_id"
+    t.integer "category_id"
+    t.datetime "completed_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "deadline", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.text "description"
+    t.decimal "hours_worked"
+    t.integer "priority_id"
+    t.string "reference_url"
+    t.integer "sla_id"
+    t.datetime "started_at", precision: nil
+    t.string "subject"
+    t.string "tags"
+    t.integer "type_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "workspace_id"
     t.index ["account_id"], name: "index_lesli_support_tickets_on_account_id"
     t.index ["agent_id"], name: "index_lesli_support_tickets_on_agent_id"
     t.index ["category_id"], name: "index_lesli_support_tickets_on_category_id"
@@ -708,61 +797,51 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_system_controller_actions", force: :cascade do |t|
-    t.string "name"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.string "name"
     t.integer "system_controller_id"
+    t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_lesli_system_controller_actions_on_deleted_at"
     t.index ["system_controller_id"], name: "index_lesli_system_controller_actions_on_system_controller_id"
   end
 
   create_table "lesli_system_controllers", force: :cascade do |t|
-    t.string "name"
-    t.string "route"
-    t.string "engine"
-    t.string "reference"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "engine"
+    t.string "name"
+    t.string "reference"
+    t.string "route"
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_lesli_system_controllers_on_deleted_at"
   end
 
-  create_table "lesli_user_activities", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "session_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_lesli_user_activities_on_user_id"
-  end
-
   create_table "lesli_user_roles", force: :cascade do |t|
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "role_id"
     t.index ["deleted_at"], name: "index_lesli_user_roles_on_deleted_at"
     t.index ["role_id"], name: "index_lesli_user_roles_on_role_id"
     t.index ["user_id"], name: "index_lesli_user_roles_on_user_id"
   end
 
   create_table "lesli_user_sessions", force: :cascade do |t|
-    t.string "remote"
-    t.string "agent_platform"
-    t.string "agent_os"
     t.string "agent_browser"
+    t.string "agent_os"
+    t.string "agent_platform"
     t.string "agent_version"
-    t.string "session_token"
-    t.string "session_source"
-    t.integer "usage_count"
-    t.datetime "last_used_at", precision: nil
-    t.datetime "expiration_at", precision: nil
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "expiration_at", precision: nil
+    t.datetime "last_used_at", precision: nil
+    t.string "remote"
+    t.string "session_source"
+    t.string "session_token"
     t.datetime "updated_at", null: false
+    t.integer "usage_count"
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_user_sessions_on_deleted_at"
     t.index ["expiration_at"], name: "index_lesli_user_sessions_on_expiration_at"
@@ -770,39 +849,39 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   end
 
   create_table "lesli_users", force: :cascade do |t|
+    t.integer "account_id"
     t.boolean "active", default: true, null: false
     t.string "alias"
-    t.string "title"
-    t.string "salutation"
-    t.string "first_name"
-    t.string "last_name"
+    t.datetime "confirmation_sent_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "created_at", null: false
+    t.datetime "current_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.datetime "deleted_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "password_expiration_at"
-    t.datetime "locked_until"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "unconfirmed_email"
-    t.string "confirmation_token"
-    t.datetime "confirmation_sent_at"
-    t.datetime "confirmed_at"
-    t.string "telephone"
-    t.string "telephone_confirmation_token"
-    t.datetime "telephone_confirmation_sent_at"
-    t.datetime "telephone_confirmed_at"
     t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "last_sign_in_at"
+    t.string "last_sign_in_ip"
     t.datetime "locked_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
+    t.datetime "locked_until"
+    t.datetime "password_expiration_at"
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
+    t.string "salutation"
+    t.integer "sign_in_count", default: 0, null: false
+    t.string "telephone"
+    t.datetime "telephone_confirmation_sent_at"
+    t.string "telephone_confirmation_token"
+    t.datetime "telephone_confirmed_at"
+    t.string "title"
+    t.string "unconfirmed_email"
+    t.string "unlock_token"
     t.datetime "updated_at", null: false
-    t.integer "account_id"
     t.index ["account_id"], name: "index_lesli_users_on_account_id"
     t.index ["confirmation_token"], name: "index_lesli_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_lesli_users_on_deleted_at"
@@ -811,19 +890,26 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
     t.index ["unlock_token"], name: "index_lesli_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "lesli_account_activities", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_account_activities", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_account_currencies", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_account_currencies", "lesli_users", column: "user_id"
   add_foreign_key "lesli_account_details", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_account_locations", "lesli_account_locations", column: "parent_id"
+  add_foreign_key "lesli_account_locations", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_accounts", "lesli_users", column: "user_id"
   add_foreign_key "lesli_admin_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_admin_dashboards", "lesli_admin_accounts", column: "account_id"
   add_foreign_key "lesli_admin_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_admin_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_account_devices", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_account_logs", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_account_logs", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_account_requests", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_audit_dashboards", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_audit_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_user_logs", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_logs", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_user_sessions", column: "session_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_users", column: "user_id"
@@ -866,6 +952,8 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   add_foreign_key "lesli_shield_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_shield_dashboards", "lesli_shield_accounts", column: "account_id"
   add_foreign_key "lesli_shield_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_shield_invites", "lesli_shield_accounts", column: "account_id"
+  add_foreign_key "lesli_shield_invites", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_settings", "lesli_shield_accounts", column: "account_id"
   add_foreign_key "lesli_shield_settings", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_shortcuts", "lesli_users", column: "user_id"
@@ -902,7 +990,6 @@ ActiveRecord::Schema[8.0].define(version: 901120110) do
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "agent_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "user_id"
   add_foreign_key "lesli_system_controller_actions", "lesli_system_controllers", column: "system_controller_id"
-  add_foreign_key "lesli_user_activities", "lesli_users", column: "user_id"
   add_foreign_key "lesli_user_roles", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_user_roles", "lesli_users", column: "user_id"
   add_foreign_key "lesli_user_sessions", "lesli_users", column: "user_id"

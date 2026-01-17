@@ -2,7 +2,7 @@
 if defined? Lesli
     Lesli.configure do |config|
         config.demo = true
-        config.security[:allow_multiaccount] = false
+        config.security[:allow_multiaccount] = true
         config.locales = {
             :en => "English",       # English
             :es => "Español",       # Español/Spanish

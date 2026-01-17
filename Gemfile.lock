@@ -65,7 +65,7 @@ PATH
       kaminari (~> 1.2.2)
       lesli_assets (~> 1.0)
       lesli_date (~> 0.1)
-      lesli_system (~> 1.0)
+      lesli_system (~> 1.0.0)
       lesli_view (~> 1.0.0)
       rails (~> 8.1)
       turbo-rails (~> 2.0)
@@ -76,9 +76,19 @@ PATH
     lesli_assets (1.0.6)
 
 PATH
+  remote: gems/LesliDate
+  specs:
+    lesli_date (0.1.0)
+
+PATH
+  remote: gems/LesliSystem
+  specs:
+    lesli_system (1.0.6)
+
+PATH
   remote: gems/LesliView
   specs:
-    lesli_view (1.0.5)
+    lesli_view (1.0.6)
       view_component (~> 4.1)
 
 GEM
@@ -167,7 +177,7 @@ GEM
     ansi (1.5.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bcrypt (3.1.20)
+    bcrypt (3.1.21)
     bcrypt_pbkdf (1.1.2)
     bcrypt_pbkdf (1.1.2-arm64-darwin)
     bcrypt_pbkdf (1.1.2-x86_64-darwin)
@@ -279,8 +289,6 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lesli_date (0.1.0)
-    lesli_system (1.0.4)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     lint_roller (1.1.0)
@@ -572,9 +580,11 @@ DEPENDENCIES
   lesli_bell!
   lesli_calendar!
   lesli_dashboard!
+  lesli_date!
   lesli_mailer!
   lesli_shield!
   lesli_support!
+  lesli_system!
   lesli_view!
   letter_opener
   minitest (~> 5.0)

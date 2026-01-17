@@ -37,7 +37,7 @@ LESLI_ENGINES = [
     "LesliAdmin", 
     "LesliBabel", 
     "LesliAudit", 
-    # #"LesliPapers",
+    #"LesliPapers",
     "LesliShield",
     "LesliSupport", 
     "LesliCalendar", 
@@ -45,8 +45,8 @@ LESLI_ENGINES = [
     "LesliMailer",
 
     "LesliView",
-    # # "LesliDate",
-    # "LesliSystem",
+    "LesliDate",
+    "LesliSystem",
     "LesliAssets"
 ]
 
