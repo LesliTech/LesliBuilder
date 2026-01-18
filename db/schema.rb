@@ -180,6 +180,21 @@ ActiveRecord::Schema[8.1].define(version: 901120110) do
     t.index ["user_id"], name: "index_lesli_audit_dashboards_on_user_id"
   end
 
+  create_table "lesli_audit_user_journals", force: :cascade do |t|
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "request_action"
+    t.string "request_controller"
+    t.integer "session_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_user_journals_on_account_id"
+    t.index ["date"], name: "index_lesli_audit_user_journals_on_date"
+    t.index ["session_id"], name: "index_lesli_audit_user_journals_on_session_id"
+    t.index ["user_id"], name: "index_lesli_audit_user_journals_on_user_id"
+  end
+
   create_table "lesli_audit_user_logs", force: :cascade do |t|
     t.integer "account_id"
     t.string "action"
@@ -908,6 +923,9 @@ ActiveRecord::Schema[8.1].define(version: 901120110) do
   add_foreign_key "lesli_audit_dashboards", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_audit_dashboards", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_user_journals", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_journals", "lesli_user_sessions", column: "session_id"
+  add_foreign_key "lesli_audit_user_journals", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_logs", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_user_logs", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_audit_accounts", column: "account_id"

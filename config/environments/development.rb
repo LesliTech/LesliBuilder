@@ -81,6 +81,7 @@ Rails.application.configure do
     # should I move this to Lesli gem? :thinking:
     #     #     #     #     #     #     #     #     #     #     #     #     #
 
+    config.cache_store = :file_store, Rails.root.join("tmp/cache_dev")
     config.action_mailer.delivery_method = :letter_opener
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true

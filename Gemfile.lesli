@@ -37,17 +37,16 @@ LESLI_ENGINES = [
     "LesliAdmin", 
     "LesliBabel", 
     "LesliAudit", 
-    #"LesliPapers",
     "LesliShield",
     "LesliSupport", 
     "LesliCalendar", 
     "LesliDashboard",
     "LesliMailer",
 
-    "LesliView",
     "LesliDate",
+    "LesliView",
+    "LesliAssets",
     "LesliSystem",
-    "LesliAssets"
 ]
 
 LESLI_ENGINES.each do |engine_name|
