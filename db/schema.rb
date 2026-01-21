@@ -154,12 +154,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.date "date"
     t.string "request_action"
     t.string "request_controller"
-    t.integer "session_id"
+    t.bigint "session_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_audit_user_journals_on_account_id"
     t.index ["date"], name: "index_lesli_audit_user_journals_on_date"
-    t.index ["session_id"], name: "index_lesli_audit_user_journals_on_session_id"
     t.index ["user_id"], name: "index_lesli_audit_user_journals_on_user_id"
   end
 
@@ -186,13 +185,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "request_action"
     t.string "request_controller"
     t.integer "request_count"
-    t.integer "session_id"
+    t.bigint "session_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["account_id"], name: "index_lesli_audit_user_requests_on_account_id"
     t.index ["date"], name: "index_lesli_audit_user_requests_on_date"
     t.index ["request_controller", "request_action", "date", "user_id", "session_id"], name: "lesli_audit_user_requests_index", unique: true
-    t.index ["session_id"], name: "index_lesli_audit_user_requests_on_session_id"
     t.index ["user_id"], name: "index_lesli_audit_user_requests_on_user_id"
   end
 
@@ -528,6 +526,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_shield_settings_on_user_id"
   end
 
+  create_table "lesli_shield_user_sessions", force: :cascade do |t|
+    t.string "agent_browser"
+    t.string "agent_os"
+    t.string "agent_platform"
+    t.string "agent_version"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "expiration_at", precision: nil
+    t.datetime "last_used_at", precision: nil
+    t.string "remote"
+    t.string "session_source"
+    t.string "session_token"
+    t.datetime "updated_at", null: false
+    t.integer "usage_count"
+    t.integer "user_id"
+    t.index ["deleted_at"], name: "index_lesli_shield_user_sessions_on_deleted_at"
+    t.index ["expiration_at"], name: "index_lesli_shield_user_sessions_on_expiration_at"
+    t.index ["user_id"], name: "index_lesli_shield_user_sessions_on_user_id"
+  end
+
   create_table "lesli_shield_user_shortcuts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "icon"
@@ -757,26 +775,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_user_roles_on_user_id"
   end
 
-  create_table "lesli_user_sessions", force: :cascade do |t|
-    t.string "agent_browser"
-    t.string "agent_os"
-    t.string "agent_platform"
-    t.string "agent_version"
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at", precision: nil
-    t.datetime "expiration_at", precision: nil
-    t.datetime "last_used_at", precision: nil
-    t.string "remote"
-    t.string "session_source"
-    t.string "session_token"
-    t.datetime "updated_at", null: false
-    t.integer "usage_count"
-    t.integer "user_id"
-    t.index ["deleted_at"], name: "index_lesli_user_sessions_on_deleted_at"
-    t.index ["expiration_at"], name: "index_lesli_user_sessions_on_expiration_at"
-    t.index ["user_id"], name: "index_lesli_user_sessions_on_user_id"
-  end
-
   create_table "lesli_users", force: :cascade do |t|
     t.integer "account_id"
     t.boolean "active", default: true, null: false
@@ -832,12 +830,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_audit_account_requests", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_audit_user_journals", "lesli_audit_accounts", column: "account_id"
-  add_foreign_key "lesli_audit_user_journals", "lesli_user_sessions", column: "session_id"
   add_foreign_key "lesli_audit_user_journals", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_logs", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_user_logs", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_audit_accounts", column: "account_id"
-  add_foreign_key "lesli_audit_user_requests", "lesli_user_sessions", column: "session_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_users", column: "user_id"
   add_foreign_key "lesli_babel_buckets", "lesli_babel_modules", column: "module_id"
   add_foreign_key "lesli_babel_labels", "lesli_babel_buckets", column: "bucket_id"
@@ -874,6 +870,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_shield_invites", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_settings", "lesli_shield_accounts", column: "account_id"
   add_foreign_key "lesli_shield_settings", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_shield_user_sessions", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_shortcuts", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_tokens", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_accounts", "lesli_accounts", column: "account_id"
@@ -907,6 +904,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_system_controller_actions", "lesli_system_controllers", column: "system_controller_id"
   add_foreign_key "lesli_user_roles", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_user_roles", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_user_sessions", "lesli_users", column: "user_id"
   add_foreign_key "lesli_users", "lesli_accounts", column: "account_id"
 end
