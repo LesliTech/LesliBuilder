@@ -11,7 +11,21 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
-  create_table "lesli_account_currencies", force: :cascade do |t|
+  create_table "lesli_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "email", null: false
+    t.string "name"
+    t.string "region", default: "america"
+    t.string "status", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["deleted_at"], name: "index_lesli_accounts_on_deleted_at"
+    t.index ["email"], name: "index_lesli_accounts_on_email", unique: true
+    t.index ["user_id"], name: "index_lesli_accounts_on_user_id"
+  end
+
+  create_table "lesli_admin_account_currencies", force: :cascade do |t|
     t.integer "account_id"
     t.string "country_alpha_3"
     t.datetime "created_at", null: false
@@ -20,12 +34,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "symbol"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["account_id"], name: "index_lesli_account_currencies_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_account_currencies_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_account_currencies_on_user_id"
+    t.index ["account_id"], name: "index_lesli_admin_account_currencies_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_currencies_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_admin_account_currencies_on_user_id"
   end
 
-  create_table "lesli_account_details", force: :cascade do |t|
+  create_table "lesli_admin_account_details", force: :cascade do |t|
     t.integer "account_id"
     t.string "address"
     t.string "city"
@@ -49,11 +63,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.datetime "updated_at", null: false
     t.string "website"
     t.string "youtube"
-    t.index ["account_id"], name: "index_lesli_account_details_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_account_details_on_deleted_at"
+    t.index ["account_id"], name: "index_lesli_admin_account_details_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_details_on_deleted_at"
   end
 
-  create_table "lesli_account_locations", force: :cascade do |t|
+  create_table "lesli_admin_account_locations", force: :cascade do |t|
     t.integer "account_id"
     t.string "calling_code"
     t.string "code"
@@ -69,23 +83,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "short_name"
     t.datetime "updated_at", null: false
     t.index ["account_id", "name", "level", "parent_id"], name: "location_uniqueness_index", unique: true
-    t.index ["account_id"], name: "index_lesli_account_locations_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_account_locations_on_deleted_at"
-    t.index ["parent_id"], name: "index_lesli_account_locations_on_parent_id"
+    t.index ["account_id"], name: "index_lesli_admin_account_locations_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_locations_on_deleted_at"
+    t.index ["parent_id"], name: "index_lesli_admin_account_locations_on_parent_id"
   end
 
-  create_table "lesli_accounts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at"
-    t.string "email", null: false
+  create_table "lesli_admin_account_settings", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.string "name"
-    t.string "region", default: "america"
-    t.string "status", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "user_id"
-    t.index ["deleted_at"], name: "index_lesli_accounts_on_deleted_at"
-    t.index ["email"], name: "index_lesli_accounts_on_email", unique: true
-    t.index ["user_id"], name: "index_lesli_accounts_on_user_id"
+    t.string "value"
+    t.index ["account_id"], name: "index_lesli_admin_account_settings_on_account_id"
+    t.index ["user_id"], name: "index_lesli_admin_account_settings_on_user_id"
   end
 
   create_table "lesli_admin_accounts", force: :cascade do |t|
@@ -430,28 +441,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["deleted_at"], name: "index_lesli_mailer_accounts_on_deleted_at"
   end
 
-  create_table "lesli_role_actions", force: :cascade do |t|
-    t.integer "action_id"
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at"
-    t.integer "role_id"
-    t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "descriptor_privileges_system_controller_actions"
-    t.index ["deleted_at"], name: "index_lesli_role_actions_on_deleted_at"
-    t.index ["role_id"], name: "index_lesli_role_actions_on_role_id"
-  end
-
-  create_table "lesli_role_privileges", force: :cascade do |t|
+  create_table "lesli_resources", force: :cascade do |t|
     t.string "action"
-    t.boolean "active"
-    t.string "controller"
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
-    t.integer "role_id"
+    t.string "engine"
+    t.string "identifier"
+    t.string "label"
+    t.integer "parent_id"
+    t.string "route"
     t.datetime "updated_at", null: false
-    t.index ["controller", "action", "role_id"], name: "role_privileges_index", unique: true
-    t.index ["deleted_at"], name: "index_lesli_role_privileges_on_deleted_at"
-    t.index ["role_id"], name: "index_lesli_role_privileges_on_role_id"
+    t.index ["deleted_at"], name: "index_lesli_resources_on_deleted_at"
+    t.index ["parent_id"], name: "index_lesli_resources_on_parent_id"
   end
 
   create_table "lesli_roles", force: :cascade do |t|
@@ -460,8 +461,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
+    t.datetime "deployed_at"
     t.string "description"
     t.boolean "isolated", default: false
+    t.datetime "modified_at"
     t.string "name"
     t.string "path_default"
     t.boolean "path_limited"
@@ -469,17 +472,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_lesli_roles_on_account_id"
     t.index ["deleted_at"], name: "index_lesli_roles_on_deleted_at"
-  end
-
-  create_table "lesli_settings", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.string "name"
-    t.datetime "updated_at", precision: nil, null: false
-    t.integer "user_id"
-    t.string "value"
-    t.index ["account_id"], name: "index_lesli_settings_on_account_id"
-    t.index ["user_id"], name: "index_lesli_settings_on_user_id"
   end
 
   create_table "lesli_shield_accounts", force: :cascade do |t|
@@ -515,15 +507,39 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_shield_invites_on_user_id"
   end
 
-  create_table "lesli_shield_settings", force: :cascade do |t|
-    t.integer "account_id", null: false
+  create_table "lesli_shield_role_actions", force: :cascade do |t|
+    t.integer "action_id"
     t.datetime "created_at", null: false
-    t.string "name"
+    t.datetime "deleted_at"
+    t.integer "role_id"
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "role_actions_resources"
+    t.index ["deleted_at"], name: "index_lesli_shield_role_actions_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_shield_role_actions_on_role_id"
+  end
+
+  create_table "lesli_shield_role_privileges", force: :cascade do |t|
+    t.string "action"
+    t.boolean "active"
+    t.string "controller"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.integer "role_id"
+    t.datetime "updated_at", null: false
+    t.index ["controller", "action", "role_id"], name: "shield_role_privileges_index", unique: true
+    t.index ["deleted_at"], name: "index_lesli_shield_role_privileges_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_shield_role_privileges_on_role_id"
+  end
+
+  create_table "lesli_shield_user_roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.integer "role_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "value"
-    t.index ["account_id"], name: "index_lesli_shield_settings_on_account_id"
-    t.index ["user_id"], name: "index_lesli_shield_settings_on_user_id"
+    t.index ["deleted_at"], name: "index_lesli_shield_user_roles_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_shield_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_lesli_shield_user_roles_on_user_id"
   end
 
   create_table "lesli_shield_user_sessions", force: :cascade do |t|
@@ -603,17 +619,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["account_id"], name: "index_lesli_support_catalogs_on_account_id"
     t.index ["key"], name: "index_lesli_support_catalogs_on_key"
     t.index ["parent_id"], name: "index_lesli_support_catalogs_on_parent_id"
-  end
-
-  create_table "lesli_support_settings", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "value"
-    t.index ["account_id"], name: "index_lesli_support_settings_on_account_id"
-    t.index ["user_id"], name: "index_lesli_support_settings_on_user_id"
   end
 
   create_table "lesli_support_slas", force: :cascade do |t|
@@ -743,38 +748,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["workspace_id"], name: "index_lesli_support_tickets_on_workspace_id"
   end
 
-  create_table "lesli_system_controller_actions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at"
-    t.string "name"
-    t.integer "system_controller_id"
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_lesli_system_controller_actions_on_deleted_at"
-    t.index ["system_controller_id"], name: "index_lesli_system_controller_actions_on_system_controller_id"
-  end
-
-  create_table "lesli_system_controllers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at"
-    t.string "engine"
-    t.string "name"
-    t.string "reference"
-    t.string "route"
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_lesli_system_controllers_on_deleted_at"
-  end
-
-  create_table "lesli_user_roles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "deleted_at", precision: nil
-    t.integer "role_id"
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["deleted_at"], name: "index_lesli_user_roles_on_deleted_at"
-    t.index ["role_id"], name: "index_lesli_user_roles_on_role_id"
-    t.index ["user_id"], name: "index_lesli_user_roles_on_user_id"
-  end
-
   create_table "lesli_users", force: :cascade do |t|
     t.integer "account_id"
     t.boolean "active", default: true, null: false
@@ -817,12 +790,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["unlock_token"], name: "index_lesli_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "lesli_account_currencies", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_account_currencies", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_account_details", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_account_locations", "lesli_account_locations", column: "parent_id"
-  add_foreign_key "lesli_account_locations", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_accounts", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_admin_account_currencies", "lesli_admin_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_currencies", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_admin_account_details", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_locations", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_locations", "lesli_admin_account_locations", column: "parent_id"
+  add_foreign_key "lesli_admin_account_settings", "lesli_admin_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_settings", "lesli_users", column: "user_id"
   add_foreign_key "lesli_admin_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_audit_account_devices", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_account_logs", "lesli_audit_accounts", column: "account_id"
@@ -859,17 +834,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_dashboard_dashboards", "lesli_roles", column: "role_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_users", column: "user_id"
   add_foreign_key "lesli_mailer_accounts", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_role_actions", "lesli_roles", column: "role_id"
-  add_foreign_key "lesli_role_actions", "lesli_system_controller_actions", column: "action_id"
-  add_foreign_key "lesli_role_privileges", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_resources", "lesli_resources", column: "parent_id"
   add_foreign_key "lesli_roles", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_settings", "lesli_accounts", column: "account_id"
-  add_foreign_key "lesli_settings", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_shield_invites", "lesli_shield_accounts", column: "account_id"
   add_foreign_key "lesli_shield_invites", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_shield_settings", "lesli_shield_accounts", column: "account_id"
-  add_foreign_key "lesli_shield_settings", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_shield_role_actions", "lesli_resources", column: "action_id"
+  add_foreign_key "lesli_shield_role_actions", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_shield_role_privileges", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_shield_user_roles", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_shield_user_roles", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_sessions", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_shortcuts", "lesli_users", column: "user_id"
   add_foreign_key "lesli_shield_user_tokens", "lesli_users", column: "user_id"
@@ -877,8 +851,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_catalog_items", "lesli_support_catalogs", column: "catalog_id"
   add_foreign_key "lesli_support_catalogs", "lesli_support_accounts", column: "account_id"
   add_foreign_key "lesli_support_catalogs", "lesli_support_catalogs", column: "parent_id"
-  add_foreign_key "lesli_support_settings", "lesli_support_accounts", column: "account_id"
-  add_foreign_key "lesli_support_settings", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_slas", "lesli_support_accounts", column: "accounts_id"
   add_foreign_key "lesli_support_slas", "lesli_users", column: "users_id"
   add_foreign_key "lesli_support_ticket_actions", "lesli_support_tickets", column: "ticket_id"
@@ -901,8 +873,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_tickets", "lesli_support_slas", column: "sla_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "agent_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_system_controller_actions", "lesli_system_controllers", column: "system_controller_id"
-  add_foreign_key "lesli_user_roles", "lesli_roles", column: "role_id"
-  add_foreign_key "lesli_user_roles", "lesli_users", column: "user_id"
   add_foreign_key "lesli_users", "lesli_accounts", column: "account_id"
 end
