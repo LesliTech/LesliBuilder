@@ -41,8 +41,6 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "honeybadger"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -76,6 +74,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
+
+
+
 # List of Lesli engines to be installed
 eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
 
@@ -84,8 +85,7 @@ eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
 # Use the standard command: bin/rails test.
 gem "minitest", "~> 5.0"
 
-
-
+gem "honeybadger"
 
 # Code coverage
 # https://github.com/simplecov-ruby/simplecov
