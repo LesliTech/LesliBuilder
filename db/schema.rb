@@ -181,6 +181,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "engine"
     t.string "operation"
     t.bigint "session_id"
+    t.string "source"
     t.bigint "subject_id"
     t.string "subject_type"
     t.datetime "updated_at", null: false

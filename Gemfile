@@ -90,18 +90,14 @@ gem "minitest", "~> 5.0"
 # Code coverage
 # https://github.com/simplecov-ruby/simplecov
 gem "simplecov", "0.21.2", require: false
-
 # Code coverage stats in the console
 # https://github.com/chetan/simplecov-console
 gem "simplecov-console", "0.9.2", require: false
-
 gem 'simplecov-cobertura'
-
 gem 'codecov', "0.6.0"
-
 # FactoryBot
 # https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#configure-your-test-suite
 gem "factory_bot_rails"
-
 gem "minitest-reporters"
 gem "color_pound_spec_reporter"
+gem "lexxy"
