@@ -37,11 +37,12 @@ LESLI_ENGINES = [
     "LesliAdmin", 
     "LesliBabel", 
     "LesliAudit", 
+    "LesliMailer",
     "LesliShield",
     "LesliSupport", 
+    "LesliContacts",
     "LesliCalendar", 
     "LesliDashboard",
-    "LesliMailer",
 
     "LesliDate",
     "LesliView",

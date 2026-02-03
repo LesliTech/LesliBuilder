@@ -30,6 +30,12 @@ PATH
       lesli (~> 5)
 
 PATH
+  remote: engines/LesliContacts
+  specs:
+    lesli_contacts (0.1.0)
+      lesli (>= 5.0)
+
+PATH
   remote: engines/LesliDashboard
   specs:
     lesli_dashboard (0.4.0)
@@ -539,6 +545,7 @@ DEPENDENCIES
   lesli_babel!
   lesli_bell!
   lesli_calendar!
+  lesli_contacts!
   lesli_dashboard!
   lesli_date!
   lesli_mailer!

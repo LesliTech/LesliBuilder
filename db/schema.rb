@@ -392,6 +392,42 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_calendar_events_on_user_id"
   end
 
+  create_table "lesli_contacts_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "enabled_at"
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_contacts_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_contacts_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_contacts_contact_discussions", force: :cascade do |t|
+    t.integer "contact_id"
+    t.datetime "created_at", null: false
+    t.string "message"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["contact_id"], name: "index_lesli_contacts_contact_discussions_on_contact_id"
+    t.index ["user_id"], name: "index_lesli_contacts_contact_discussions_on_user_id"
+  end
+
+  create_table "lesli_contacts_contacts", force: :cascade do |t|
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "email"
+    t.string "name"
+    t.text "notes"
+    t.string "phone"
+    t.string "status"
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_contacts_contacts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_contacts_contacts_on_deleted_at"
+  end
+
   create_table "lesli_dashboard_accounts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
@@ -829,6 +865,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_calendar_events", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_calendar_events", "lesli_calendar_calendars", column: "calendar_id"
   add_foreign_key "lesli_calendar_events", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_contacts_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_contacts_contact_discussions", "lesli_contacts_contacts", column: "contact_id"
+  add_foreign_key "lesli_contacts_contact_discussions", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_contacts_contacts", "lesli_contacts_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_components", "lesli_dashboard_dashboards", column: "dashboard_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_dashboard_accounts", column: "account_id"
