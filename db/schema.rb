@@ -702,6 +702,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_support_ticket_activities_on_user_id"
   end
 
+  create_table "lesli_support_ticket_assignments", force: :cascade do |t|
+    t.datetime "assigned_at"
+    t.datetime "created_at", null: false
+    t.integer "ticket_id"
+    t.datetime "unassigned_at"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["ticket_id"], name: "index_lesli_support_ticket_assignments_on_ticket_id"
+    t.index ["user_id"], name: "index_lesli_support_ticket_assignments_on_user_id"
+  end
+
   create_table "lesli_support_ticket_attachments", force: :cascade do |t|
     t.string "attachment"
     t.string "attachment_public"
@@ -758,16 +769,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.integer "account_id"
     t.integer "agent_id"
     t.integer "category_id"
-    t.datetime "completed_at", precision: nil
+    t.string "channel"
+    t.datetime "closed_at", precision: nil
     t.datetime "created_at", null: false
-    t.datetime "deadline", precision: nil
+    t.datetime "deadline_at", precision: nil
     t.datetime "deleted_at", precision: nil
     t.text "description"
     t.decimal "hours_worked"
+    t.datetime "last_response_at", precision: nil
+    t.string "number"
+    t.datetime "opened_at", precision: nil
     t.integer "priority_id"
     t.string "reference_url"
     t.integer "sla_id"
-    t.datetime "started_at", precision: nil
+    t.datetime "solved_at", precision: nil
     t.string "subject"
     t.string "tags"
     t.integer "type_id"
@@ -777,9 +792,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["account_id"], name: "index_lesli_support_tickets_on_account_id"
     t.index ["agent_id"], name: "index_lesli_support_tickets_on_agent_id"
     t.index ["category_id"], name: "index_lesli_support_tickets_on_category_id"
+    t.index ["closed_at"], name: "index_lesli_support_tickets_on_closed_at"
+    t.index ["deadline_at"], name: "index_lesli_support_tickets_on_deadline_at"
     t.index ["deleted_at"], name: "index_lesli_support_tickets_on_deleted_at"
+    t.index ["last_response_at"], name: "index_lesli_support_tickets_on_last_response_at"
+    t.index ["number"], name: "index_lesli_support_tickets_on_number", unique: true
+    t.index ["opened_at"], name: "index_lesli_support_tickets_on_opened_at"
     t.index ["priority_id"], name: "index_lesli_support_tickets_on_priority_id"
     t.index ["sla_id"], name: "index_lesli_support_tickets_on_sla_id"
+    t.index ["solved_at"], name: "index_lesli_support_tickets_on_solved_at"
     t.index ["type_id"], name: "index_lesli_support_tickets_on_type_id"
     t.index ["user_id"], name: "index_lesli_support_tickets_on_user_id"
     t.index ["workspace_id"], name: "index_lesli_support_tickets_on_workspace_id"
@@ -898,6 +919,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_ticket_actions", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_activities", "lesli_support_tickets", column: "ticket_id"
   add_foreign_key "lesli_support_ticket_activities", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_support_ticket_assignments", "lesli_support_tickets", column: "ticket_id"
+  add_foreign_key "lesli_support_ticket_assignments", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_attachments", "lesli_support_tickets", column: "ticket_id"
   add_foreign_key "lesli_support_ticket_attachments", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_discussions", "lesli_support_tickets", column: "ticket_id"

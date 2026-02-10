@@ -5,7 +5,9 @@ if defined? Lesli
         config.security[:allow_multiaccount] = true
         config.locales = {
             :en => "English",       # English
-            :es => "Español",       # Español/Spanish
+            :de => "Deutsch",       # Deutsch/German
+            :nl => "Dutch",         # Dutch/Nederlands/Netherlands
+            :es => "Español",       # Español/Spanishn
             :it => "Italiano",      # Italiano/Italian
         }
     end
