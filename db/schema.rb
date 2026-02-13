@@ -407,7 +407,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   create_table "lesli_contacts_contact_discussions", force: :cascade do |t|
     t.integer "contact_id"
     t.datetime "created_at", null: false
-    t.string "message"
+    t.text "message"
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["contact_id"], name: "index_lesli_contacts_contact_discussions_on_contact_id"
@@ -691,26 +691,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   end
 
   create_table "lesli_support_ticket_activities", force: :cascade do |t|
+    t.string "activity_code"
+    t.string "activity_type", default: "activity", null: false
     t.datetime "created_at", null: false
     t.string "description"
-    t.string "session_id"
+    t.json "metadata", default: {}
     t.integer "ticket_id"
-    t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["ticket_id"], name: "index_lesli_support_ticket_activities_on_ticket_id"
     t.index ["user_id"], name: "index_lesli_support_ticket_activities_on_user_id"
-  end
-
-  create_table "lesli_support_ticket_assignments", force: :cascade do |t|
-    t.datetime "assigned_at"
-    t.datetime "created_at", null: false
-    t.integer "ticket_id"
-    t.datetime "unassigned_at"
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["ticket_id"], name: "index_lesli_support_ticket_assignments_on_ticket_id"
-    t.index ["user_id"], name: "index_lesli_support_ticket_assignments_on_user_id"
   end
 
   create_table "lesli_support_ticket_attachments", force: :cascade do |t|
@@ -735,7 +725,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
 
   create_table "lesli_support_ticket_discussions", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "message"
+    t.text "message"
     t.integer "ticket_id"
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -767,7 +757,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
 
   create_table "lesli_support_tickets", force: :cascade do |t|
     t.integer "account_id"
-    t.integer "agent_id"
     t.integer "category_id"
     t.string "channel"
     t.datetime "closed_at", precision: nil
@@ -777,8 +766,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.text "description"
     t.decimal "hours_worked"
     t.datetime "last_response_at", precision: nil
-    t.string "number"
     t.datetime "opened_at", precision: nil
+    t.integer "owner_id"
     t.integer "priority_id"
     t.string "reference_url"
     t.integer "sla_id"
@@ -786,22 +775,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "subject"
     t.string "tags"
     t.integer "type_id"
+    t.string "uid"
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "workspace_id"
     t.index ["account_id"], name: "index_lesli_support_tickets_on_account_id"
-    t.index ["agent_id"], name: "index_lesli_support_tickets_on_agent_id"
     t.index ["category_id"], name: "index_lesli_support_tickets_on_category_id"
     t.index ["closed_at"], name: "index_lesli_support_tickets_on_closed_at"
     t.index ["deadline_at"], name: "index_lesli_support_tickets_on_deadline_at"
     t.index ["deleted_at"], name: "index_lesli_support_tickets_on_deleted_at"
     t.index ["last_response_at"], name: "index_lesli_support_tickets_on_last_response_at"
-    t.index ["number"], name: "index_lesli_support_tickets_on_number", unique: true
     t.index ["opened_at"], name: "index_lesli_support_tickets_on_opened_at"
+    t.index ["owner_id"], name: "index_lesli_support_tickets_on_owner_id"
     t.index ["priority_id"], name: "index_lesli_support_tickets_on_priority_id"
     t.index ["sla_id"], name: "index_lesli_support_tickets_on_sla_id"
     t.index ["solved_at"], name: "index_lesli_support_tickets_on_solved_at"
     t.index ["type_id"], name: "index_lesli_support_tickets_on_type_id"
+    t.index ["uid"], name: "index_lesli_support_tickets_on_uid", unique: true
     t.index ["user_id"], name: "index_lesli_support_tickets_on_user_id"
     t.index ["workspace_id"], name: "index_lesli_support_tickets_on_workspace_id"
   end
@@ -837,6 +827,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "telephone_confirmation_token"
     t.datetime "telephone_confirmed_at"
     t.string "title"
+    t.string "uid", null: false
     t.string "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", null: false
@@ -845,6 +836,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["deleted_at"], name: "index_lesli_users_on_deleted_at"
     t.index ["email"], name: "index_lesli_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lesli_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_lesli_users_on_uid", unique: true
     t.index ["unlock_token"], name: "index_lesli_users_on_unlock_token", unique: true
   end
 
@@ -919,8 +911,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_ticket_actions", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_activities", "lesli_support_tickets", column: "ticket_id"
   add_foreign_key "lesli_support_ticket_activities", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_support_ticket_assignments", "lesli_support_tickets", column: "ticket_id"
-  add_foreign_key "lesli_support_ticket_assignments", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_attachments", "lesli_support_tickets", column: "ticket_id"
   add_foreign_key "lesli_support_ticket_attachments", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_ticket_discussions", "lesli_support_tickets", column: "ticket_id"
@@ -935,7 +925,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "type_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_catalog_items", column: "workspace_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_slas", column: "sla_id"
-  add_foreign_key "lesli_support_tickets", "lesli_users", column: "agent_id"
+  add_foreign_key "lesli_support_tickets", "lesli_users", column: "owner_id"
   add_foreign_key "lesli_support_tickets", "lesli_users", column: "user_id"
   add_foreign_key "lesli_users", "lesli_accounts", column: "account_id"
 end
