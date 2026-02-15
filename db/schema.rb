@@ -552,6 +552,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.datetime "updated_at", null: false
     t.index ["action_id"], name: "role_actions_resources"
     t.index ["deleted_at"], name: "index_lesli_shield_role_actions_on_deleted_at"
+    t.index ["role_id", "action_id"], name: "index_role_actions_on_role_and_action", unique: true
     t.index ["role_id"], name: "index_lesli_shield_role_actions_on_role_id"
   end
 
@@ -681,8 +682,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   create_table "lesli_support_ticket_actions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "deleted_at", precision: nil
+    t.boolean "done", default: false, null: false
     t.integer "ticket_id"
-    t.string "title"
+    t.string "title", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_lesli_support_ticket_actions_on_deleted_at"
