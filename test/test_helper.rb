@@ -2,9 +2,10 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
-if ENV["LESLI_INTEGRATION_TEST"]
-    Dir["#{Rails.root}/engines/Lesli/**/*_test.rb"].each { |file| require file }
-end
+require "lesli_testing/loader"
+LesliTesting.load(Lesli::Engine)
+
+Dir["#{Rails.root}/engines/Lesli/**/*_test.rb"].each { |file| require file }
 
 module ActiveSupport
     class TestCase

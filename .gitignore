@@ -34,6 +34,7 @@
 /config/master.key
 
 # Lesli specifics
+db/*.sqlite3
 gems
 engines
 enginesdev
