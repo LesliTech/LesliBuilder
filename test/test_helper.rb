@@ -3,9 +3,12 @@ require_relative "../config/environment"
 require "rails/test_help"
 
 require "lesli_testing/loader"
-LesliTesting.load(Lesli::Engine)
+LesliTesting.start_coverage!(Lesli::Engine, { :min_coverage => 10 })
 
 Dir["#{Rails.root}/engines/Lesli/**/*_test.rb"].each { |file| require file }
+
+# Load Lesli testing defaults
+LesliTesting.configure_tests!(Lesli::Engine)
 
 module ActiveSupport
     class TestCase

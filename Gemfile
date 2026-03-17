@@ -61,6 +61,8 @@ group :development, :test do
   # https://github.com/ryanb/letter_opener
   gem "letter_opener"
 
+  
+  gem "lesli_testing", require: false
 end
 
 group :development do
@@ -72,7 +74,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "lesli_testing", require: false
 end
 
 # List of Lesli engines to be installed

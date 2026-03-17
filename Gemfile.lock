@@ -51,7 +51,7 @@ PATH
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.0.23)
+    lesli (5.0.24)
       L2 (~> 0.6)
       acts_as_paranoid (~> 0.11.0)
       devise (~> 5.0)
@@ -273,13 +273,12 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lesli_testing (1.0.0)
+    lesli_testing (1.1.0)
       brakeman
       color_pound_spec_reporter
       letter_opener
       minitest (~> 5.0)
       minitest-reporters
-      propshaft
       simplecov (= 0.22.0)
       simplecov-cobertura
       simplecov-console (= 0.9.4)
