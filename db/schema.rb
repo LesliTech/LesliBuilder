@@ -611,7 +611,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["parent_id"], name: "index_lesli_support_catalogs_on_parent_id"
   end
 
-  create_table "lesli_support_item_activities", force: :cascade do |t|
+  create_table "lesli_support_items_activities", force: :cascade do |t|
     t.integer "account_id"
     t.string "activity_code"
     t.string "activity_type", default: "activity", null: false
@@ -623,13 +623,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "subject_type", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["account_id", "subject_type", "subject_id"], name: "lesli_support_item_activities_activities_type_id"
-    t.index ["account_id"], name: "index_lesli_support_item_activities_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_support_item_activities_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_support_item_activities_on_user_id"
+    t.index ["account_id", "subject_type", "subject_id"], name: "lesli_support_items_activities_activities_type_id"
+    t.index ["account_id"], name: "index_lesli_support_items_activities_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_support_items_activities_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_support_items_activities_on_user_id"
   end
 
-  create_table "lesli_support_item_discussions", force: :cascade do |t|
+  create_table "lesli_support_items_discussions", force: :cascade do |t|
     t.integer "account_id"
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
@@ -638,12 +638,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.text "message"
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["account_id"], name: "index_lesli_support_item_discussions_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_support_item_discussions_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_support_item_discussions_on_user_id"
+    t.index ["account_id"], name: "index_lesli_support_items_discussions_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_support_items_discussions_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_support_items_discussions_on_user_id"
   end
 
-  create_table "lesli_support_item_tasks", force: :cascade do |t|
+  create_table "lesli_support_items_tasks", force: :cascade do |t|
     t.integer "account_id"
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
@@ -653,10 +653,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["account_id", "taskable_type", "taskable_id"], name: "lesli_support_item_tasks_taskable_type_id"
-    t.index ["account_id"], name: "index_lesli_support_item_tasks_on_account_id"
-    t.index ["deleted_at"], name: "index_lesli_support_item_tasks_on_deleted_at"
-    t.index ["user_id"], name: "index_lesli_support_item_tasks_on_user_id"
+    t.index ["account_id", "taskable_type", "taskable_id"], name: "lesli_support_items_tasks_taskable_type_id"
+    t.index ["account_id"], name: "index_lesli_support_items_tasks_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_support_items_tasks_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_support_items_tasks_on_user_id"
   end
 
   create_table "lesli_support_slas", force: :cascade do |t|
@@ -824,12 +824,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_support_catalog_items", "lesli_support_catalogs", column: "catalog_id"
   add_foreign_key "lesli_support_catalogs", "lesli_support_accounts", column: "account_id"
   add_foreign_key "lesli_support_catalogs", "lesli_support_catalogs", column: "parent_id"
-  add_foreign_key "lesli_support_item_activities", "lesli_support_accounts", column: "account_id"
-  add_foreign_key "lesli_support_item_activities", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_support_item_discussions", "lesli_support_accounts", column: "account_id"
-  add_foreign_key "lesli_support_item_discussions", "lesli_users", column: "user_id"
-  add_foreign_key "lesli_support_item_tasks", "lesli_support_accounts", column: "account_id"
-  add_foreign_key "lesli_support_item_tasks", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_support_items_activities", "lesli_support_accounts", column: "account_id"
+  add_foreign_key "lesli_support_items_activities", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_support_items_discussions", "lesli_support_accounts", column: "account_id"
+  add_foreign_key "lesli_support_items_discussions", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_support_items_tasks", "lesli_support_accounts", column: "account_id"
+  add_foreign_key "lesli_support_items_tasks", "lesli_users", column: "user_id"
   add_foreign_key "lesli_support_slas", "lesli_support_accounts", column: "accounts_id"
   add_foreign_key "lesli_support_slas", "lesli_users", column: "users_id"
   add_foreign_key "lesli_support_tickets", "lesli_support_accounts", column: "account_id"

@@ -70,7 +70,4 @@ LESLI_ENGINES.each do |engine_name|
 
         next;
     end
-
-    # install engine from rubygems
-    # gem "#{engine_code}"
 end

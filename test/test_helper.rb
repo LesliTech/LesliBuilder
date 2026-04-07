@@ -2,13 +2,29 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+
+# load lesli testing tools
 require "lesli_testing/loader"
-LesliTesting.start_coverage!(Lesli::Engine, { :min_coverage => 10 })
 
-Dir["#{Rails.root}/engines/Lesli/**/*_test.rb"].each { |file| require file }
 
-# Load Lesli testing defaults
-LesliTesting.configure_tests!(Lesli::Engine)
+# register engine for testing
+LesliTesting.configure(Lesli::Engine)
+
+
+# initialize coverage
+LesliTesting.configure_coverage({ :min_coverage => 10 })
+
+
+# load test from all installed engines
+Dir["#{Rails.root}/engines/**/*_test.rb"].each { |file| require file }
+Dir["#{Rails.root}/engines/**/**/*_test.rb"].each { |file| require file }
+Dir["#{Rails.root}/gems/**/**/*_test.rb"].each { |file| require file }
+Dir["#{Rails.root}/gems/**/*_test.rb"].each { |file| require file }
+
+
+# configure tests
+LesliTesting.configure_engine()
+
 
 module ActiveSupport
     class TestCase
