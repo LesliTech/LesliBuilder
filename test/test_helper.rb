@@ -3,27 +3,22 @@ require_relative "../config/environment"
 require "rails/test_help"
 
 
-# load lesli testing tools
-require "lesli_testing/loader"
+require "lesli_testing"
 
 
 # register engine for testing
-LesliTesting.configure(Lesli::Engine)
-
-
-# initialize coverage
-LesliTesting.configure_coverage({ :min_coverage => 10 })
+LesliTesting.app("LesliBuilder", {
+    :coverage_min_coverage => 0.5
+})
 
 
 # load test from all installed engines
-Dir["#{Rails.root}/engines/**/*_test.rb"].each { |file| require file }
-Dir["#{Rails.root}/engines/**/**/*_test.rb"].each { |file| require file }
-Dir["#{Rails.root}/gems/**/**/*_test.rb"].each { |file| require file }
-Dir["#{Rails.root}/gems/**/*_test.rb"].each { |file| require file }
-
-
-# configure tests
-LesliTesting.configure_engine()
+Dir["#{Rails.root}/engines/Lesli/*_test.rb"].each { |file| require file }
+Dir["#{Rails.root}/engines/Lesli/**/*_test.rb"].each { |file| require file }
+# Dir["#{Rails.root}/engines/**/*_test.rb"].each { |file| require file }
+# Dir["#{Rails.root}/engines/**/**/*_test.rb"].each { |file| require file }
+# Dir["#{Rails.root}/gems/**/**/*_test.rb"].each { |file| require file }
+# Dir["#{Rails.root}/gems/**/*_test.rb"].each { |file| require file }
 
 
 module ActiveSupport
