@@ -703,6 +703,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "workspace_id"
+    t.index ["account_id", "uid"], name: "index_lesli_support_tickets_on_account_id_and_uid", unique: true
     t.index ["account_id"], name: "index_lesli_support_tickets_on_account_id"
     t.index ["category_id"], name: "index_lesli_support_tickets_on_category_id"
     t.index ["closed_at"], name: "index_lesli_support_tickets_on_closed_at"
@@ -715,7 +716,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["sla_id"], name: "index_lesli_support_tickets_on_sla_id"
     t.index ["solved_at"], name: "index_lesli_support_tickets_on_solved_at"
     t.index ["type_id"], name: "index_lesli_support_tickets_on_type_id"
-    t.index ["uid"], name: "index_lesli_support_tickets_on_uid", unique: true
     t.index ["user_id"], name: "index_lesli_support_tickets_on_user_id"
     t.index ["workspace_id"], name: "index_lesli_support_tickets_on_workspace_id"
   end

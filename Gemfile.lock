@@ -38,20 +38,19 @@ PATH
 PATH
   remote: engines/LesliShield
   specs:
-    lesli_shield (1.1.0)
+    lesli_shield (1.1.2)
       lesli (~> 5.1.0)
 
 PATH
   remote: engines/LesliSupport
   specs:
-    lesli_support (1.1.0)
+    lesli_support (1.2.0)
       lesli (~> 5.1.0)
 
 PATH
   remote: engines/Lesli
   specs:
-    lesli (5.1.0)
-      L2 (~> 0.6)
+    lesli (5.1.4)
       acts_as_paranoid (~> 0.11.0)
       devise (~> 5.0.0)
       kaminari (~> 1.2.2)
@@ -66,7 +65,7 @@ PATH
 PATH
   remote: gems/LesliAssets
   specs:
-    lesli_assets (1.1.0)
+    lesli_assets (1.1.1)
 
 PATH
   remote: gems/LesliDate
@@ -81,14 +80,18 @@ PATH
 PATH
   remote: gems/LesliView
   specs:
-    lesli_view (1.1.0)
-      lexxy
-      view_component (~> 4.1.0)
+    lesli_view (1.1.2)
+      lexxy (~> 0.9.9.beta)
+      view_component (~> 4.8.0)
+
+PATH
+  remote: gems/Termline
+  specs:
+    termline (1.1.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    L2 (0.6.5)
     action_text-trix (2.1.18)
       railties
     actioncable (8.1.3)
@@ -272,7 +275,7 @@ GEM
       termline (~> 1.1.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
-    lexxy (0.9.3.beta)
+    lexxy (0.9.9.beta)
       rails (>= 8.0.2)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -462,7 +465,6 @@ GEM
     stringio (3.2.0)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
-    termline (1.1.1)
     thor (1.5.0)
     thruster (0.1.20-x86_64-darwin)
     timeout (0.6.1)
@@ -477,9 +479,9 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
-    view_component (4.1.1)
-      actionview (>= 7.1.0, < 8.2)
-      activesupport (>= 7.1.0, < 8.2)
+    view_component (4.8.0)
+      actionview (>= 7.1.0)
+      activesupport (>= 7.1.0)
       concurrent-ruby (~> 1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -523,7 +525,6 @@ DEPENDENCIES
   lesli_testing
   lesli_view!
   letter_opener
-  lexxy
   pg
   propshaft
   puma (>= 5.0)
@@ -535,6 +536,7 @@ DEPENDENCIES
   solid_queue
   sqlite3 (>= 2.1)
   stimulus-rails
+  termline!
   thruster
   turbo-rails
   tzinfo-data

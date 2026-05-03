@@ -45,7 +45,8 @@ LESLI_ENGINES = [
     "LesliDate",
     "LesliView",
     "LesliAssets",
-    "LesliSystem"
+    "LesliSystem",
+    "Termline"
 ]
 
 LESLI_ENGINES.each do |engine_name|
