@@ -79,11 +79,11 @@ end
 # List of Lesli engines to be installed
 #eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
 
-gem "Lesli"
-gem "LesliShield"
+gem "lesli"
+gem "lesli_shield"
 
-gem "LesliDate"
-gem "LesliView"
-gem "LesliAssets"
-gem "LesliSystem"
-gem "Termline"
+gem "lesli_date"
+gem "lesli_view"
+gem "lesli_assets"
+gem "lesli_system"
+gem "termline"
