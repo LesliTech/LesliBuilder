@@ -115,10 +115,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.integer "account_id"
     t.string "agent_browser"
     t.integer "agent_count"
+    t.string "agent_device"
     t.string "agent_platform"
     t.date "created_at"
     t.index ["account_id"], name: "index_lesli_audit_account_devices_on_account_id"
-    t.index ["agent_platform", "agent_browser", "created_at", "account_id"], name: "lesli_audit_devices_index", unique: true
+    t.index ["agent_platform", "agent_browser", "agent_device", "created_at", "account_id"], name: "lesli_audit_devices_index", unique: true
   end
 
   create_table "lesli_audit_account_logs", force: :cascade do |t|
@@ -755,6 +756,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.string "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", null: false
+    t.index ["account_id", "active"], name: "index_lesli_users_on_account_id_and_active"
+    t.index ["account_id", "confirmed_at"], name: "index_lesli_users_on_account_id_and_confirmed_at"
+    t.index ["account_id", "created_at"], name: "index_lesli_users_on_account_id_and_created_at"
+    t.index ["account_id", "deleted_at"], name: "index_lesli_users_on_account_id_and_deleted_at"
+    t.index ["account_id", "last_sign_in_at"], name: "index_lesli_users_on_account_id_and_last_sign_in_at"
+    t.index ["account_id", "locked_at"], name: "index_lesli_users_on_account_id_and_locked_at"
+    t.index ["account_id", "locked_until"], name: "index_lesli_users_on_account_id_and_locked_until"
     t.index ["account_id"], name: "index_lesli_users_on_account_id"
     t.index ["confirmation_token"], name: "index_lesli_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_lesli_users_on_deleted_at"

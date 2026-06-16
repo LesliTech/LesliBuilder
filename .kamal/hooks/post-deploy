@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# A sample post-deploy hook
+#
+# These environment variables are available:
+# KAMAL_RECORDED_AT
+# KAMAL_PERFORMER
+# KAMAL_VERSION
+# KAMAL_HOSTS
+# KAMAL_ROLES (if set)
+# KAMAL_DESTINATION (if set)
+# KAMAL_RUNTIME
+
+#!/usr/bin/env bash
+set -e
+
+# Only reset demo.lesli.dev / LesliBuilder demo deploys
+# if [ "$KAMAL_ENV" != "demo" ]; then
+#   echo "Skipping lesli:db:reset because KAMAL_ENV is not demo"
+#   exit 0
+# fi
+
+echo "Resetting Lesli demo database..."
+
+kamal app exec --reuse "bin/rails lesli:db:reset"
+
+echo "Lesli demo database reset complete."
+
+echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION to $KAMAL_DESTINATION in $KAMAL_RUNTIME seconds"

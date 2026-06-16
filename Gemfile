@@ -77,6 +77,13 @@ group :test do
 end
 
 # List of Lesli engines to be installed
-eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
+#eval_gemfile "Gemfile.lesli" if File.exist?("Gemfile.lesli")
 
-#gem "lexxy"
+gem "Lesli", 
+gem "LesliShield",
+
+gem "LesliDate",
+gem "LesliView",
+gem "LesliAssets",
+gem "LesliSystem",
+gem "Termline"
