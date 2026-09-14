@@ -79,7 +79,10 @@ end
 # List of Lesli engines to be installed
 if File.exist?("Gemfile.lesli2")
   eval_gemfile "Gemfile.lesli" 
-else 
+else
   gem "lesli"
   gem "lesli_shield"
+  gem "lesli_dashboard"
 end
+
+gem "json", "< 3"

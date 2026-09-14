@@ -33,20 +33,20 @@ Building a better future, one line of code at a time.
 # List of Lesli engines to be installed
 LESLI_ENGINES = [
     "Lesli", 
-    "LesliBell", 
-    "LesliAdmin", 
-    "LesliBabel", 
-    "LesliAudit", 
+    # "LesliBell", 
+    # "LesliAdmin", 
+    # "LesliBabel", 
+    # "LesliAudit", 
     "LesliShield",
-    "LesliSupport", 
-    "LesliCalendar", 
+    # "LesliSupport", 
+    # "LesliCalendar", 
     "LesliDashboard",
 
-    "LesliDate",
-    "LesliView",
-    "LesliAssets",
-    "LesliSystem",
-    "Termline"
+    # "LesliDate",
+    #"LesliView",
+    # "LesliAssets",
+    # "LesliSystem",
+    # "Termline"
 ]
 
 LESLI_ENGINES.each do |engine_name|
