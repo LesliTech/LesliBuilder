@@ -62,7 +62,7 @@ group :development, :test do
   gem "letter_opener"
 
   
-  gem "lesli_testing", require: false
+  gem "lesli_testing", path: "./gems/LesliTesting", require: false
 end
 
 group :development do
@@ -77,7 +77,7 @@ group :test do
 end
 
 # List of Lesli engines to be installed
-if File.exist?("Gemfile.lesli2")
+if File.exist?("Gemfile.lesli")
   eval_gemfile "Gemfile.lesli" 
 else
   gem "lesli"

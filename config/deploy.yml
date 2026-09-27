@@ -21,7 +21,7 @@ registry:
 ssh:
   user: ubuntu
   keys:
-
+    - ~/code/zzz/demo.lesli.dev.pem
 
 builder:
   arch: amd64
@@ -33,3 +33,4 @@ env:
     RAILS_SERVE_STATIC_FILES: true
   secret:
     - RAILS_MASTER_KEY
+    - CREDENTIALS_PROVIDERS_GOOGLE_TAG_MANAGER

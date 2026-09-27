@@ -42,3 +42,8 @@ coverage
 brakeman
 junit.xml
 .DS_Store
+
+# Environment files
+.env
+.env.*
+!.env.example

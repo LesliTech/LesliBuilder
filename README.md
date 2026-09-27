@@ -18,8 +18,8 @@ git clone git@github.com:LesliTech/LesliBuilder.git
 ```
 
 ```shell
-# Hard reset Database for development:
-rake lesli:db:reset 
+# Rebuild and seed the database for development
+bin/rails lesli:db:rebuild
 ```
 
 ```shell

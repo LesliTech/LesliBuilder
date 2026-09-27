@@ -44,8 +44,8 @@ LESLI_ENGINES = [
 
     # "LesliDate",
     #"LesliView",
-    # "LesliAssets",
-    # "LesliSystem",
+    "LesliAssets",
+    "LesliSystem",
     # "Termline"
 ]
 
