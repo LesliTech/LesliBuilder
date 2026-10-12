@@ -22,7 +22,11 @@ set -e
 
 echo "Resetting Lesli demo database..."
 
-kamal app exec --reuse "bin/rails lesli:db:rebuild"
+kamal app exec --reuse "bin/rails lesli:db:prepare"
+
+kamal app exec --reuse "bin/rails lesli:db:seed"
+
+kamal app exec --reuse "bin/rails lesli:db:prepare"
 
 echo "Lesli demo database build complete."
 
