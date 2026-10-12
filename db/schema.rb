@@ -207,6 +207,132 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_audit_user_requests_on_user_id"
   end
 
+  create_table "lesli_bell_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "enabled_at"
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_bell_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_bell_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_bell_announcement_users", force: :cascade do |t|
+    t.integer "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["announcement_id"], name: "lesli_bell_announcements_users"
+    t.index ["deleted_at"], name: "index_lesli_bell_announcement_users_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_bell_announcement_users_on_user_id"
+  end
+
+  create_table "lesli_bell_announcements", force: :cascade do |t|
+    t.integer "account_id"
+    t.boolean "can_be_closed", default: true
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "end_at", precision: nil
+    t.text "message"
+    t.string "name"
+    t.string "path"
+    t.integer "role_id"
+    t.datetime "start_at", precision: nil
+    t.boolean "status"
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_bell_announcements_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_bell_announcements_on_deleted_at"
+    t.index ["role_id"], name: "index_lesli_bell_announcements_on_role_id"
+    t.index ["user_id"], name: "index_lesli_bell_announcements_on_user_id"
+  end
+
+  create_table "lesli_bell_notifications", force: :cascade do |t|
+    t.integer "account_id"
+    t.text "body"
+    t.string "category"
+    t.string "channel"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.json "payload"
+    t.string "status"
+    t.string "subject"
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_bell_notifications_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_bell_notifications_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_bell_notifications_on_user_id"
+  end
+
+  create_table "lesli_calendar_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_calendar_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_calendar_calendars", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "color", default: "0d52bf"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_calendar_calendars_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_calendars_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_calendar_calendars_on_user_id"
+  end
+
+  create_table "lesli_calendar_event_attendants", force: :cascade do |t|
+    t.datetime "confirmed_at"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.integer "event_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["confirmed_at"], name: "index_lesli_calendar_event_attendants_on_confirmed_at"
+    t.index ["deleted_at"], name: "index_lesli_calendar_event_attendants_on_deleted_at"
+    t.index ["event_id"], name: "index_lesli_calendar_event_attendants_on_event_id"
+    t.index ["user_id"], name: "index_lesli_calendar_event_attendants_on_user_id"
+  end
+
+  create_table "lesli_calendar_events", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "calendar_id"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "description"
+    t.datetime "end_at", precision: nil
+    t.string "location"
+    t.boolean "public"
+    t.datetime "start_at", precision: nil
+    t.string "status"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_calendar_events_on_account_id"
+    t.index ["calendar_id"], name: "index_lesli_calendar_events_on_calendar_id"
+    t.index ["deleted_at"], name: "index_lesli_calendar_events_on_deleted_at"
+    t.index ["end_at"], name: "index_lesli_calendar_events_on_end_at"
+    t.index ["public"], name: "index_lesli_calendar_events_on_public"
+    t.index ["start_at"], name: "index_lesli_calendar_events_on_start_at"
+    t.index ["status"], name: "index_lesli_calendar_events_on_status"
+    t.index ["user_id"], name: "index_lesli_calendar_events_on_user_id"
+  end
+
   create_table "lesli_dashboard_accounts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
@@ -463,6 +589,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   add_foreign_key "lesli_audit_user_logs", "lesli_users", column: "user_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_audit_accounts", column: "account_id"
   add_foreign_key "lesli_audit_user_requests", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_bell_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_bell_announcement_users", "lesli_bell_announcements", column: "announcement_id"
+  add_foreign_key "lesli_bell_announcement_users", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_bell_announcements", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_bell_announcements", "lesli_roles", column: "role_id"
+  add_foreign_key "lesli_bell_announcements", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_bell_notifications", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_bell_notifications", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_calendars", "lesli_calendar_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_calendars", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_event_attendants", "lesli_calendar_events", column: "event_id"
+  add_foreign_key "lesli_calendar_event_attendants", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_calendar_events", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_calendar_events", "lesli_calendar_calendars", column: "calendar_id"
+  add_foreign_key "lesli_calendar_events", "lesli_users", column: "user_id"
   add_foreign_key "lesli_dashboard_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_components", "lesli_dashboard_dashboards", column: "dashboard_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_dashboard_accounts", column: "account_id"

@@ -52,13 +52,13 @@ end
 # List of Lesli engines to be installed
 load_lesli_gem('engines', [
     "Lesli", 
-    # "LesliBell", 
-    #"LesliAdmin", 
+    "LesliBell", 
+    "LesliAdmin", 
     # "LesliBabel", 
     "LesliAudit", 
     "LesliShield",
     # "LesliSupport", 
-    # "LesliCalendar", 
+    "LesliCalendar", 
     "LesliDashboard",    
 ])
 
