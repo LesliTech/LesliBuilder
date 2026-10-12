@@ -25,6 +25,188 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
     t.index ["user_id"], name: "index_lesli_accounts_on_user_id"
   end
 
+  create_table "lesli_admin_account_currencies", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "country_alpha_3"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "name"
+    t.string "symbol"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_admin_account_currencies_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_currencies_on_deleted_at"
+    t.index ["user_id"], name: "index_lesli_admin_account_currencies_on_user_id"
+  end
+
+  create_table "lesli_admin_account_details", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "address"
+    t.string "city"
+    t.string "company_name"
+    t.string "company_name_legal"
+    t.string "company_tagline"
+    t.integer "country"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "facebook"
+    t.string "github"
+    t.string "linkedin"
+    t.string "phone_number_1"
+    t.string "phone_number_2"
+    t.string "phone_number_3"
+    t.string "phone_number_4"
+    t.string "postal_code"
+    t.string "public_email"
+    t.string "region"
+    t.string "twitter"
+    t.datetime "updated_at", null: false
+    t.string "website"
+    t.string "youtube"
+    t.index ["account_id"], name: "index_lesli_admin_account_details_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_details_on_deleted_at"
+  end
+
+  create_table "lesli_admin_account_locations", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "calling_code"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "latitude"
+    t.string "level"
+    t.string "longitude"
+    t.string "name"
+    t.string "native_level"
+    t.integer "parent_id"
+    t.string "postal_code"
+    t.string "short_name"
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "name", "level", "parent_id"], name: "location_uniqueness_index", unique: true
+    t.index ["account_id"], name: "index_lesli_admin_account_locations_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_account_locations_on_deleted_at"
+    t.index ["parent_id"], name: "index_lesli_admin_account_locations_on_parent_id"
+  end
+
+  create_table "lesli_admin_account_settings", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.string "name"
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
+    t.string "value"
+    t.index ["account_id"], name: "index_lesli_admin_account_settings_on_account_id"
+    t.index ["user_id"], name: "index_lesli_admin_account_settings_on_user_id"
+  end
+
+  create_table "lesli_admin_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_admin_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_admin_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_audit_account_devices", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "agent_browser"
+    t.integer "agent_count"
+    t.string "agent_device"
+    t.string "agent_platform"
+    t.date "created_at"
+    t.index ["account_id"], name: "index_lesli_audit_account_devices_on_account_id"
+    t.index ["agent_platform", "agent_browser", "agent_device", "created_at", "account_id"], name: "lesli_audit_devices_index", unique: true
+  end
+
+  create_table "lesli_audit_account_logs", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.string "engine"
+    t.string "operation"
+    t.string "session_id"
+    t.bigint "subject_id"
+    t.string "subject_type"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_account_logs_on_account_id"
+    t.index ["user_id"], name: "index_lesli_audit_account_logs_on_user_id"
+  end
+
+  create_table "lesli_audit_account_requests", force: :cascade do |t|
+    t.integer "account_id"
+    t.date "created_at"
+    t.string "request_action"
+    t.string "request_controller"
+    t.integer "request_count"
+    t.index ["account_id"], name: "index_lesli_audit_account_requests_on_account_id"
+    t.index ["request_controller", "request_action", "created_at", "account_id"], name: "lesli_audit_account_requests_index", unique: true
+  end
+
+  create_table "lesli_audit_accounts", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "enabled_at", precision: nil
+    t.string "name"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_lesli_audit_accounts_on_account_id"
+    t.index ["deleted_at"], name: "index_lesli_audit_accounts_on_deleted_at"
+  end
+
+  create_table "lesli_audit_user_journals", force: :cascade do |t|
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "request_action"
+    t.string "request_controller"
+    t.bigint "session_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_user_journals_on_account_id"
+    t.index ["date"], name: "index_lesli_audit_user_journals_on_date"
+    t.index ["user_id"], name: "index_lesli_audit_user_journals_on_user_id"
+  end
+
+  create_table "lesli_audit_user_logs", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.string "engine"
+    t.string "operation"
+    t.bigint "session_id"
+    t.string "source"
+    t.bigint "subject_id"
+    t.string "subject_type"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_user_logs_on_account_id"
+    t.index ["user_id"], name: "index_lesli_audit_user_logs_on_user_id"
+  end
+
+  create_table "lesli_audit_user_requests", force: :cascade do |t|
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "request_action"
+    t.string "request_controller"
+    t.integer "request_count"
+    t.bigint "session_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["account_id"], name: "index_lesli_audit_user_requests_on_account_id"
+    t.index ["date"], name: "index_lesli_audit_user_requests_on_date"
+    t.index ["request_controller", "request_action", "date", "user_id", "session_id"], name: "lesli_audit_user_requests_index", unique: true
+    t.index ["user_id"], name: "index_lesli_audit_user_requests_on_user_id"
+  end
+
   create_table "lesli_dashboard_accounts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
@@ -262,6 +444,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_18_063343) do
   end
 
   add_foreign_key "lesli_accounts", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_admin_account_currencies", "lesli_admin_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_currencies", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_admin_account_details", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_locations", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_locations", "lesli_admin_account_locations", column: "parent_id"
+  add_foreign_key "lesli_admin_account_settings", "lesli_admin_accounts", column: "account_id"
+  add_foreign_key "lesli_admin_account_settings", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_admin_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_account_devices", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_account_logs", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_account_logs", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_account_requests", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_accounts", "lesli_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_journals", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_journals", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_user_logs", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_logs", "lesli_users", column: "user_id"
+  add_foreign_key "lesli_audit_user_requests", "lesli_audit_accounts", column: "account_id"
+  add_foreign_key "lesli_audit_user_requests", "lesli_users", column: "user_id"
   add_foreign_key "lesli_dashboard_accounts", "lesli_accounts", column: "account_id"
   add_foreign_key "lesli_dashboard_components", "lesli_dashboard_dashboards", column: "dashboard_id"
   add_foreign_key "lesli_dashboard_dashboards", "lesli_dashboard_accounts", column: "account_id"

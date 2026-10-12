@@ -76,13 +76,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "json", "< 3"
+
+
 # List of Lesli engines to be installed
 if File.exist?("Gemfile.lesli")
   eval_gemfile "Gemfile.lesli" 
-else
-  gem "lesli"
-  gem "lesli_shield"
-  gem "lesli_dashboard"
 end
-
-gem "json", "< 3"

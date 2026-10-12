@@ -30,45 +30,43 @@ Building a better future, one line of code at a time.
 // · 
 =end
 
+def load_lesli_gem(from, gems)
+    gems.each do |engine_name|
+
+        # get the engine folder name (development only)
+        engine_code = engine_name.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
+
+        # if the engine is installed locally 
+        if Dir.exist?("#{File.dirname(__FILE__)}/#{from}/#{engine_name}")
+
+            # load engine from source code
+            gem "#{engine_code}", path: "#{from}/#{engine_name}"
+
+        else 
+            gem "#{engine_code}"
+        end
+    end
+end
+
+
 # List of Lesli engines to be installed
-LESLI_ENGINES = [
+load_lesli_gem('engines', [
     "Lesli", 
     # "LesliBell", 
-    # "LesliAdmin", 
+    #"LesliAdmin", 
     # "LesliBabel", 
-    # "LesliAudit", 
+    "LesliAudit", 
     "LesliShield",
     # "LesliSupport", 
     # "LesliCalendar", 
-    "LesliDashboard",
+    "LesliDashboard",    
+])
 
+load_lesli_gem('gems', [
     # "LesliDate",
-    #"LesliView",
+    "LesliView",
     "LesliAssets",
     "LesliSystem",
     # "Termline"
-]
+])
 
-LESLI_ENGINES.each do |engine_name|
-
-    # get the engine folder name (development only)
-    engine_code = engine_name.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
-
-    # if the engine is installed locally 
-    if Dir.exist?("#{File.dirname(__FILE__)}/engines/#{engine_name}")
-
-        # load engine from source code
-        gem "#{engine_code}", path: "engines/#{engine_name}"
-
-        next;
-    end
-
-    # if the gem is installed locally 
-    if Dir.exist?("#{File.dirname(__FILE__)}/gems/#{engine_name}")
-
-        # load engine from source code
-        gem "#{engine_code}", path: "gems/#{engine_name}"
-
-        next;
-    end
-end
