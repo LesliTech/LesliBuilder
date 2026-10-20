@@ -36,6 +36,7 @@
 # Lesli specifics
 db/*.sqlite3
 gems
+tools
 engines
 enginesdev
 coverage
