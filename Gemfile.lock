@@ -13,16 +13,6 @@ PATH
       termline (~> 1.1.0)
       turbo-rails (~> 2.0.0)
 
-PATH
-  remote: gems/LesliTesting
-  specs:
-    lesli_testing (1.4.2)
-      minitest (~> 6.0.0)
-      simplecov (~> 1.3.2)
-      simplecov-cobertura (~> 4.0.0)
-      simplecov-console (~> 0.9.0)
-      termline (~> 1.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,6 +187,12 @@ GEM
     lesli_assets (1.1.5)
     lesli_date (1.1.0)
     lesli_system (1.1.0)
+    lesli_testing (1.4.2)
+      minitest (~> 6.0.0)
+      simplecov (~> 1.3.2)
+      simplecov-cobertura (~> 4.0.0)
+      simplecov-console (~> 0.9.0)
+      termline (~> 1.1.0)
     lesli_view (1.1.5)
       lexxy (~> 1.0.1)
       view_component (~> 4.15.0)
@@ -472,7 +468,7 @@ DEPENDENCIES
   json (< 3)
   kamal
   lesli!
-  lesli_testing!
+  lesli_testing
   letter_opener
   pg
   propshaft
@@ -549,7 +545,7 @@ CHECKSUMS
   lesli_assets (1.1.5) sha256=791926f39db81ce40a8f08784256c9159b3e09f962fd145977a138f865e94e49
   lesli_date (1.1.0) sha256=b53efc47dbc5ce29882ce585acfa62a30e56f94268e353e4ec5cfce9f9cea9e1
   lesli_system (1.1.0) sha256=6064fd7b7272b3d66a4fed17e70e2a6ed6e33b8902dc80ea29e9df2396d785eb
-  lesli_testing (1.4.2)
+  lesli_testing (1.4.2) sha256=961f439a50a8a7174cbf58e51bf83dd4dc41c438d57afa7a976378c7577a66a6
   lesli_view (1.1.5) sha256=a89ea3a6b1655fc9acc0fe68a2cac55833bb74ccfd4d6e4ddc07f04dea28b013
   letter_opener (1.10.0) sha256=2ff33f2e3b5c3c26d1959be54b395c086ca6d44826e8bf41a14ff96fdf1bdbb2
   lexxy (1.0.1) sha256=927a3e592f9d2a989fe5fb7c0c527be62950e593483188940cd98d8a9a004926

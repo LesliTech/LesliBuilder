@@ -62,7 +62,7 @@ group :development, :test do
   gem "letter_opener"
 
   
-  gem "lesli_testing", path: "./gems/LesliTesting", require: false
+  gem "lesli_testing", require: false
 end
 
 group :development do
