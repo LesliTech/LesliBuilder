@@ -24,6 +24,9 @@ Rails.application.configure do
   # Select local, Amazon S3, or an S3-compatible service such as Cloudflare R2.
   config.active_storage.service = ENV.fetch("ACTIVE_STORAGE_SERVICE", "local").to_sym
 
+  # The production demo stores attachments but does not generate image variants.
+  config.active_storage.variant_processor = :disabled
+
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # config.assume_ssl = true
 

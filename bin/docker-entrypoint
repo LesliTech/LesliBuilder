@@ -6,9 +6,11 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# If running the rails server then create or migrate existing database
+# LesliBuilder is an ephemeral production demo. Prepare and seed its local
+# database before accepting requests so every new container starts ready.
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
+  ./bin/rails lesli:db:seed
 fi
 
 exec "${@}"
