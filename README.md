@@ -144,6 +144,11 @@ The current `Gemfile.lesli` enables these packages:
 | [LesliSystem](https://github.com/LesliTech/LesliSystem) | Engine discovery, metadata, and system utilities |
 | [Termline](https://github.com/LesliTech/Termline) | Terminal output used by Lesli commands and development tooling |
 
+[LesliTesting](https://github.com/LesliTech/LesliTesting) is the official
+shared test package. It is used in development and CI, but it is not part of
+the production runtime bundle. Experimental packages outside `engines/` and
+`gems/` are not included in this release.
+
 ## Common commands
 
 ### Application and database
