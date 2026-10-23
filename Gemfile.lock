@@ -1,100 +1,3 @@
-PATH
-  remote: engines/LesliAdmin
-  specs:
-    lesli_admin (1.1.2)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliAudit
-  specs:
-    lesli_audit (1.1.2)
-      device_detector (~> 1.1.3)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliBabel
-  specs:
-    lesli_babel (1.1.3)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliBell
-  specs:
-    lesli_bell (1.1.2)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliCalendar
-  specs:
-    lesli_calendar (1.1.2)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliDashboard
-  specs:
-    lesli_dashboard (1.1.3)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliShield
-  specs:
-    lesli_shield (1.1.7)
-      devise (~> 5.0.0)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/LesliSupport
-  specs:
-    lesli_support (1.2.3)
-      lesli (~> 5.1.0)
-
-PATH
-  remote: engines/Lesli
-  specs:
-    lesli (5.1.13)
-      acts_as_paranoid (~> 0.11.0)
-      kaminari (~> 1.2.2)
-      lesli_assets (~> 1.1.0)
-      lesli_date (~> 1.1.0)
-      lesli_system (~> 1.1.0)
-      lesli_view (~> 1.1.0)
-      rails (~> 8.1.0)
-      rails-i18n (~> 8.1.0)
-      termline (~> 1.1.0)
-      turbo-rails (~> 2.0.0)
-
-PATH
-  remote: gems/LesliAssets
-  specs:
-    lesli_assets (1.1.6)
-      tailwindcss-ruby (~> 4.0)
-      termline (~> 1.1.0)
-
-PATH
-  remote: gems/LesliDate
-  specs:
-    lesli_date (1.1.0)
-      activerecord (>= 8.0, < 8.2)
-      activesupport (>= 8.0, < 8.2)
-      i18n (>= 1.6, < 2)
-
-PATH
-  remote: gems/LesliSystem
-  specs:
-    lesli_system (1.1.0)
-
-PATH
-  remote: gems/LesliView
-  specs:
-    lesli_view (1.1.6)
-      lexxy (~> 1.0.1)
-      view_component (~> 4.15.0)
-
-PATH
-  remote: gems/Termline
-  specs:
-    termline (1.1.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -179,10 +82,10 @@ GEM
       public_suffix (>= 2.0.2, < 8.0)
     ansi (1.6.0)
     ast (2.4.3)
-    aws-eventstream (1.4.0)
-    aws-partitions (1.1296.0)
-    aws-sdk-core (3.259.0)
-      aws-eventstream (~> 1, >= 1.3.0)
+    aws-eventstream (1.4.1)
+    aws-partitions (1.1298.0)
+    aws-sdk-core (3.260.0)
+      aws-eventstream (~> 1, >= 1.4.1)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
       base64
@@ -190,8 +93,8 @@ GEM
       jmespath (~> 1, >= 1.6.1)
       logger
       rexml (~> 3.4, >= 3.4.2)
-    aws-sdk-kms (1.134.0)
-      aws-sdk-core (~> 3, >= 3.258.0)
+    aws-sdk-kms (1.135.0)
+      aws-sdk-core (~> 3, >= 3.260.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.235.0)
       aws-sdk-core (~> 3, >= 3.258.0)
@@ -223,7 +126,7 @@ GEM
       logger (~> 1.5)
     concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
-    crass (1.0.7)
+    crass (1.0.8)
     date (3.6.0)
     debug (1.11.1)
       irb (~> 1.10)
@@ -294,12 +197,52 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
+    lesli (5.1.13)
+      acts_as_paranoid (~> 0.11.0)
+      kaminari (~> 1.2.2)
+      lesli_assets (~> 1.1.0)
+      lesli_date (~> 1.1.0)
+      lesli_system (~> 1.1.0)
+      lesli_view (~> 1.1.0)
+      rails (~> 8.1.0)
+      rails-i18n (~> 8.1.0)
+      termline (~> 1.1.0)
+      turbo-rails (~> 2.0.0)
+    lesli_admin (1.1.2)
+      lesli (~> 5.1.0)
+    lesli_assets (1.1.6)
+      tailwindcss-ruby (~> 4.0)
+      termline (~> 1.1.0)
+    lesli_audit (1.1.2)
+      device_detector (~> 1.1.3)
+      lesli (~> 5.1.0)
+    lesli_babel (1.1.3)
+      lesli (~> 5.1.0)
+    lesli_bell (1.1.2)
+      lesli (~> 5.1.0)
+    lesli_calendar (1.1.2)
+      lesli (~> 5.1.0)
+    lesli_dashboard (1.1.3)
+      lesli (~> 5.1.0)
+    lesli_date (1.1.1)
+      activerecord (>= 8.0, < 8.2)
+      activesupport (>= 8.0, < 8.2)
+      i18n (>= 1.6, < 2)
+    lesli_shield (1.1.7)
+      devise (~> 5.0.0)
+      lesli (~> 5.1.0)
+    lesli_support (1.2.3)
+      lesli (~> 5.1.0)
+    lesli_system (1.1.0)
     lesli_testing (1.4.2)
       minitest (~> 6.0.0)
       simplecov (~> 1.3.2)
       simplecov-cobertura (~> 4.0.0)
       simplecov-console (~> 0.9.0)
       termline (~> 1.1.0)
+    lesli_view (1.1.6)
+      lexxy (~> 1.0.1)
+      view_component (~> 4.15.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     lexxy (1.0.1)
@@ -329,10 +272,10 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-scp (4.1.0)
-      net-ssh (>= 2.6.5, < 8.0.0)
-    net-sftp (4.0.0)
-      net-ssh (>= 5.0.0, < 8.0.0)
+    net-scp (4.1.1)
+      net-ssh (>= 2.6.5, < 9.0.0)
+    net-sftp (4.0.1)
+      net-ssh (>= 5.0.0, < 9.0.0)
     net-smtp (0.5.2)
       net-protocol
     net-ssh (7.3.6)
@@ -367,7 +310,7 @@ GEM
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
-    rack-test (2.2.0)
+    rack-test (2.3.0)
       rack (>= 1.3)
     rackup (2.3.1)
       rack (>= 3)
@@ -422,7 +365,7 @@ GEM
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
-    rubocop (1.92.0)
+    rubocop (1.92.1)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -497,6 +440,7 @@ GEM
     tailwindcss-ruby (4.3.3-x86_64-linux-gnu)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
+    termline (1.1.3)
     thor (1.5.0)
     thruster (0.1.27)
     thruster (0.1.27-x86_64-darwin)
@@ -547,20 +491,16 @@ DEPENDENCIES
   jbuilder
   json (< 3)
   kamal
-  lesli!
-  lesli_admin!
-  lesli_assets!
-  lesli_audit!
-  lesli_babel!
-  lesli_bell!
-  lesli_calendar!
-  lesli_dashboard!
-  lesli_date!
-  lesli_shield!
-  lesli_support!
-  lesli_system!
+  lesli
+  lesli_admin
+  lesli_audit
+  lesli_babel
+  lesli_bell
+  lesli_calendar
+  lesli_dashboard
+  lesli_shield
+  lesli_support
   lesli_testing
-  lesli_view!
   letter_opener
   pg
   propshaft
@@ -573,7 +513,6 @@ DEPENDENCIES
   solid_queue
   sqlite3 (>= 2.1)
   stimulus-rails
-  termline!
   thruster
   turbo-rails
   tzinfo-data
@@ -596,10 +535,10 @@ CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
-  aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
-  aws-partitions (1.1296.0) sha256=70cc7a44fa4824a9df5652b853dc96aaaf09ec20642cd9d42ed7335a36cc3567
-  aws-sdk-core (3.259.0) sha256=1c2bcb73d4c1146a2f52a2a05258ae11e349fb8ea6e42159c699d6dae9fb9441
-  aws-sdk-kms (1.134.0) sha256=85dde5d616160a0bfa7aed143f0e6f54dd440b81d1cdfc7008d49ee8e0c49a28
+  aws-eventstream (1.4.1) sha256=ceb6a99c61df4bb00344e54aed0351574beca24f87a0d1487d1d2ed80929ce96
+  aws-partitions (1.1298.0) sha256=c729707ab271e561bbb2c20078ed77cf210d1ba6541177fbd6b16f3c4b792938
+  aws-sdk-core (3.260.0) sha256=cb09c6c0ca86f2779e8672ae214c044f07b76f2540d81f44c894d465f8a68bd5
+  aws-sdk-kms (1.135.0) sha256=8879a194c716a9ee0df14b59c6bf27c7b6879fc251e206262a781d49a8455475
   aws-sdk-s3 (1.235.0) sha256=e42c1d4ee18014fe0b7d92267e97f20bb02634e35aa604443f76869255be5660
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
@@ -615,7 +554,7 @@ CHECKSUMS
   childprocess (5.1.0) sha256=9a8d484be2fd4096a0e90a0cd3e449a05bc3aa33f8ac9e4d6dcef6ac1455b6ec
   concurrent-ruby (1.3.8) sha256=b2f1be836e968ccc78ccfce277ea79c72a88633f22306782c16ff23fb415d1e1
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
-  crass (1.0.7) sha256=94868719948664c89ddcaf0a37c65048413dfcb1c869470a5f7a7ceb5390b295
+  crass (1.0.8) sha256=7a0145c7a2c59f8e7923b3a69ce819c444823a00a5127d805298fea13be24efe
   date (3.6.0) sha256=18ac945c4e24ebd93534f8eab8c2fd8c5604b3e977105b3798d62a1e8d27b580
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   device_detector (1.1.3) sha256=c5fe3fe42cab2e8aa01f193b2074b8bb1510373ce47127206f28c7dea75a9c79
@@ -643,20 +582,20 @@ CHECKSUMS
   kaminari-core (1.2.2) sha256=3bd26fec7370645af40ca73b9426a448d09b8a8ba7afa9ba3c3e0d39cdbb83ff
   language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
   launchy (3.1.1) sha256=72b847b5cc961589dde2c395af0108c86ff0119f42d4648d25b5440ebb10059e
-  lesli (5.1.13)
-  lesli_admin (1.1.2)
-  lesli_assets (1.1.6)
-  lesli_audit (1.1.2)
-  lesli_babel (1.1.3)
-  lesli_bell (1.1.2)
-  lesli_calendar (1.1.2)
-  lesli_dashboard (1.1.3)
-  lesli_date (1.1.0)
-  lesli_shield (1.1.7)
-  lesli_support (1.2.3)
-  lesli_system (1.1.0)
+  lesli (5.1.13) sha256=de1716acaa85333b9c760adac4ab5367e1bcb094a595843012edf4a20463f9a7
+  lesli_admin (1.1.2) sha256=a6753fed0b139044fe6c4966d44c9f6571cbd1f6696720e438aabc3f9f4de3de
+  lesli_assets (1.1.6) sha256=ccfa9e9250a7c6dcac5811c947009561d2092fc4a53a7a09619367080d9c69eb
+  lesli_audit (1.1.2) sha256=e2093c0abc65a236446efd83044c0942e6a0685c509edc5b51a0684902bc7f7d
+  lesli_babel (1.1.3) sha256=7d60eff2797e5f60e55a10c98ccb4880db69589ddc03e185aac956e25a0bc3a6
+  lesli_bell (1.1.2) sha256=83b79cf752dd34005abaecb2bcd159ee3ff5279b52056c3cd8666c6aaa60c84d
+  lesli_calendar (1.1.2) sha256=657d46a07ec2bca7388b4cb0b70ab69b40340b1678ee4def17286af345a26a09
+  lesli_dashboard (1.1.3) sha256=0d7f074e1b659bdf561c59a5e9a63ef4d78d41e417ab596796fcf7cb34149bd8
+  lesli_date (1.1.1) sha256=92c896f3b0ac4bbe627fbb1632df6a64ff13e28b53196f7401da1eafb1d36c57
+  lesli_shield (1.1.7) sha256=4a42128da9723ebfcc486d08b9b194efe79632768fe31a3d01b634f7b2c3a15b
+  lesli_support (1.2.3) sha256=5b96225842a82dd5ba5eecd2d24e02a5497d9c1e1999ef2cc8f6908faeca2758
+  lesli_system (1.1.0) sha256=6064fd7b7272b3d66a4fed17e70e2a6ed6e33b8902dc80ea29e9df2396d785eb
   lesli_testing (1.4.2) sha256=961f439a50a8a7174cbf58e51bf83dd4dc41c438d57afa7a976378c7577a66a6
-  lesli_view (1.1.6)
+  lesli_view (1.1.6) sha256=aa514f594bd2c50235d235669e92960d8dc4b323a27fa16f9ffff048e455bbb4
   letter_opener (1.10.0) sha256=2ff33f2e3b5c3c26d1959be54b395c086ca6d44826e8bf41a14ff96fdf1bdbb2
   lexxy (1.0.1) sha256=927a3e592f9d2a989fe5fb7c0c527be62950e593483188940cd98d8a9a004926
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
@@ -671,8 +610,8 @@ CHECKSUMS
   net-imap (0.6.8) sha256=eb30bb62227b64a3af6b518b04b2375113d69f68f15de59b0193b07d98acf6d9
   net-pop (0.1.2) sha256=848b4e982013c15b2f0382792268763b748cce91c9e91e36b0f27ed26420dff3
   net-protocol (0.4.0) sha256=f9f90c8c6f64794a45160bf422177a336db12809de3beeeaa26b88fcd2e8c853
-  net-scp (4.1.0) sha256=a99b0b92a1e5d360b0de4ffbf2dc0c91531502d3d4f56c28b0139a7c093d1a5d
-  net-sftp (4.0.0) sha256=65bb91c859c2f93b09826757af11b69af931a3a9155050f50d1b06d384526364
+  net-scp (4.1.1) sha256=6017d1af1ca175cb193e8a33ca4bb7c53ddd40de7a050643b3b15ec386b2d392
+  net-sftp (4.0.1) sha256=e58cb0ebcaf0161f4a9ddc7fc54e160d97bc50bc774547817287728245d022d0
   net-smtp (0.5.2) sha256=35103cc04d6b2d94632f9928ede07483c24b70b9c0db1f231fea43909b678f3c
   net-ssh (7.3.6) sha256=3364dedce752b9f5221e12ae970880d871a8e733e4730e4b9bd89e0b6808ce4b
   nio4r (2.7.5) sha256=6c90168e48fb5f8e768419c93abb94ba2b892a1d0602cb06eef16d8b7df1dca1
@@ -695,7 +634,7 @@ CHECKSUMS
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.7) sha256=93e13e1c24f93556671d85d2d79fa228c3485815c50d7e2f265b5330c6528fb7
   rack-session (2.1.2) sha256=595434f8c0c3473ae7d7ac56ecda6cc6dfd9d37c0b2b5255330aa1576967ffe8
-  rack-test (2.2.0) sha256=005a36692c306ac0b4a9350355ee080fd09ddef1148a5f8b2ac636c720f5c463
+  rack-test (2.3.0) sha256=b118d177cc002c572fc1b6fd8d19c9ed5881a36e8d6f689f9e618f9f861241e8
   rackup (2.3.1) sha256=6c79c26753778e90983761d677a48937ee3192b3ffef6bc963c0950f94688868
   rails (8.1.4) sha256=5f3ecdf9a2a3b79b2e31b8fee3b64a00f7284d76e5631f87d0e58e665911a33b
   rails-dom-testing (2.3.0) sha256=8acc7953a7b911ca44588bf08737bc16719f431a1cc3091a292bca7317925c1d
@@ -710,7 +649,7 @@ CHECKSUMS
   reline (0.7.0) sha256=5b012d8e55dbf9d450f12bde2cf7d15ff546ae80b3f8f3b30e570d431815583d
   responders (3.2.1) sha256=c2772970cbda654c0e772d852e5a851e82cd8e96f5fa958650861ba75b8ffa84
   rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
-  rubocop (1.92.0) sha256=2af68041fb2e70bd9321d0479b49fad07f8008a3d0758c83347b4917128c56e0
+  rubocop (1.92.1) sha256=a905381a5344215a79abcfe80f6c94366447e6a55347c9a525b5a24990e33f62
   rubocop-ast (1.50.0) sha256=b9ca88300da0803ee222ad20cdb30494c0a784eed06fdc35d254b06d662788db
   rubocop-performance (1.27.0) sha256=eeeb1374d062a368ee1c787b70eb0b0cc4b184cb1f8565f424760946146d61ce
   rubocop-rails (2.38.0) sha256=6e2b7c532efa95e3050371bec20b8f5b025662acead8bc70ee31f0e3e6fa2f06
@@ -732,7 +671,7 @@ CHECKSUMS
   tailwindcss-ruby (4.3.3-x86_64-darwin) sha256=483011e5d3792cf5ef4afdfb04c1d95daccf42c30cdb6fe53b77520954e7b922
   tailwindcss-ruby (4.3.3-x86_64-linux-gnu) sha256=2337017ff8b02698480eae1e9637cf01faa0e4824db89d067a13c5a5ee38c9b2
   terminal-table (4.0.0) sha256=f504793203f8251b2ea7c7068333053f0beeea26093ec9962e62ea79f94301d2
-  termline (1.1.3)
+  termline (1.1.3) sha256=0290ed3de2e1944bb977f0bbf56edbff6cadb93673b0742209a890792112b280
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   thruster (0.1.27) sha256=5fd3855192bb4e8d13db69ae5f70d39f2dfd88fe0394fa372104996edf0bb599
   thruster (0.1.27-x86_64-darwin) sha256=f389bdfccf332dabff8053194e64cd65d4ae247f1afd386624233a1dfaa41485

@@ -63,10 +63,10 @@ load_lesli_gem('engines', [
 ])
 
 load_lesli_gem('gems', [
-    "LesliDate",
-    "LesliView",
-    "LesliAssets",
-    "LesliSystem",
-    "Termline"
+    # "LesliDate",
+    # "LesliView",
+    # "LesliAssets",
+    # "LesliSystem",
+    # "Termline"
 ])
 
