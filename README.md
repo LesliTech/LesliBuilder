@@ -130,15 +130,19 @@ The current `Gemfile.lesli` enables these packages:
 | Package | Responsibility |
 | --- | --- |
 | [Lesli](https://github.com/LesliTech/Lesli) | Core framework, shared models, interfaces, routing, and application shell |
+| [LesliAdmin](https://github.com/LesliTech/LesliAdmin) | Account administration, settings, locations, and currencies |
+| [LesliAudit](https://github.com/LesliTech/LesliAudit) | Activity logs, auditing, devices, and request analytics |
+| [LesliBabel](https://github.com/LesliTech/LesliBabel) | Translation management and localization workflows |
 | [LesliShield](https://github.com/LesliTech/LesliShield) | Authentication, users, roles, privileges, and sessions |
 | [LesliBell](https://github.com/LesliTech/LesliBell) | Notifications and announcements |
-| [LesliAudit](https://github.com/LesliTech/LesliAudit) | Activity logs, auditing, and analytics |
+| [LesliCalendar](https://github.com/LesliTech/LesliCalendar) | Calendars, events, and agendas |
 | [LesliDashboard](https://github.com/LesliTech/LesliDashboard) | Shared dashboards and dashboard components |
+| [LesliSupport](https://github.com/LesliTech/LesliSupport) | Tickets, service workflows, and reusable record items |
+| [LesliDate](https://github.com/LesliTech/LesliDate) | Shared date, time, and database formatting utilities |
 | [LesliView](https://github.com/LesliTech/LesliView) | ViewComponent-based UI library and form builders |
 | [LesliAssets](https://github.com/LesliTech/LesliAssets) | Shared JavaScript, Tailwind CSS, fonts, icons, and email assets |
 | [LesliSystem](https://github.com/LesliTech/LesliSystem) | Engine discovery, metadata, and system utilities |
-
-Other engines—including LesliAdmin, LesliBabel, LesliCalendar, LesliContacts, LesliMailer, and LesliSupport—can be developed in the same workspace by enabling their entries in `Gemfile.lesli`.
+| [Termline](https://github.com/LesliTech/Termline) | Terminal output used by Lesli commands and development tooling |
 
 ## Common commands
 

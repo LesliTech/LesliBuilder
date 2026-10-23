@@ -14,6 +14,16 @@ local:
 #   region: us-east-1
 #   bucket: your_own_bucket-<%= Rails.env %>
 
+# Cloudflare R2 exposes an S3-compatible API.
+# cloudflare:
+#   service: S3
+#   access_key_id: <%= ENV["R2_ACCESS_KEY_ID"] %>
+#   secret_access_key: <%= ENV["R2_SECRET_ACCESS_KEY"] %>
+#   region: auto
+#   bucket: <%= ENV["R2_BUCKET"] %>
+#   endpoint: <%= ENV["R2_ENDPOINT"] %>
+#   force_path_style: true
+
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS
