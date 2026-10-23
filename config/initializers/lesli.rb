@@ -4,4 +4,4 @@ if defined? Lesli
         config.demo = true
         config.security[:allow_multiaccount] = false
     end
-end 
+end

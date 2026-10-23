@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/LesliTech/LesliBuilder/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliBuilder/ci.yml?branch=main&style=for-the-badge&logo=github&label=CI"></a>
-    <a href="https://www.ruby-lang.org/"><img alt="Ruby 3.2.5" src="https://img.shields.io/badge/Ruby-3.2.5-CC342D?style=for-the-badge&logo=ruby"></a>
+    <a href="https://github.com/LesliTech/LesliBuilder/actions/workflows/lesli-ci-app.yaml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliBuilder/lesli-ci-app.yaml?branch=master&style=for-the-badge&logo=github&label=CI"></a>
+    <a href="https://www.ruby-lang.org/"><img alt="Ruby 3.3.5" src="https://img.shields.io/badge/Ruby-3.3.5-CC342D?style=for-the-badge&logo=ruby"></a>
     <a href="https://rubyonrails.org/"><img alt="Rails 8.1" src="https://img.shields.io/badge/Rails-8.1-D30001?style=for-the-badge&logo=rubyonrails"></a>
     <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img alt="GPLv3 license" src="https://img.shields.io/badge/License-GPLv3-blue?style=for-the-badge"></a>
 </p>
@@ -53,7 +53,7 @@ LesliBuilder/
 ## Requirements
 
 - Git
-- Ruby 3.2.5, as declared in `.ruby-version`
+- Ruby 3.3.5, as declared in `.ruby-version`
 - Rails 8.1, installed through Bundler
 - SQLite 3 for the default development and test databases
 - A JavaScript-capable browser for system tests
@@ -168,6 +168,9 @@ Run the complete local CI workflow:
 ```shell
 bin/ci
 ```
+
+The GitHub workflow runs the host application with its default SQLite database
+and repeats the integration and system suites against PostgreSQL 16.
 
 Run individual checks while developing:
 

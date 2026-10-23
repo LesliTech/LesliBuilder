@@ -64,7 +64,7 @@ group :development, :test do
   # https://github.com/ryanb/letter_opener
   gem "letter_opener"
 
-  
+
   gem "lesli_testing", require: false
 end
 
@@ -84,5 +84,5 @@ gem "json", "< 3"
 
 # List of Lesli engines to be installed
 if File.exist?("Gemfile.lesli")
-  eval_gemfile "Gemfile.lesli" 
+  eval_gemfile "Gemfile.lesli"
 end
