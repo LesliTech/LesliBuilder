@@ -95,7 +95,7 @@ bin/rails lesli:db:rebuild
 The seed task prints the generated development accounts and credentials in the terminal.
 
 > [!WARNING]
-> `lesli:db:rebuild` drops the current database and deletes `db/schema.rb` before preparing and seeding it. It is blocked in production, but it will replace local development data.
+> `lesli:db:rebuild` drops the current database, rebuilds it from the migrations currently provided by the host and installed engines, regenerates the schema, and then loads seeds. It runs only in the Rails development and test environments and will replace disposable data.
 
 ## Develop a Lesli package locally
 
@@ -160,6 +160,7 @@ the production runtime bundle. Experimental packages outside `engines/` and
 | `bin/rails routes` | Print routes from the host and mounted engines |
 | `bin/rails lesli:status` | List the loaded Lesli components and versions |
 | `bin/rails lesli:db:prepare` | Prepare migrations, resources, accounts, and installed engines |
+| `bin/rails lesli:db:build` | Prepare, seed, and configure the database without dropping it |
 | `bin/rails lesli:db:seed` | Load engine and application seed data |
 | `bin/rails lesli:db:rebuild` | Destructively rebuild and seed the development database |
 | `bin/jobs` | Start the Solid Queue worker |

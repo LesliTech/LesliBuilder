@@ -209,9 +209,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_21_070000) do
     t.string "agent_platform"
     t.string "agent_browser"
     t.string "agent_device"
-    t.boolean "analytics_enabled", default: true, null: false
     t.boolean "retain", default: true, null: false
-    t.datetime "processed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -220,7 +218,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_21_070000) do
     t.index ["account_id", "event_uid"], name: "lesli_audit_user_journals_event_index", unique: true
     t.index ["account_id"], name: "index_lesli_audit_user_journals_on_account_id"
     t.index ["date"], name: "index_lesli_audit_user_journals_on_date"
-    t.index ["processed_at"], name: "index_lesli_audit_user_journals_on_processed_at"
     t.index ["user_id"], name: "index_lesli_audit_user_journals_on_user_id"
   end
 
