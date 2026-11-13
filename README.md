@@ -131,7 +131,7 @@ The current `Gemfile.lesli` enables these packages:
 | --- | --- |
 | [Lesli](https://github.com/LesliTech/Lesli) | Core framework, shared models, interfaces, routing, and application shell |
 | [LesliAdmin](https://github.com/LesliTech/LesliAdmin) | Account administration, settings, locations, and currencies |
-| [LesliAudit](https://github.com/LesliTech/LesliAudit) | Activity logs, auditing, devices, and request analytics |
+| [LesliAudit](https://github.com/LesliTech/LesliAudit) | Users, authenticated analytics, provider traffic, requests, and activity logs |
 | [LesliBabel](https://github.com/LesliTech/LesliBabel) | Translation management and localization workflows |
 | [LesliShield](https://github.com/LesliTech/LesliShield) | Authentication, users, roles, privileges, and sessions |
 | [LesliBell](https://github.com/LesliTech/LesliBell) | Notifications and announcements |
@@ -229,6 +229,16 @@ Start with:
 - [Testing tools](https://www.lesli.dev/gems/testing/)
 
 Package-specific source documentation lives in each repository's `docs/` directory and README.
+
+Host-specific guides are documented in this repository:
+
+- [Cloudflare traffic analytics](docs/integrations/cloudflare-traffic.md)
+- [Deploying with the host application's local Kamal](docs/deployment/kamal.md)
+
+LesliAudit owns the Cloudflare client, converter, imports, jobs, and Traffic
+interface. This host supplies credentials, resource mapping, and a scheduled
+refresh. The imported aggregates are operational analytics, not audit
+evidence.
 
 ## Contributing
 

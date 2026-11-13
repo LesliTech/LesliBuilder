@@ -23,5 +23,10 @@ end
 
 require "rubygems"
 require "bundler/setup"
+require "dotenv"
+
+# Keep deployment-specific values outside version control. Loading them here
+# makes the same configuration available to Kamal and .kamal/secrets.
+Dotenv.load(File.expand_path("../.env.kamal", __dir__))
 
 load Gem.bin_path("kamal", "kamal")

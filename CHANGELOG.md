@@ -11,3 +11,6 @@
   packages.
 - Update release documentation, upgrade guidance, package changelogs, and
   Active Storage provider requirements.
+- Configure LesliAudit's standard Cloudflare Traffic integration in the host,
+  including credentials, resource mapping, recurring synchronization, and
+  deployment documentation.

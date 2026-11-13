@@ -1,0 +1,5 @@
+---
+en:
+  main_app:
+    shared: {}
+    users/invitations: {}
