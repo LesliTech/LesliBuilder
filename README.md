@@ -176,19 +176,38 @@ bin/ci
 ```
 
 The GitHub workflow runs the host application with its default SQLite database
-and repeats the integration and system suites against PostgreSQL 16.
+and repeats the integrated suite against PostgreSQL 16.
 
 Run individual checks while developing:
 
 ```shell
 bin/rails test
-bin/rails test:system
 bin/rubocop
 bin/brakeman --quiet --no-pager
 bin/importmap audit
 ```
 
-Each engine and gem also owns its own test suite. Run those commands from the package directory and follow its README for package-specific setup.
+Builder owns only the shared test helper and orchestration. Tests for engine
+behavior belong in the corresponding engine repository.
+
+`bin/rails test` (or `bin/rails test:engines`) runs a Minitest task that loads tests
+from installed packages with local checkouts under `engines/` and `gems/`.
+All selected tests run together using Builder's bundle, Rails application, and
+`test/test_helper.rb`. It does not boot each package's dummy application.
+Missing checkouts and packages without `test/` are omitted. If none are present,
+Minitest runs zero tests. No tags or remote test suites are downloaded.
+RSpec suites in `spec/` are not supported.
+
+Validate engines in three contexts:
+
+- **Standalone:** run the engine's own suite with its dummy app.
+- **Fresh Rails host:** verify installation, migrations, and basic integration in
+  a newly created Rails application.
+- **Builder:** load local suites together to check coexistence with all modules.
+
+Shared test support must work with Builder's helper as well as the standalone
+helper. Keep engine-specific assertions and supporting classes in the package,
+not in Builder. Keep cloned tests aligned with the code loaded by the bundle.
 
 ### Frontend assets
 

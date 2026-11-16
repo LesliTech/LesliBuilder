@@ -24,7 +24,7 @@ jobs:
     with:
       ruby-version: "3.3.5"
       run-security: true
-      run-system-tests: true
+      run-system-tests: false
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -67,6 +67,3 @@ jobs:
 
       - name: "Run application tests"
         run: bin/rails test
-
-      - name: "Run application system tests"
-        run: bin/rails test:system

@@ -8,15 +8,11 @@ require_relative "../config/environment"
 require "rails/test_help"
 
 
-# register engine for testing
-LesliTesting.app("LesliBuilder", {
-    coverage_min_coverage: 0.5
-})
+LesliTesting.app("LesliBuilder", coverage_min_coverage: 0.5)
 
 module ActiveSupport
     class TestCase
-        # The Builder verifies how all modules work together in one host process.
-        # Package-level unit tests remain isolated in each engine or gem suite.
+        # Keep host checks sequential by default.
         parallelize(workers: ENV.fetch("PARALLEL_WORKERS", 1).to_i)
     end
 end
