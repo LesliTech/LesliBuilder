@@ -64,8 +64,8 @@ load_lesli_gem('engines', [
 
 load_lesli_gem('gems', [
     # "LesliDate",
-    "LesliView",
-    "LesliAssets",
+    # "LesliView",
+    # "LesliAssets",
     # "LesliSystem",
     # "Termline"
 ])
