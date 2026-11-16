@@ -220,7 +220,7 @@ GEM
       lesli (~> 5.1.0)
     lesli_bell (1.1.3)
       lesli (~> 5.1.0)
-    lesli_calendar (1.1.2)
+    lesli_calendar (1.1.3)
       lesli (~> 5.1.0)
     lesli_dashboard (1.1.4)
       lesli (~> 5.1.0)
@@ -576,17 +576,17 @@ CHECKSUMS
   kaminari-core (1.2.2) sha256=3bd26fec7370645af40ca73b9426a448d09b8a8ba7afa9ba3c3e0d39cdbb83ff
   language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
   launchy (3.1.1) sha256=72b847b5cc961589dde2c395af0108c86ff0119f42d4648d25b5440ebb10059e
-  lesli (5.1.14)
-  lesli_admin (1.1.3)
+  lesli (5.1.14) sha256=2325780c1c8e40a315cb27a9bfd55b593f920300a25adafcc04f9c74ad1cb52d
+  lesli_admin (1.1.3) sha256=4af3f2d81b18b1f1233b602389b5e6710270939733390e9aacfc4f22b76e3cd7
   lesli_assets (1.1.7) sha256=55ee8b9bf410ec27029c887f3b4bf36d754f6aa1c3e3d3c87ab9cfd319397bb1
-  lesli_audit (1.1.3)
-  lesli_babel (1.1.4)
-  lesli_bell (1.1.3)
-  lesli_calendar (1.1.2)
-  lesli_dashboard (1.1.4)
+  lesli_audit (1.1.3) sha256=bec59d25fcec11104dce5deba01520f44aa885d43b1d352ff767c03ade7bd395
+  lesli_babel (1.1.4) sha256=7e314592bc99adef9de14c6b0c3c9a4d6ceb3ed55ff020395e15ed236fdc5244
+  lesli_bell (1.1.3) sha256=e1310f91d5effa0999849bf429080a74d948607a9fc4ba73436ba6f8ca9fd539
+  lesli_calendar (1.1.3) sha256=445d5f3f714c1c5fd327c02792eae6b2f42a1e4375f15168122ea52697bb6dca
+  lesli_dashboard (1.1.4) sha256=db8a3983fcbdd6a723d9313b1ae6c2aa08433ee4ca64c8b8ec73f02fc52725e6
   lesli_date (1.1.2) sha256=32b65ea67ed5cdca1b749e8e4645a371999e5bee78fcef712da51634e0833a5d
-  lesli_shield (1.1.8)
-  lesli_support (1.2.3)
+  lesli_shield (1.1.8) sha256=24916c8ebdadcdc2f956eaae99501acc5ccbf66d6aff7fce1614aef4caa22c7d
+  lesli_support (1.2.3) sha256=5b96225842a82dd5ba5eecd2d24e02a5497d9c1e1999ef2cc8f6908faeca2758
   lesli_system (1.1.0) sha256=6064fd7b7272b3d66a4fed17e70e2a6ed6e33b8902dc80ea29e9df2396d785eb
   lesli_testing (1.4.2) sha256=961f439a50a8a7174cbf58e51bf83dd4dc41c438d57afa7a976378c7577a66a6
   lesli_view (1.1.7) sha256=57a64ab65e2f3d8da4d450cc881d44436b002fc6715759b6cd7554953e266a8e
